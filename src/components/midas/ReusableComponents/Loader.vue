@@ -1,5 +1,5 @@
 <template>
-  <div v-show="$store.state.schemes.length == 0">
+  <div v-show="$store.state.SchemesProduct.schemes.length == 0">
   <img src="./../../../../public/images/spinners/Dual.gif">
   
   <p class="msg__color">{{msg}}</p>

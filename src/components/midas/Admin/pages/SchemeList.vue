@@ -2,11 +2,11 @@
 
   <MyLoader msg="Please wait..."></MyLoader>
 
-<div class="surface-section scheme-pad"  v-show="$store.state.schemes.length != 0">
+<div class="surface-section scheme-pad"  v-show="$store.state.SchemesProduct.schemes.length != 0">
     <div class="font-medium text-3xl text-900 mb-3">Schemes</div>
     <div class="text-500 mb-5">MIDAS available schemes.</div>
     <ul class="list-none p-0 m-0">
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap" v-for="scheme in schemes" :key="scheme.id" >
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap" v-for="scheme in Productschemes" :key="scheme.id" >
             <!-- <div class="text-500 w-6 md:w-2 font-medium">Title</div> -->
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{scheme.name}}</div>
             <div class="w-6 md:w-2 flex justify-content-end">
@@ -52,8 +52,8 @@ created(){
     //     })
 },
 computed: {
-    schemes() {
-    return this.$store.state.schemes;
+    Productschemes() {
+    return this.$store.state.SchemesProduct.schemes;
   }
 }
 }

@@ -16,13 +16,9 @@
                 <div class="submit">
                 <button>Create</button>
                 </div>
-                <!-- <Button class="submit-button" label="Submit"></Button> -->
+            
                 </form>
-                <div class="error" v-if="errors.length">
-                        <p v-for="error  in errors" :key="error">
-                        {{error}}
-                        </p>
-                </div>
+              
 			</div>
 		</div>
       
@@ -37,7 +33,7 @@ export default {
         return{
             name:"",
             description:"",
-            errors:[]
+          
         }
     },
     methods: {

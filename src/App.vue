@@ -13,6 +13,7 @@
 
         <div class="layout-main-container">
             <div class="layout-main">
+                 <Toast />
                 <router-view />
             </div>
             <AppFooter />

@@ -58,6 +58,7 @@ export default {
                 const newScheme = async () =>{
                 try{
                 const res = await axios.post('api/v1/schemes/',formData)
+                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
                 console.log(res)
                 this.name = ""
                 this.description = ""
@@ -68,7 +69,8 @@ export default {
                 newScheme()
             }
         }
-    }
+    },
+
 
 }
 </script>

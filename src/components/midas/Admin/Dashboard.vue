@@ -216,38 +216,14 @@ export default {
             this.applyLightTheme();
         }
 
-		console.log('Mounted from Dashbaord')
+	
 	},
 	beforeUnmount() {
         EventBus.off('change-theme', this.themeChangeListener );
     },
 	created() {
 		this.productService = new ProductService();
-		console.log('Created from dashboard')
-		// // get user profile
-		// axios.get('auth/me/')
-        // .then(res =>{
-        // if (res.data.user.is_employee || res.data.user.is_account || res.data.user.is_normal) {
-        // this.myRole = true
-                        
-        // localStorage.setItem('myStatus', this.myRole)
-        // this.$store.commit('setStatus', this.myRole)
-		// this.$store.commit('setUsername',res.data.user.username)
-        // } else {
-    	// this.myRole = false
-        // localStorage.setItem('myStatus',this.myRole)
-        // this.$store.commit('setStatus', this.myRole)
-		// this.$store.commit('setUsername',res.data.user.username)
-        // }
-    
-        // })
-        // .catch(err =>{
-        //                 console.log(err)
-        //             })
-					// this.$store.dispatch('UserStatus')
-                //    const myStat = this.$store.state.user.isStaff
-                //    localStorage.setItem('myStatus',myStat)
-
+	
 	},
 	
 	methods: {

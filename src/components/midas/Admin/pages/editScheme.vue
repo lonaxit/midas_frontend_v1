@@ -3,7 +3,7 @@
 		<div class="col-12">
 			<div class="card  p-fluid">
 				<h5>Create New Scheme</h5>
-				<form @submit.prevent="createScheme">
+				<form @submit.prevent="updateScheme">
                 <div class="field">
 					<label for="name1">Name</label>
 					<InputText v-model="name" id="name" type="text" placeholder="Enter Name"/>
@@ -14,7 +14,7 @@
 				<Textarea v-model="description" id="address" rows="4" placeholder="Create an optional  scheme description "/>
 				</div>
                 <div class="submit">
-                <button>Create</button>
+                <button>Update</button>
                 </div>
             
                 </form>
@@ -33,11 +33,11 @@ export default {
         return{
             name:"",
             description:"",
-          
+            id:""
         }
     },
     methods: {
-        createScheme(){
+        updateScheme(){
             
             // initialize the errors array  
             this.errors =[]
@@ -51,21 +51,34 @@ export default {
                     description: this.description
                 }
                 
-                const newScheme = async () =>{
+                const updateScheme = async () =>{
                 try{
-                const res = await axios.post('api/v1/schemes/',formData)
-                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
+                const res = await axios.put('api/v1/scheme-detail/'+ this.id +'/',formData)
+                this.$toast.add({severity: 'success', detail:'Item updated successfully', life: 5000});
              
-                this.name = ""
-                this.description = ""
+                this.$router.push('/scheme-list')
+                
                 } catch(err){
                 this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
                 }
                 }
-                newScheme()
+                updateScheme()
             }
         }
     },
+    created(){
+        const getSchemeDetail = async () =>{
+        try{
+            const res = await axios.get('api/v1/scheme-detail/'+ this.$route.params.id)
+            this.name =res.data.name
+            this.description = res.data.description
+            this.id = res.data.id
+        } catch(err){
+            this.$toast.add({severity: 'error', detail:'Unable to get item detail', life: 5000});
+        }
+    }
+    getSchemeDetail()
+    }
 
 
 }
@@ -74,7 +87,6 @@ export default {
 <style scoped>
 .submit-button{
     width: 20%;
-   
 }
 
 

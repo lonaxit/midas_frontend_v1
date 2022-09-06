@@ -42,7 +42,7 @@ const routes = [
             {
                 path: '/update-scheme/:id',
                 name: 'update-scheme',
-                component: () => import('./components/midas/Admin/pages/NewScheme.vue')
+                component: () => import('./components/midas/Admin/pages/editScheme.vue')
             },
           
             {

@@ -381,6 +381,7 @@ export default {
     
     this.$store.commit('initializeStore')
 
+   
 
     const token = this.$store.state.auth.user.token
 
@@ -390,17 +391,17 @@ export default {
      axios.defaults.headers.common['Authorization'] = ""
     }
 
-    console.log('before create from app')
+  
 },
 mounted() {
     this.$store.commit('initializeStatus')
     this.$store.commit('initializeUsername')
 
-    console.log('mounted from app')
+
 },
 created() {
     
-    console.log('created from app')
+
 },
 
     components: {

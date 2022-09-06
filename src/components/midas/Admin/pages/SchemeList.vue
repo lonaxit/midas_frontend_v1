@@ -10,8 +10,7 @@
             <!-- <div class="text-500 w-6 md:w-2 font-medium">Title</div> -->
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{scheme.name}}</div>
             <div class="w-6 md:w-2 flex justify-content-end">
-                <router-link  icon="pi pi-pencil" class="p-button-text" :to="{name:'update-scheme',params:{id:scheme.id}}">Edit</router-link>
-                <!-- <Button label="Edit" icon="pi pi-pencil" class="p-button-text"></Button> -->
+                <router-link  icon="pi pi-pencil" :to="{name:'update-scheme',params:{id:scheme.id}}">Edit</router-link>
             </div>
         </li>
     </ul>
@@ -19,8 +18,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import Loader from '@/components/midas/Admin/'
+
 import MyLoader from '@/components/midas/ReusableComponents/Loader.vue'
 export default {
 data(){

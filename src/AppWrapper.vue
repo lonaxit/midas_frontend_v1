@@ -27,13 +27,13 @@ export default {
         };
 
         EventBus.on('theme-change', this.themeChangeListener);
-        console.log('mounted from appwrapper')
+        
     },
     beforeUnmount() {
         EventBus.off('theme-change', this.themeChangeListener);
     },
     created(){
-        console.log('created from appwraper')
+     
     }
 }
 </script>

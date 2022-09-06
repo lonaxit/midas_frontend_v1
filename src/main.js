@@ -105,16 +105,15 @@ axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 router.beforeEach(
   async (to, from) => {
-    const isLoggedin = localStorage.getItem('token')
-      if (isLoggedin) {
-      store.commit('initializeStore')
+      if (
+        // make sure the user is authenticated
+        !store.state.auth.user.isAuthenticated && to.name !== 'login'
+      ) {
+        // redirect the user to the login page
+        return { name: 'login' }
       }
-        if(!store.state.auth.user.isAuthenticated && to.name !== 'login') {
-          // redirect the user to the login page
-          return { name: 'login' }
-        }
        
-      }
+    }
 );
 
 const app = createApp(AppWrapper);

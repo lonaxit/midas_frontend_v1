@@ -1,54 +1,44 @@
 <template>
+    
+
+    <!-- new login template -->
     <div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-        <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
-            <div class="col-12 mt-5 xl:mt-0 text-center">
-                <img src="/images/logo.png" alt="Midas logo" class="mb-5" style="width:60px; height:60px;">
-            </div>
-            <div class="col-12 xl:col-6" style="border-radius:56px; padding:0.3rem; ">
-                <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
-                    <div class="text-center mb-5">
-                        <!-- <img src="layout/images/avatar.png" alt="Image" height="50" class="mb-3"> -->
-                        <div>
-                            <span class="text-600 font-medium">Sign in to continue</span>
-                        </div>
-                        
-                    </div>
+        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
+    <div class="text-center mb-5">
+        <img src="/images/logo.png" alt="MIDAS Logo" height="60" class="mb-3" style="width:60px; height:60px;">
 
-                        <div class="w-full md:w-10 mx-auto">
-                        <label for="email1" class="block text-900 text-xl font-medium mb-2">Username</label>
-                        <InputText id="email1" v-model="username" type="text" class="w-full mb-3" placeholder="username" style="padding:1rem;" />
-                
-                        <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                        <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem"></Password>
+        <div class="text-900 text-3xl font-medium mb-3">Sign In</div>
+        <!-- <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a> -->
+    </div>
 
-                        <div class="flex align-items-center justify-content-between mb-5">
-                            
-                            <!-- <div class="flex align-items-center">
-                                <Checkbox id="rememberme1" v-model="checked" :binary="true" class="mr-2"></Checkbox>
-                                <label for="rememberme1">Remember me</label>
-                            </div> -->
-                            <!-- <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" href="#">Forgot password?</a> -->
+    <div>
+        <label for="email1" class="block text-900 font-medium mb-2">Username</label>
+        <InputText id="username" v-model="username" type="text" class="w-full mb-3" />
 
-                            <router-link to="/signup"  class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</router-link>
+        <label for="password" class="block text-900 font-medium mb-2">Password</label>
+        <InputText id="password" v-model="password" type="password" class="w-full mb-3" />
 
-                        </div>
-                        <!-- <button label="Sign In" class="w-full p-3 text-xl">Login</button> -->
-                        
+        <div class="flex align-items-center justify-content-between mb-6">
+            <!-- <div class="flex align-items-center">
+                <Checkbox id="rememberme1" :binary="true" v-model="checked" class="mr-2"></Checkbox>
+                <label for="rememberme1">Remember me</label>
+            </div> -->
+        
 
-                        <Button @click="submitLogin" label="Sign In" class="w-full p-3 text-xl"></Button>
-                       
-                    </div>
-                    
-                      <div class="notify" v-if="errors.length">
+            <router-link to="" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</router-link>
+        </div>
+
+        <Button @click="submitLogin" label="Sign In" icon="pi pi-user" class="w-full"></Button>
+    </div>
+    <div class="error" v-if="errors.length">
                         <p v-for="error  in errors" :key="error">
                         {{error}}
                         </p>
-                     </div>
-                    
-                  </div>
-            </div>
-        </div>
     </div>
+</div>
+    </div> 
+
 </template>
 
 <script>

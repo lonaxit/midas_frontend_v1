@@ -100,6 +100,7 @@ import store from './store'
 
 import axios from 'axios'
 
+
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 router.beforeEach(
@@ -123,7 +124,7 @@ app.use(PrimeVue, { ripple: true, inputStyle: 'outlined' });
 app.use(ConfirmationService);
 app.use(ToastService);
 app.use(store);
-app.use(router,axios);
+app.use(router, axios);
 
 
 app.directive('tooltip', Tooltip);

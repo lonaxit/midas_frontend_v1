@@ -108,8 +108,12 @@ export default {
                     // store in the local storage 
                     localStorage.setItem('token',token)
 
+                    // set username for user
+                    localStorage.setItem('username',this.username)
+                    this.$store.commit('setUsername',this.username)
+
                    
-                   this.$router.push('/home')
+                    this.$router.push('/home')
                 
                     
                 })

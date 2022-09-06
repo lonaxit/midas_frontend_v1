@@ -297,14 +297,14 @@ export default {
             this.applyLightTheme();
         }
 
-		console.log('Mounted from Dashbaord')
+		
 	},
 	beforeUnmount() {
         EventBus.off('change-theme', this.themeChangeListener );
     },
 	created() {
 		// this.productService = new ProductService();
-		console.log('Created from Home')
+		
 		// get user profile
 		axios.get('auth/me/')
         .then(res =>{
@@ -325,9 +325,7 @@ export default {
         .catch(err =>{
                         console.log(err)
                     })
-					// this.$store.dispatch('UserStatus')
-                //    const myStat = this.$store.state.user.isStaff
-                //    localStorage.setItem('myStatus',myStat)
+				
 
 	},
 	

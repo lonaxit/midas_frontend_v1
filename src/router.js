@@ -30,13 +30,18 @@ const routes = [
                 component: () => import('./components/midas/Admin/Dashboard.vue')
             },
             {
+                path: '/add-scheme',
+                name: 'create-scheme',
+                component: () => import('./components/midas/Admin/pages/NewScheme.vue')
+            },
+            {
                 path: '/scheme-list',
                 name: 'schemelist',
                 component: () => import('./components/midas/Admin/pages/SchemeList.vue')
             },
             {
-                path: '/add-scheme',
-                name: 'create-scheme',
+                path: '/update-scheme/:id',
+                name: 'update-scheme',
                 component: () => import('./components/midas/Admin/pages/NewScheme.vue')
             },
           

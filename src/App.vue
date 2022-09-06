@@ -2,7 +2,7 @@
 	<div :class="containerClass" @click="onWrapperClick">
         <AppTopBar @menu-toggle="onMenuToggle" />
         <div class="layout-sidebar" @click="onSidebarClick">
-            <div v-if="$store.state.role">
+            <div v-if="$store.state.auth.role">
             <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
             </div>
             <div v-else>
@@ -381,7 +381,7 @@ export default {
     this.$store.commit('initializeStore')
 
 
-    const token = this.$store.state.user.token
+    const token = this.$store.state.auth.user.token
 
     if(token){
     axios.defaults.headers.common['Authorization'] = "Token " + token
@@ -393,6 +393,7 @@ export default {
 },
 mounted() {
     this.$store.commit('initializeStatus')
+    this.$store.commit('initializeUsername')
 
     console.log('mounted from app')
 },

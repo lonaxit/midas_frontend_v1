@@ -42,7 +42,7 @@
 			<li>
 				<button class="p-link layout-topbar-button">
 					<!-- <i class="pi pi-user"></i> -->
-					{{$store.state.username}}
+					{{$store.state.auth.username}}
 					<!-- <span>Profile</span> -->
 				</button>
 			</li>
@@ -71,10 +71,13 @@ export default {
 		},
 		logout(){
 			axios.defaults.headers.common['Authorization']=""
+
 			localStorage.removeItem('token')
 			localStorage.removeItem('myStatus')
+			localStorage.removeItem('username')
 			this.$store.commit('removeToken')
 			this.$store.commit('removeStatus')
+			this.$store.commit('removeUsername')
 			this.$router.push('/login')
 		},
 	
@@ -84,7 +87,7 @@ export default {
 			return this.$appState.darkTheme;
 		},
 		isLoggedIn (){
-			return this.$store.state.user.isAuthenticated
+			return this.$store.state.auth.user.isAuthenticated
 		},
 		
 	}

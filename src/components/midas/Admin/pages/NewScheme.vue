@@ -59,11 +59,11 @@ export default {
                 try{
                 const res = await axios.post('api/v1/schemes/',formData)
                 this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
-                console.log(res)
+             
                 this.name = ""
                 this.description = ""
                 } catch(err){
-                console.log(err)
+                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
                 }
                 }
                 newScheme()

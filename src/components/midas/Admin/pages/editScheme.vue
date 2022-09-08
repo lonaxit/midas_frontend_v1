@@ -13,10 +13,11 @@
 				<label for="address">Description</label>
 				<Textarea v-model="description" id="address" rows="4" placeholder="Create an optional  scheme description "/>
 				</div>
-                <div class="submit">
-                <button>Update</button>
-                </div>
-            
+                <SubmitButton>
+                    <template v-slot:action>
+                        <button>Update</button>
+                    </template>
+                </SubmitButton>
                 </form>
               
 			</div>
@@ -27,6 +28,7 @@
 
 <script>
 import axios from 'axios'
+import SubmitButton from '@/components/midas/ReusableComponents/submitUpdateButton.vue'
 export default {
 
     data(){
@@ -36,6 +38,9 @@ export default {
             id:""
         }
     },
+components:{
+    SubmitButton,
+},
     methods: {
         updateScheme(){
             
@@ -84,10 +89,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.submit-button{
-    width: 20%;
-}
+<style>
+
 
 
 

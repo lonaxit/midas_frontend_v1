@@ -72,10 +72,7 @@ export default {
 </script>
 
 <style scoped>
-.submit-button{
-    width: 20%;
-   
-}
+
 
 
 

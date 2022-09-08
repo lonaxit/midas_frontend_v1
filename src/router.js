@@ -44,6 +44,21 @@ const routes = [
                 name: 'update-scheme',
                 component: () => import('./components/midas/Admin/pages/editScheme.vue')
             },
+            {
+                path: '/add-product',
+                name: 'create-product',
+                component: () => import('./components/midas/Admin/pages/products/NewProduct.vue')
+            },
+            {
+                path: '/list-product',
+                name: 'list-product',
+                component: () => import('./components/midas/Admin/pages/products/ProductList.vue')
+            },
+            {
+                path: '/update-product/:id',
+                name: 'update-product',
+                component: () => import('./components/midas/Admin/pages/products/editProduct.vue')
+            },
           
             {
                 path: '/formlayout',

@@ -98,9 +98,18 @@ export default {
                           {
                                 label: 'Schemes', icon: 'pi pi-fw pi-box',
                                  items: [  
-                                {label: 'Create Scheme', icon: 'pi pi-fw pi-plus', to:'/add-scheme'},
+                                {label: 'New Scheme', icon: 'pi pi-fw pi-plus', to:'/add-scheme'},
 
                                 {label: 'List Schemes', icon: 'pi pi-fw pi-list', to:'/scheme-list'},
+
+                             ]
+                            },
+                             {
+                                label: 'Products', icon: 'pi pi-th-large',
+                                 items: [  
+                                {label: 'New Product', icon: 'pi pi-fw pi-plus', to:'/add-product'},
+
+                                {label: 'List Products', icon: 'pi pi-fw pi-list', to:'/list-product'},
 
                              ]
                             },
@@ -434,4 +443,14 @@ button {
     font-weight: bold;
     text-align: center;
 }
+.submit-button{
+    width: 20%;
+   
+}
+
+.list-heading{
+    font-weight:bold;
+    font-size:17px;
+}
+
 </style>

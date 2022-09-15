@@ -82,7 +82,7 @@ export default {
                         label: 'New', icon: 'pi pi-fw pi-user-plus', to: ''
                         },
                          {
-                        label: 'List', icon: 'pi pi-fw pi-users', to: ''
+                        label: 'List', icon: 'pi pi-fw pi-users', to: '/all-users'
                         },
                          {
                         label: 'Staff', icon: 'pi pi-fw pi-user', to: ''
@@ -116,12 +116,12 @@ export default {
                                 {
                                 label: 'Loans', icon: 'pi pi-fw pi-wallet',
                                  items: [  
-                                {label: 'Create', icon: 'pi pi-fw pi-plus', to:''},
+                                {label: 'Create', icon: 'pi pi-fw pi-plus', to:'/add-loan'},
 
-                                {label: 'List', icon: 'pi pi-fw pi-list', to:''},
+                                {label: 'List', icon: 'pi pi-fw pi-list', to:'/all-loans'},
 
                                 {label: 'Loan Balances', icon: 'pi pi-fw pi-minus', to:''},
-                                 {label: 'Upload', icon: 'pi pi-fw pi-file-excel', to:''},
+                                 {label: 'Upload', icon: 'pi pi-fw pi-file-excel', to:'/upload-loan'},
 
                              ]
                             },
@@ -451,6 +451,26 @@ button {
 .list-heading{
     font-weight:bold;
     font-size:17px;
+}
+
+
+// profile heading
+.user-profile{
+  display:grid;
+  /* grid-template-columns: 1fr 3fr; */
+  width: 100%;
+  padding: 0px;
+
+}
+.user-panel{
+  display: flex;
+  flex-direction:column;
+  /* margin-right:50px; */
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #DFE3E8;
+
 }
 
 </style>

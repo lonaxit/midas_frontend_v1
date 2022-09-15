@@ -76,6 +76,7 @@
 
 		<div class="col-12">
 			<div class="card">
+
 				<h5>Advanced</h5>
 				<div class="p-fluid formgrid grid">
 					<div class="field col-12 md:col-6">
@@ -103,6 +104,8 @@
 						<InputText id="zip" type="text"/>
 					</div>
 				</div>
+
+				
 			</div>
 		</div>
 	</div>

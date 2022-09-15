@@ -1,7 +1,8 @@
 <template>
+
 <div v-show="$store.state.SchemesProduct.schemes.length == 0">
   <MyLoader msg="Please wait..."></MyLoader>
-  </div>
+</div>
 
 <div class="surface-section scheme-pad"  v-show="$store.state.SchemesProduct.schemes.length != 0">
     <div class="font-medium text-3xl text-900 mb-3">Schemes</div>

@@ -16,12 +16,14 @@
 		<ul class="layout-topbar-menu hidden lg:flex origin-top">
 			
 			<li>
-				
-				<span class="p-input-icon-left p-input-icon-right">
+				<form action="" @submit.prevent="searchUser">
+					<span class="p-input-icon-left p-input-icon-right">
 							<i class="pi pi-user" />
-							<InputText type="text" placeholder="Search" />
+							<InputText type="text" v-model="searchid" placeholder="Search" />
 							<i class="pi pi-search" />
 				</span>
+				</form>
+				
 			</li>
 			
 			<li v-if="isLoggedIn">
@@ -55,7 +57,7 @@ import axios from 'axios'
 export default {
 	data(){
 		return{
-			
+			searchid:""
 		}
 	},
 	
@@ -80,15 +82,24 @@ export default {
 			this.$store.commit('removeUsername')
 			this.$router.push('/login')
 		},
+
+		getUserDetail(){
+			console.log(this.searchid)
+			this.$store.dispatch('getUserDetail',this.searchid)
+
+			// this.$router.push('/user-profile')
+		}
 	
     },
 	computed: {
 		darkTheme() {
 			return this.$appState.darkTheme;
 		},
+
 		isLoggedIn (){
 			return this.$store.state.auth.user.isAuthenticated
 		},
+	
 		
 	}
 }

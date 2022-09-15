@@ -59,6 +59,39 @@ const routes = [
                 name: 'update-product',
                 component: () => import('./components/midas/Admin/pages/products/editProduct.vue')
             },
+            {
+                path: '/upload-loan',
+                name: 'upload-loan',
+                component: () => import('./components/midas/Admin/pages/Loans/UploadLoans.vue')
+            },
+            {
+                path: '/add-loan',
+                name: 'add-loan',
+                component: () => import('./components/midas/Admin/pages/Loans/NewLoan.vue')
+            },
+
+            {
+                path: '/all-loans',
+                name: 'all-loans',
+                component: () => import('./components/midas/Admin/pages/Loans/AllLoans.vue')
+            },
+
+              {
+                path: '/:id/loan',
+                name: 'loan-detail',
+                component: () => import('./components/midas/Admin/pages/Loans/LoanDetail.vue')
+            },
+
+            {
+                path: '/user-profile/:id',
+                name: 'user-prfile',
+                component: () => import('./components/midas/Admin/pages/Profile/UserPage.vue')
+            },
+            {
+                path: '/all-users',
+                name: 'all-users',
+                component: () => import('./components/midas/Admin/pages/Profile/ListUsers.vue')
+            },
           
             {
                 path: '/formlayout',

@@ -323,6 +323,7 @@
 			this.loading2 = false;
 		},
 		methods: {
+
 			initFilters1() {
 				this.filters1 = {
 					'global': {value: null, matchMode: FilterMatchMode.CONTAINS},

@@ -425,6 +425,7 @@ created() {
 <style lang="scss">
 @import './App.scss';
 
+
 button {
     background: #0b6dff;
     border: 0;

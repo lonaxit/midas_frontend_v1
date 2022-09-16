@@ -32,7 +32,7 @@
 
                     	<div class="field col-12 md:col-4">
 						<label for="lastname2">End Date</label>
-						<InputText id="lastname2" type="text"/>
+						   <Datepicker v-model="date" />
 					</div>
 
 					<div class="field col-12 md:col-4">
@@ -95,6 +95,8 @@
 <script>
 import axios from 'axios'
 import SubmitButton from '@/components/midas/ReusableComponents/submitUpdateButton.vue'
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 export default {
 
     data(){
@@ -102,11 +104,13 @@ export default {
             name:"",
             description:"",
             selectedProduct:[],
-            product_scheme:""
+            product_scheme:"",
+            date:null
         }
     },
     components:{
     SubmitButton,
+    Datepicker
 },
     methods: {
         createProduct(){

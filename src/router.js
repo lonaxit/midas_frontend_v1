@@ -81,6 +81,11 @@ const routes = [
                 name: 'loan-detail',
                 component: () => import('./components/midas/Admin/pages/Loans/LoanDetail.vue')
             },
+            {
+                path: '/loan/:loanId/edit',
+                name: 'loan-edit',
+                component: () => import('./components/midas/Admin/pages/Loans/EditLoan.vue')
+            },
 
             {
                 path: '/user-profile/:id',

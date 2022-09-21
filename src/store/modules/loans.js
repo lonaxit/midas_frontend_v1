@@ -77,6 +77,9 @@ mutations: {
     },
     user_Loans(state) {
       return state.userLoans
+    },
+    all_Loans(state) {
+      return state.loans
     }
 },
 actions: {

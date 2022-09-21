@@ -1,11 +1,12 @@
 <template>
+<div v-if="loan_loader && all_Loans.length >=1">
 
-<div class="grid">
+		<div class="grid">
 		<div class="col-12">
             <div class="card">
-				<h5>All Loans</h5>
-				<DataTable :value="LoanList" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
-							v-model:filters="filters1" filterDisplay="menu" :loading="loading1" :filters="filters1" responsiveLayout="scroll"
+				<h5>All Loans [{{all_Loans.length}}]</h5>
+				<DataTable :value="all_Loans" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
+							v-model:filters="filters1" filterDisplay="menu"  :filters="filters1" responsiveLayout="scroll"
 							:globalFilterFields="['loan_owner','product_name','approved_amount','totaldebt','active']" >
 					
 					<template #header>
@@ -17,12 +18,12 @@
                             </span>
                         </div>
                     </template>
-                    <template #empty>
+                    <!-- <template #empty>
                         No customers found.
                     </template>
                     <template #loading>
                         Loading customers data. Please wait.
-                    </template>
+                    </template> -->
 
                     <Column field="loan_owner" header="Name" style="min-width:12rem">
                         <template #body="{data}">
@@ -56,7 +57,7 @@
 
                     <Column header="Balance" filterField="totaldebt" dataType="numeric" style="min-width:10rem">
                         <template #body="{data}">
-                            {{formatCurrency(data.totaldebt)}}
+                            {{formatCurrency(data.total_balance)}}
                         </template>
                        
                     </Column>
@@ -73,48 +74,46 @@
 			</div>
 
         </div>
+		</div>
+
 </div>
+
+
+<div v-else>
+<span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
+</div>
+
 </template>
 
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
 	// import CustomerService from "../service/CustomerService";
 	// import ProductService from '../service/ProductService';
+	import {mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
-				customer1: null,
-				customer2: null,
-				customer3: null,
+		
 				filters1: null,
 				filters2: {},
-				loading1: true, //initialy true
+				// loading1: true, //initialy true
 				// loading2: true,
-				products: null,
+			
 			}
 		},
-		customerService: null,
-		productService: null,
+	
 		created() {
 			this.$store.dispatch('getLoans')
 			this.initFilters1();
 		},
         computed:{
-        LoanList(){
-        return  this.$store.state.Loan.loans;
-            }
+			...mapGetters(['loan_loader',
+			'all_Loans'])
         },
 		mounted() {
-			// this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
-			// this.customerService.getCustomersLarge().then(data => {
-			// 	this.customer1 = data; 
-			// 	this.loading1 = false;
-			// 	this.customer1.forEach(customer => customer.date = new Date(customer.date));
-			// });
-			// this.customerService.getCustomersLarge().then(data => this.customer2 = data);
-			// this.customerService.getCustomersMedium().then(data => this.customer3 = data);
+		
             // initial value
-            this.loading1= false;
+            // this.loading1= false;
             // this.loading2 = false;
 		},
 		methods: {

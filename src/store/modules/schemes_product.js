@@ -3,17 +3,26 @@ const schemes = {
 
   state: {
     schemes: [],
-    products:[]
+    products: [],
+    loading:false
 },
 mutations: {
     LIST_SCHEMES(state, schemesList) {
-        state.schemes = schemesList;
+    state.schemes = schemesList;
+    state.loading = true
   },
   LIST_PRODUCTS(state, productsList) {
     state.products = productsList;
+    state.loading = true
 },
   },
   getters: {
+    allPrducts(state) {
+      return state.products
+    },
+    products_loader(state) {
+      return state.loading
+    }
   
 },
 actions: {

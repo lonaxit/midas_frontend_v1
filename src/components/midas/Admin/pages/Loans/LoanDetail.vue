@@ -80,7 +80,11 @@
 						<i class="pi pi-comment text-purple-500 text-xl"></i>
 					</div>
 				</div>
-				<span class="text-purple font-medium mr-5"><i class="pi pi-pencil"></i> </span>
+        <router-link :to="{name:'loan-edit',params:{loanId:loan_Detail.id}}">
+          <span class="text-purple font-medium mr-5"><i class="pi pi-pencil"></i> </span>
+        </router-link>
+				
+
 				<span class="text-red-500 mr-5"><i class="pi pi-trash"></i></span>
                 <a href=""><span class="text-green-500"><i class="pi pi-wallet"></i></span></a>
                 
@@ -226,7 +230,6 @@ export default {
         return this.$store.getters.loan_Detail
     },
    
-
   },
    created(){
     this.$store.dispatch('getLoanDetail', this.$route.params.id)

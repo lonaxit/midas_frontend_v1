@@ -130,6 +130,23 @@ async getLoans(context) {
       console.log(err)
           
       }
+  },
+
+  // Delete a loan  
+  async DeleteLoan(context,loanid) {
+
+    // try {
+      const res = await axios.delete('api/v1/loan/' + loanid + '/')  
+      // 
+      // }
+    // catch (err) {
+    
+    //   if(err.response.status==404){
+    //     alert('No Loans Available')
+    //   }
+    //   console.log(err)
+          
+    //   }
   }
 
 },

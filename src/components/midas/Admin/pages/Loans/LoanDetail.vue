@@ -84,9 +84,13 @@
           <span class="text-purple font-medium mr-5"><i class="pi pi-pencil"></i> </span>
         </router-link>
 				
+        <DeleteItem :item="loan_Detail" @deleteRecord="delete_Loan">
+              <template v-slot:deleteText>
+           
+              </template>
+        </DeleteItem>
 
-				<span class="text-red-500 mr-5"><i class="pi pi-trash"></i></span>
-                <a href=""><span class="text-green-500"><i class="pi pi-wallet"></i></span></a>
+        <a href=""><span class="text-green-500"><i class="pi pi-wallet"></i></span></a>
                 
 			</div>
 		</div>
@@ -156,10 +160,14 @@
              <div class="w-6 md:w-2 flex justify-content-space-evenly">
                {{deduction.loan_balance}}
             </div>
-
-            <div class="w-6 md:w-2 flex justify-content-space-evenly">
+            <DeleteItem :item="deduction" @deleteRecord="delete_Deduction">
+              <template v-slot:deleteText>
+           
+              </template>
+            </DeleteItem>
+            <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
                 	<span class="text-red-500 mr-5"><i class="pi pi-trash"></i></span>
-            </div>
+            </div> -->
              
 
         </li>
@@ -173,23 +181,19 @@
 <div v-else>
 <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
 </div>
-  
+  <div>{{user_id}}</div>
 </template>
 
 <script>
 import axios from 'axios'
 import ListHeader from '@/components/midas/ReusableComponents/Listheading.vue'
+import DeleteItem from '@/components/midas/ReusableComponents/deleteItem.vue'
+import {mapGetters,mapActions} from 'vuex'
 // import MyLoader from '@/components/midas/ReusableComponents/Loader.vue'
 export default {
 
   data(){
     return {
-    // userProfile:{
-    //   user_id:"",
-    //   username:"",
-    //   first_name:"",
-    //   last_name:"",
-    // },
      userProfile:{
     
     }
@@ -197,39 +201,37 @@ export default {
   },
   components:{
     // MyLoader,
-    ListHeader
+    ListHeader,
+    DeleteItem
 },
    methods:{
+    delete_Deduction(id){
+      if(confirm('This action is dangerous!, can not be undone')){
+          this.$store.dispatch('DeleteLoan',id).then(
+            
+          )
+      }
+    
+    },
+    delete_Loan(id){
+      if(confirm('Delete Loan?')){
+            this.$store.dispatch('DeleteLoan',id).then((res =>{
+
+             this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
+            })
+            ).catch((err=>{
+              alert('Unable to perfom operation',err)
+            }))
+      }
+    
+    },
 
     	formatCurrency(value) {
 				return value.toLocaleString('en-US', {style: 'currency', currency: 'NGN'});
 			},
    },
   computed: {
-    user_loader(){
-      return this.$store.getters.user_loader
-    },
-    loan_loader(){
-      return this.$store.getters.loan_loader
-    },
-
-    fullName(){
-      return this.$store.getters.fullName
-    },
- 
-    
-    user_Detail(){
-		return this.$store.getters.user_Detail
-		},
-
-    profile_Detail(){
-		return this.$store.getters.profile_Detail
-		},
-
-    loan_Detail(){
-        return this.$store.getters.loan_Detail
-    },
-   
+    ...mapGetters(['user_loader','loan_loader','fullName','user_Detail','profile_Detail','loan_Detail',])
   },
    created(){
     this.$store.dispatch('getLoanDetail', this.$route.params.id)

@@ -90,7 +90,9 @@
               </template>
         </DeleteItem>
 
-        <a href=""><span class="text-green-500"><i class="pi pi-wallet"></i></span></a>
+        <router-link :to="{name:'loan-transaction',params:{loan_Id:loan_Detail.id}}">
+        <span class="text-green-500"><i class="pi pi-wallet"></i></span>
+        </router-link>
                 
 			</div>
 		</div>
@@ -103,7 +105,7 @@
 
 
 
-    <div v-if="loan_Detail.deductions.length >=1">
+    <div v-if="loan_loader && loan_Detail.deductions.length >=1">
      <ul class="list-none p-0 m-0">
        
         <ListHeader>
@@ -165,9 +167,13 @@
            
               </template>
             </DeleteItem>
-            <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
+
+          <router-link :to="{name:'deduction-edit',params:{deductionId:deduction.id}}">
+          <span class="text-purple font-medium mr-5"><i class="pi pi-pencil"></i> </span>
+        </router-link>
+        <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
                 	<span class="text-red-500 mr-5"><i class="pi pi-trash"></i></span>
-            </div> -->
+        </div> -->
              
 
         </li>
@@ -181,7 +187,6 @@
 <div v-else>
 <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
 </div>
-  <div>{{user_id}}</div>
 </template>
 
 <script>
@@ -207,8 +212,16 @@ export default {
    methods:{
     delete_Deduction(id){
       if(confirm('This action is dangerous!, can not be undone')){
-          this.$store.dispatch('DeleteLoan',id).then(
-            
+          this.$store.dispatch('deleteDeduction',id).then((res =>{
+      
+          this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
+          this.$toast.add({severity: 'success', detail:'Item Successfully Deleted', life: 5000});
+          // this.$router.push('/' + this.loan_Detail.id + '/loan' )
+          })
+          ).catch((err =>{
+             alert('Unable to perfom operation',err)
+          })
+
           )
       }
     

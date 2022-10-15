@@ -12,17 +12,17 @@
 
 					<div class="field col-12 md:col-3">
 						<label for="amount">Requested Amount</label>
-						<InputText id="amount" type="number" v-model="amount"/>
+						<InputText id="amount" type="number" step="0.01" v-model="amount"/>
 					</div>
 
 					<div class="field col-12 md:col-3">
 						<label for="approved">Approved Amount</label>
-						<InputText id="approved" type="number" v-model="approved"/>
+						<InputText id="approved" type="number" step="0.01" v-model="approved"/>
 					</div>
 
                     	<div class="field col-12 md:col-3">
 						<label for="deduction">Deduction</label>
-						<InputText id="deduction" type="number" v-model="deduction"/>
+						<InputText id="deduction" type="number" step="0.01" v-model="deduction"/>
 					</div>
 
                     <div class="field col-12 md:col-3">
@@ -50,7 +50,7 @@
 					</div>
 					<div class="field col-12 md:col-4">
 						<label for="netpay">Net Pay</label>
-						<InputText id="netpay" type="number" v-model="netpay"/>
+						<InputText id="netpay" type="number" step="0.01" v-model="netpay"/>
 					</div>
                     <div class="field col-12 md:col-4">
 						<label for="netpay">Transaction Code</label>

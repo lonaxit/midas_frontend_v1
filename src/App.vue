@@ -129,16 +129,17 @@ export default {
                             {
                                 label: 'Loan Deduction', icon: 'pi pi-fw pi-filter-slash',
                                     items: [
-                                        {label: 'Create', icon: 'pi pi-fw pi-plus', to:''},
+                                        {label: 'Create', icon: 'pi pi-fw pi-plus', to:'/bulk-deductions'},
 
-                                        {label: 'List', icon: 'pi pi-fw pi-list'},
-                                        {label: 'Upload', icon: 'pi pi-fw pi-file-excel', to:''},
+                                        // {label: 'List', icon: 'pi pi-fw pi-list'},
+
+                                        // {label: 'Upload', icon: 'pi pi-fw pi-file-excel', to:''},
                                         
                                         {
-                                        label:'IPPIS', 
+                                        label:'IPPIS',icon: 'pi pi-fw pi-briefcase', 
                                         items:[
-                                        {label: 'Upload Master', icon: 'pi pi-fw pi-upload', to:''},
-                                        {label: 'Master List', icon: 'pi pi-fw pi-list', to:''},
+                                        {label: 'Upload Master', icon: 'pi pi-fw pi-upload', to:'/upload_ippis_loan_deductions'},
+                                        {label: 'Master List', icon: 'pi pi-fw pi-list', to:'/ippis-deduction-list'},
                                     ]
                                  },
 

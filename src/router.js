@@ -76,7 +76,7 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Loans/AllLoans.vue')
             },
 
-              {
+            {
                 path: '/:id/loan',
                 name: 'loan-detail',
                 component: () => import('./components/midas/Admin/pages/Loans/LoanDetail.vue')
@@ -85,6 +85,42 @@ const routes = [
                 path: '/loan/:loanId/edit',
                 name: 'loan-edit',
                 component: () => import('./components/midas/Admin/pages/Loans/EditLoan.vue')
+            },
+            {
+                path: '/loan/:loan_Id/transaction',
+                name: 'loan-transaction',
+                component: () => import('./components/midas/Admin/pages/Loans/LoanTransaction.vue')
+            },
+            {
+                path: '/deduction/:deductionId/edit',
+                name: 'deduction-edit',
+                component: () => import('./components/midas/Admin/pages/Loans/DeductionEdit.vue')
+            },
+
+            {
+                path: '/bulk-deductions',
+                name: 'bulk-deductions',
+                component: () => import('./components/midas/Admin/pages/Loans/NewDeductions.vue')
+            },
+            {
+                path: '/upload_ippis_loan_deductions',
+                name: 'upload-ippis-deductions',
+                component: () => import('./components/midas/Admin/pages/Loans/UploadIppisLoanDeductions.vue')
+            },
+            {
+                path: '/ippis-deduction-list',
+                name: 'ippis-deduction-list',
+                component: () => import('./components/midas/Admin/pages/Loans/IppisDeductionList.vue')
+            },
+            {
+                path: '/:masterdeductionid/master-deduction',
+                name: 'masterdeduction-detail',
+                component: () => import('./components/midas/Admin/pages/Loans/IppisDeductionDetail.vue')
+            },
+            {
+                path: '/masterloandeduction/:ippisdeductionid/edit',
+                name: 'masterloandeduction-edit',
+                component: () => import('./components/midas/Admin/pages/Loans/EditIPPISMasterDeduction.vue')
             },
 
             {

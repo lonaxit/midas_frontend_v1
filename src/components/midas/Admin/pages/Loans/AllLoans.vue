@@ -34,7 +34,7 @@
 
                       <Column field="product_name" header="Product" style="min-width:12rem">
                         <template #body="{data}">
-                            {{data.product_name}}
+						<router-link  icon="pi pi-pencil" :to="{name:'loan-detail',params:{id:data.id}}">{{data.product_name}}</router-link> 
                         </template>
                        
                     </Column>
@@ -87,8 +87,7 @@
 
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
-	// import CustomerService from "../service/CustomerService";
-	// import ProductService from '../service/ProductService';
+	
 	import {mapGetters} from 'vuex'
 	export default {
 		data() {

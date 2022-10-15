@@ -113,7 +113,6 @@ router.beforeEach(
           // redirect the user to the login page
           return { name: 'login' }
         }
-       
       }
 
 );

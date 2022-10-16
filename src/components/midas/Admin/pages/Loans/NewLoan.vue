@@ -102,27 +102,32 @@ export default {
 },
     methods: {
 
-        // formattedDate(datevalue) {
-        //      var date = new Date(datevalue)
-        //     var year = date.toLocaleString("default", { year: "numeric" });
-        //     var month = date.toLocaleString("default", { month: "2-digit" });
-        //     var day = date.toLocaleString("default", { day: "2-digit" });
-
-        //     // Generate yyyy-mm-dd date string
-        //     var formatted_Date = year + "-" + month + "-" + day;
-        //     return formatted_Date 
-        // },
         createLoan(){
             // Math.floor(1000000 + Math.random() * 9000000)
             // console.log(Math.floor(Math.random() * 10000)) + 90000;
             
             // initialize the errors array  
             if(this.amount == null || this.amount==0 && this.approved == null || this.approved == 0 && this.deduction == null || this.deduction==0 && this.tenor == null || this.tenor==0 && this.netpay== null || this.netpay==0){
-               this.$toast.add({severity: 'error', detail:'Please provide a valid value', life: 5000});
+                  this.$notify({
+              text:'Enter all fields',
+              duration:5000,
+              type:'error',
+            })
+              
             }else if(this.selectedProduct.length==0){
-                   this.$toast.add({severity: 'error', detail:'Please select a product', life: 5000});
+                  this.$notify({
+              text:'Select a product',
+              duration:5000,
+              type:'error',
+            })
+                  
             }else if(this.enddate==null || this.startdate==null || this.loandate==null){
-                   this.$toast.add({severity: 'error', detail:'Please select a valid date', life: 5000});
+                  this.$notify({
+              text:'Select a valid date',
+              duration:5000,
+              type:'error',
+            })
+                 
             }else{
                
 
@@ -143,7 +148,11 @@ export default {
                 const newLoan = async () =>{
                 try{
                 const res = await axios.post('api/v1/loans/',formData)
-                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
+                  this.$notify({
+              text:'Created Successfully',
+              duration:5000,
+              type:'success',
+            })
              
                 this.enddate=null
                 this.amount=null
@@ -158,7 +167,11 @@ export default {
 
                 } catch(err){
                    
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+              this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
                 }
                 }
                 newLoan()

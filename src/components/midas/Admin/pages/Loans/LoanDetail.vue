@@ -215,11 +215,19 @@ export default {
           this.$store.dispatch('deleteDeduction',id).then((res =>{
       
           this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
-          this.$toast.add({severity: 'success', detail:'Item Successfully Deleted', life: 5000});
-          // this.$router.push('/' + this.loan_Detail.id + '/loan' )
+          this.$notify({
+            text:'Deleted successfully',
+            duration:5000,
+            type:'success',
+          })
+        
           })
           ).catch((err =>{
-             alert('Unable to perfom operation',err)
+            this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
           })
 
           )
@@ -229,11 +237,19 @@ export default {
     delete_Loan(id){
       if(confirm('Delete Loan?')){
             this.$store.dispatch('DeleteLoan',id).then((res =>{
-
              this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
+            this.$notify({
+            text:'Deleted successfully',
+            duration:5000,
+            type:'success',
+          })
             })
             ).catch((err=>{
-              alert('Unable to perfom operation',err)
+             this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
             }))
       }
     

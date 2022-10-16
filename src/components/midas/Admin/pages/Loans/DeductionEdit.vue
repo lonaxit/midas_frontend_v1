@@ -75,13 +75,33 @@ export default {
             
              
             if(!this.credit && !this.debit){
-               this.$toast.add({severity: 'error', detail:'Please provide a valid value for credit or debit', life: 5000});
+                    this.$notify({
+                   text: "Provide  a valid value for credit or debit",
+                   duration:5000,
+                   type:'error',
+                        });
+         
             }else if(this.credit && this.debit){
-                 this.$toast.add({severity: 'error', detail:'Transaction can only be credit or debit not both', life: 5000});
+                     this.$notify({
+                     text: "Add either a credit or debit",
+                     duration:5000,
+                     type:'error',
+                        });
             }else if(!this.transactiondate){
-                   this.$toast.add({severity: 'error', detail:'Please select a valid date', life: 5000});
+
+                    this.$notify({
+                    text: "Please choose a valid date",
+                    duration:5000,
+                    type:'error',
+                        });
+                
             }else if(!this.narration){
-                this.$toast.add({severity: 'error', detail:'Please enter a transaction description', life: 5000});
+                    this.$notify({
+                    text: "Please provide a transaction narration",
+                    duration:5000,
+                    type:'error',
+                        });
+                
             }else{
 
                 const formData = {
@@ -103,10 +123,19 @@ export default {
                 this.transaction_date=null
                 this.narration=null
                 this.$router.push('/'+this.deduction_detail.loan_id +'/loan')
-                this.$toast.add({severity: 'success', detail:'Item Successfully Update', life: 5000});
+                    this.$notify({
+                        text: "Item Updated Successfully",
+                        duration:5000,
+                        type:'success',
+                        });
+              
                 } catch(err){
                 //    console.log(err)
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+                    this.$notify({
+                    text: "Unable To Delete Item",
+                    duration:5000,
+                        type:'error',
+                        });
                 }
                 }
                 editTransaction()

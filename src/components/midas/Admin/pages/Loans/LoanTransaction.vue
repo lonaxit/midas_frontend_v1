@@ -65,13 +65,33 @@ export default {
             
              
             if(!this.credit && !this.debit){
-               this.$toast.add({severity: 'error', detail:'Please provide a valid value for credit or debit', life: 5000});
+            this.$notify({
+              text:'Please provide a credit or debit value',
+              duration:5000,
+              type:'error',
+            })
+               
             }else if(this.credit && this.debit){
-                 this.$toast.add({severity: 'error', detail:'Transaction can only be credit or debit not both', life: 5000});
+                  this.$notify({
+              text:'Transaction can only be credit or debit not both',
+              duration:5000,
+              type:'error',
+            })
+                 
             }else if(!this.transactiondate){
-                   this.$toast.add({severity: 'error', detail:'Please select a valid date', life: 5000});
+                  this.$notify({
+              text:'Select a valid date',
+              duration:5000,
+              type:'error',
+            })
+              
             }else if(!this.narration){
-                this.$toast.add({severity: 'error', detail:'Please enter a transaction description', life: 5000});
+                  this.$notify({
+              text:'Enter a transaction narration',
+              duration:5000,
+              type:'error',
+            })
+           
             }else{
 
                 const formData = {
@@ -92,10 +112,19 @@ export default {
                 this.transaction_date=null
                 this.narration=null
                 this.$router.push('/'+this.$route.params.loan_Id +'/loan')
-                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
+                  this.$notify({
+              text:'Created Successfully',
+              duration:5000,
+              type:'success',
+            })
+               
                 } catch(err){
-                //    console.log(err)
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+            this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
+               
                 }
                 }
                 newTransaction()

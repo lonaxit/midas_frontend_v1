@@ -14,6 +14,7 @@
         <div class="layout-main-container">
             <div class="layout-main">
                  <Toast />
+                <notifications/>
                 <router-view />
             </div>
             <AppFooter />

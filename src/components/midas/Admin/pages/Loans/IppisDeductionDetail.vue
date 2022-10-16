@@ -119,10 +119,19 @@ export default {
         console.log(id)
             this.$store.dispatch('deleteIPPISDeduction',id).then((res =>{
 
-             this.$router.push('/ippis-deduction-list')
+            this.$router.push('/ippis-deduction-list')
+            this.$notify({
+            text: "Item Deleted Successfully",
+            duration:5000,
+            type:'success',
+                        });
             })
             ).catch((err=>{
-              alert('Unable to perfom operation',err)
+            this.$notify({
+            text: "Something went wrong!",
+            duration:5000,
+            type:'error',
+                        });
             }))
       }
     

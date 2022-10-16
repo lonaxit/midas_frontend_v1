@@ -4,7 +4,8 @@ const schemes = {
   state: {
     schemes: [],
     products: [],
-    loading:false
+    loading: false,
+    productDetail:null
 },
 mutations: {
     LIST_SCHEMES(state, schemesList) {
@@ -15,56 +16,49 @@ mutations: {
     state.products = productsList;
     state.loading = true
 },
+  PRODUCT_DETAIL(state, data) {
+    state.productDetail = data;
+    state.loading = true;
+}
+  
   },
   getters: {
     allPrducts(state) {
-      return state.products
+      return state.products;
     },
     products_loader(state) {
-      return state.loading
+      return state.loading;
+    },
+    product_detail(state) {
+      return state.productDetail;
+    },
+    schemes(state) {
+      return state.schemes;
     }
+
   
 },
 actions: {
     
 async getSchemes(context) {
-
-    try {
       const res = await axios.get('api/v1/schemes/')
         context.commit('LIST_SCHEMES', res.data)
-      }
-    catch(err) {
-      // if (err.response) {
-      //   this.$toast.add({severity: 'error', detail:err.response.data, life: 5000});
-      // } else if (err.request) {
-      //   this.$toast.add({severity: 'error', detail:err.request, life: 5000}); 
-      // }else{
-      //   this.$toast.add({severity: 'error', detail:err.message, life: 5000}); 
-      // }
-      console.log(err)
-          
-      }
   },
 
 
   // get list of products
   async getProducts(context) {
 
-    try {
       const res = await axios.get('api/v1/products/')
-        context.commit('LIST_PRODUCTS', res.data)
-      }
-      catch (err) {
-        // if (err.response) {
-        //   this.$toast.add({severity: 'error', detail:err.response.data, life: 5000});
-        // } else if (err.request) {
-        //   this.$toast.add({severity: 'error', detail:err.request, life: 5000}); 
-        // }else{
-        //   this.$toast.add({severity: 'error', detail:err.message, life: 5000}); 
-        // }
-        console.log(err)
-      }
-  }
+        context.commit('LIST_PRODUCTS', res.data) 
+  },
+
+  async getProductDetail(context,id) {
+
+    const res = await axios.get('api/v1/product-detail/' + id +'/')
+      context.commit('PRODUCT_DETAIL', res.data) 
+}
+
 
 
 

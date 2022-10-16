@@ -121,9 +121,19 @@
 				this.$store.dispatch('postBulkDeduction').then(()=>{
 					// return to the master deduction page
 					this.$router.push('/ippis-deduction-list')
-					this.$toast.add({severity: 'success', detail:'Deductions Distributed Successfully', life: 5000});
+					this.$notify({
+						text:'Deductions created successfully',
+						duration:5000,
+						type:'success' 
+					})
+				
 				}).catch(err=>{
-					this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+					this.$notify({
+						text:'Something went wrong',
+						duration:5000,
+						type:'error',
+					})
+					
 				})
 			},
 			

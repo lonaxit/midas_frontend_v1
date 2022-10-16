@@ -53,6 +53,7 @@ import SubmitButton from '@/components/midas/ReusableComponents/submitUpdateButt
 // import DatePicker from '@jobinsjp/vue3-datepicker';
 // import '@jobinsjp/vue3-datepicker/index.css';
 import {mapGetters} from 'vuex'
+
 export default {
 
     data(){
@@ -78,11 +79,27 @@ export default {
             
              
             if(!this.cumulative_amount){
-               this.$toast.add({severity: 'error', detail:'Please provide a valid value for deducted amount', life: 5000});
+                
+            this.$notify({
+            text: "Please provide a value for deducted amount",
+            duration:5000,
+            type:'error',
+            });
+           
             }else if(!this.entry_date){
-                   this.$toast.add({severity: 'error', detail:'Please select a valid date', life: 5000});
+                    this.$notify({
+                    text: "Please select a valid date",
+                    duration:5000,
+                    type:'error',
+                        });
+              
             }else if(!this.narration){
-                this.$toast.add({severity: 'error', detail:'Please enter a transaction description', life: 5000});
+                    this.$notify({
+            text: "Please provide a narration",
+            duration:5000,
+            type:'error',
+                });
+              
             }else{
 
                 const formData = {
@@ -102,10 +119,18 @@ export default {
                 
             
                 this.$router.push('/'+this.$route.params.ippisdeductionid +'/master-deduction')
-                this.$toast.add({severity: 'success', detail:'Item Successfully Updated', life: 5000});
-                } catch(err){
+                    this.$notify({
+                    text: "Item Updated Successfully",
+                    duration:5000,
+                    type:'success',
+                        });
+            7            } catch(err){
                 console.log(err)
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+                    this.$notify({
+                    text: "oops! Something Bad Has Happened!",
+                    duration:5000,
+                    type:'error',
+                        });
                 }
                 }
                 editTransaction()

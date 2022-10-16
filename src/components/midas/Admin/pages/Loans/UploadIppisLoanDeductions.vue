@@ -49,12 +49,22 @@ export default {
                 const ippisDeductions = async () =>{
                 try{
                 const res = await axios.post('api/v1/masterdeduction/upload/',data)
-                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
+                    this.$notify({
+                    text:'Uploaded successfully',
+                    duration:5000,
+                    type:'success',
+            })
+             
              
                 this.file = ""
                 
                 } catch(err){
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+                      this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
+                
                 }
                 }
                 ippisDeductions()

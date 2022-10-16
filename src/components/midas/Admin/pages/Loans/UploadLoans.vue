@@ -49,32 +49,28 @@ export default {
                 const newLoans = async () =>{
                 try{
                 const res = await axios.post('api/v1/loan-upload/',data)
-                this.$toast.add({severity: 'success', detail:'Item Successfully Created', life: 5000});
+                  this.$notify({
+              text:'Uploaded Successfully',
+              duration:5000,
+              type:'success',
+            })
+               
              
-                this.file = ""
+            this.file = ""
                 
                 } catch(err){
-                this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+                  this.$notify({
+              text:'Something went wrong',
+              duration:5000,
+              type:'error',
+            })
                 }
                 }
                 newLoans()
 
             }
             
-            // initialize the errors array  
-            // this.errors =[]
-            // if(this.name===""){
-            //     this.errors.push('Please provide a name!')
-            // }
-            
-            // if(!this.errors.length){
-            //     const formData = {
-            //         name:this.name, 
-            //         description: this.description
-            //     }
-                
-            //     
-            // }
+          
         
       
     },

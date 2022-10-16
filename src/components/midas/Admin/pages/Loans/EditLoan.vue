@@ -39,7 +39,7 @@
                     <div class="field col-12 md:col-3">
 						<label for="enddate">End Date</label>
                         <InputText id="enddate" type="date" v-model="enddate"/>
-                        <!-- <date-picker v-model:value="enddate"></date-picker> -->
+                  
 					</div>
 
                    
@@ -113,11 +113,27 @@ export default {
             
             // initialize the errors array  
             if(this.amount == null || this.amount==0 && this.approved == null || this.approved == 0 && this.deduction == null || this.deduction==0 && this.tenor == null || this.tenor==0 && this.netpay== null || this.netpay==0){
-               this.$toast.add({severity: 'error', detail:'Please provide a valid value', life: 5000});
+
+                this.$notify({
+                    text:'Please empty fields not allowed!',
+                    duration:5000,
+                    type:'error',
+                });
+             
             }else if(this.selectedProduct.length==0){
-                   this.$toast.add({severity: 'error', detail:'Please select a product', life: 5000});
+                this.$notify({
+                    text:'Please select a product',
+                    duration:5000,
+                    type:'error',
+                })
+                   
             }else if(this.enddate==null || this.startdate==null || this.loandate==null){
-                   this.$toast.add({severity: 'error', detail:'Please select a valid date', life: 5000});
+                this.$notify({
+                    text:'Please select a valid date',
+                    duration:5000,
+                    type:'error',
+                })
+                   
             }else{
                
 
@@ -138,8 +154,13 @@ export default {
                 const editLoan = async () =>{
                 try{
                 const res = await axios.put('api/v1/loan/' + this.$route.params.loanId + '/',formData)
-                this.$toast.add({severity: 'success', detail:'Item Successfully Updated', life: 5000});
-             
+                this.$router.push('/' +  this.$route.params.loanId + '/loan')
+                this.$notify({
+                    text:'Item Successfully Updated!',
+                    duration:5000,
+                    type:'success',
+                })
+              
                 this.enddate=null
                 this.amount=null
                 this.approved=null
@@ -153,8 +174,11 @@ export default {
                 this.userid =null
 
                 } catch(err){
-                console.log(err)
-                // this.$toast.add({severity: 'error', detail:'Something went wrong', life: 5000});
+                    this.$notify({
+                        text:'Something went wrong!',
+                        duration:5000,
+                        type:'error',
+                    })
                 }
                 }
                 editLoan()
@@ -170,36 +194,25 @@ export default {
 
     created(){
         this.$store.dispatch('getProducts')
-        // this.$store.dispatch('getLoanDetail', this.$route.params.loanId)
-        
-        // get loan details
-     const getLoanDetail = async () => {
 
-        try {
-        const res = await axios.get('api/v1/loan/' + this.$route.params.loanId + '/')  
-         this.userid = res.data.loan_owner_id
-            this.selectedProduct= res.data.product_name
-            this.product_id = res.data.product
-            this.enddate = res.data.end_date
-            this.amount = res.data.applied_amount
-            this.approved = res.data.approved_amount
-            this.deduction = res.data.monthly_deduction
-            this.loandate =res.data.loan_date
-            this.startdate = res.data.start_date
-            this.tenor = res.data.tenor
-            this.netpay = res.data.net_pay
-            this.transaction_code=res.data.transaction_code
-        }
-        catch (err) {
-    
-        if(err.response.status==404){
-        alert('No Loans Available')
-        }
-        console.log(err)
+        this.$store.dispatch('getLoanDetail', this.$route.params.loanId)
+        .then(()=>{
+            this.userid = this.loan_Detail.loan_owner_id
+            this.selectedProduct= this.loan_Detail.product_name
+            this.product_id = this.loan_Detail.product
+            this.enddate = this.loan_Detail.end_date
+            this.amount = this.loan_Detail.applied_amount
+            this.approved = this.loan_Detail.approved_amount
+            this.deduction = this.loan_Detail.monthly_deduction
+            this.loandate =this.loan_Detail.loan_date
+            this.startdate = this.loan_Detail.start_date
+            this.tenor = this.loan_Detail.tenor
+            this.netpay = this.loan_Detail.net_pay
+            this.transaction_code=this.loan_Detail.transaction_code
+        }).catch(err=>{
+            alert(err.response.data.detail)
+        })
           
-        }
-    }
-    getLoanDetail()
 
     },
   

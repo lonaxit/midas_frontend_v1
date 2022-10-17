@@ -91,7 +91,11 @@
         </DeleteItem>
 
         <router-link :to="{name:'loan-transaction',params:{loan_Id:loan_Detail.id}}">
-        <span class="text-green-500"><i class="pi pi-wallet"></i></span>
+        <span class="text-green-500 mr-5"><i class="pi pi-wallet"></i></span>
+        </router-link>
+
+          <router-link :to="{name:'loan-deduction-statement',params:{loanDeductionId:loan_Detail.id}}">
+        <span class="text-cyan-500"><i class="pi pi-download"></i></span>
         </router-link>
                 
 			</div>

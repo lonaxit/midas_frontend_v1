@@ -92,11 +92,25 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Loans/LoanTransaction.vue')
             },
             {
+                path: '/loan-balances/',
+                name: 'loan-balances',
+                component: () => import('./components/midas/Admin/pages/Loans/LoanBalanceByDate.vue')
+            },
+            {
+                path: '/loan-balance-result/:start_date/:end_date',
+                name: 'loan-balance-result',
+                component: () => import('./components/midas/Admin/pages/Loans/LoanBalancesResult.vue')
+            },
+            {
                 path: '/deduction/:deductionId/edit',
                 name: 'deduction-edit',
                 component: () => import('./components/midas/Admin/pages/Loans/DeductionEdit.vue')
             },
-
+            {
+                path: '/loan-deduction/:loanDeductionId/statement',
+                name: 'loan-deduction-statement',
+                component: () => import('./components/midas/Admin/pages/Loans/LoanDeductionStatement.vue')
+            },
             {
                 path: '/bulk-deductions',
                 name: 'bulk-deductions',

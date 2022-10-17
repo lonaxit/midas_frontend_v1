@@ -88,7 +88,7 @@
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
 	
-	import {mapGetters} from 'vuex'
+	import {mapGetters,mapActions} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -102,7 +102,7 @@
 		},
 	
 		created() {
-			this.$store.dispatch('getLoans')
+			this.getLoans()
 			this.initFilters1();
 		},
         computed:{
@@ -116,6 +116,7 @@
             // this.loading2 = false;
 		},
 		methods: {
+			...mapActions(['getLoans']),
 			
 			initFilters1() {
 				this.filters1 = {

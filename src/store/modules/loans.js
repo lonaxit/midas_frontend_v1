@@ -8,6 +8,7 @@ const loan = {
     loading: false,
     userActiveLoans: [],
     userInActiveLoans: [],
+    loanBalances:[]
     
 },
 mutations: {
@@ -28,15 +29,26 @@ mutations: {
     state.userActiveLoans = data;
     state.loading = true
   },
+
   USER_INACTIVELOANS(state, data) {
     state.userInActiveLoans = data;
-    state.loading = true
+    state.loading = true;
   },
+
+  LOAN_BALANCES(state,data) {
+    state.loanBalances = data;
+    state.loading = true;
+  }
   
   },
+
+
   getters: {
+    loan_balances(state) {
+      return state.loanBalances;
+    },
     loan_Detail(state) {
-      return state.loanDetail
+      return state.loanDetail;
     },
 
     userTotalLoans(state) {
@@ -85,69 +97,33 @@ mutations: {
 actions: {
  
 // get all loans
-async getLoans(context) {
+async getLoans(context){
 
-    try {
       const res = await axios.get('api/v1/loans/')
       context.commit('LIST_LOANS', res.data)
-      }
-    catch(err) {
-
-      console.log(err)
-          
-      }
-  },
+      },
 
   // get loans by a user
   async userLoans(context,userid) {
-
-    try {
       const res = await axios.get('api/v1/' + userid + '/loans/')
-     
-        context.commit('USER_LOANS', res.data)
-      }
-    catch(err) {
-      if(err.response.status==404){
-        alert('No Loans Available')
-      }
-      console.log(err)
-          
-      }
+      context.commit('USER_LOANS', res.data)     
   },
 
    // get loan detail
    async getLoanDetail(context,loanid) {
-
-    try {
-      const res = await axios.get('api/v1/loan/' + loanid + '/')  
+        const res = await axios.get('api/v1/loan/' + loanid + '/')  
         context.commit('LOAN_DETAIL', res.data)
-      }
-    catch (err) {
-    
-      if(err.response.status==404){
-        alert('No Loans Available')
-      }
-      console.log(err)
-          
-      }
   },
 
   // Delete a loan  
   async DeleteLoan(context,loanid) {
-
-    // try {
       const res = await axios.delete('api/v1/loan/' + loanid + '/')  
-      // 
-      // }
-    // catch (err) {
-    
-    //   if(err.response.status==404){
-    //     alert('No Loans Available')
-    //   }
-    //   console.log(err)
-          
-    //   }
-  }
+  },
+
+  async ListLoanBalances(context, payload) {
+    const res = await axios.get('api/v1/balances/' + payload.start_date + '/' + payload.end_date + '/')
+    context.commit('LOAN_BALANCES', res.data)
+   }
 
 },
 

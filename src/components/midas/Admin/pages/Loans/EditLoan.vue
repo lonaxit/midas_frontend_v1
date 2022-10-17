@@ -154,7 +154,9 @@ export default {
                 const editLoan = async () =>{
                 try{
                 const res = await axios.put('api/v1/loan/' + this.$route.params.loanId + '/',formData)
-                this.$router.push('/' +  this.$route.params.loanId + '/loan')
+                
+                this.$router.push({ name: 'loan-detail', params: { id: this.$route.params.loanId } })
+         
                 this.$notify({
                     text:'Item Successfully Updated!',
                     duration:5000,

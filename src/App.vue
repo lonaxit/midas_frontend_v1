@@ -121,7 +121,8 @@ export default {
 
                                 {label: 'List', icon: 'pi pi-fw pi-list', to:'/all-loans'},
 
-                                {label: 'Loan Balances', icon: 'pi pi-fw pi-minus', to:''},
+                                {label: 'Loan Balances', icon: 'pi pi-fw pi-minus', to:'/loan-balances/'},
+
                                  {label: 'Upload', icon: 'pi pi-fw pi-file-excel', to:'/upload-loan'},
 
                              ]
@@ -161,14 +162,23 @@ export default {
                                         {label: 'Upload Master', icon: 'pi pi-fw pi-upload', to:''},
                                         {label: 'Master List', icon: 'pi pi-fw pi-list', to:''},
                                     ]
-                                 },
-                                        
-
+                                 },     
                                     ]
                             }
                     ]
                 },
                 
+                // Reports
+                
+                {
+                    label: 'Reports',
+                    items: [
+                        {
+                        label: 'Saving', icon: 'pi pi-fw pi-database', to: ''
+                        },  
+                        {label: 'Loan Balances', icon: 'pi pi-fw pi-check-square', to:'/loan-balances/'},   
+                    ]
+                },
 
 //******************** */
 

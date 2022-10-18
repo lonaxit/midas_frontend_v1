@@ -1,6 +1,7 @@
 <template>
 	<div class="layout-footer">
-		<img alt="Logo" :src="footerImage()" height="20" class="mr-2" />
+		<img src="../public/images/logo.png" alt="" height="20" class="mr-2" />
+		<!-- <img alt="Logo" :src="footerImage()" height="20" class="mr-2" /> -->
 		<span class="font-medium ml-2">MIDAS</span>
 	</div>
 </template>

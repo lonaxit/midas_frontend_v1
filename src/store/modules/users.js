@@ -54,33 +54,18 @@ const users = {
               
     //       }
     //   },
-      
       async getUserDetail(context,userid) {
-    
-        try {
+     
           const res = await axios.get('api/v1/'+ userid +'/profile/')
             context.commit('SET_USER', res.data.user)
             context.commit('SET_PROFILE', res.data)
-          }
-        catch(err) {
-        
-          alert(err)
-          console.log(err)
-              
-          }
       },
     
       // get list of products
       async getUsers(context) {
     
-        try {
           const res = await axios.get('api/v1/list-profile/')
-            context.commit('LIST_USERS', res.data)
-          }
-          catch (err) {
-            alert(err)
-            console.log(err)
-          }
+            context.commit('LIST_USERS', res.data)      
       }
     
     

@@ -1,33 +1,35 @@
 <template>
 
+   <div>
+     <vue3-html2pdf
+       
+        :show-layout="false"
+        :float-layout="true"
+        :enable-download="true"
+        :preview-modal="true"
+        :paginate-elements-by-height="1400"
+        filename="hee hee"
+        :pdf-quality="2"
+        :manual-pagination="false"
+        pdf-format="a4"
+        pdf-orientation="portrait"
+        pdf-content-width="800px"
+
+
+        @progress="onProgress($event)"
+        @hasStartedGeneration="hasStartedGeneration()"
+        @hasGenerated="hasGenerated($event)"
+        ref="html2Pdf"
+    >
+        <template  v-slot:pdf-content>
+
     <div class="midas-container">
-
-        <!-- <header class="header"> -->
-            <!-- <section class="midas-item-container">
-                <img src="images/logo2.png" alt="" class="logo"> -->
-                
-                <!-- <div class="midas-item-wrapper">
-                    <p class="profile-item">1 Hospital Road, Mission Ward</p>
-                    <p class="profile-item">Makurdi, Benue State</p>
-                    <p class="profile-item">mindastouch@gmail.com</p>
-                    <p class="profile-item">www.midastouchonline.co</p>
-                    <p class="profile-item">+234 81-1890-1411</p>
-                </div> -->
-            <!-- </section>  -->
-
-            <!-- <section class="statement-notification">
-                <span class="profile-name">Period</span>
-                <span class="profile-item">From: {{1/1/12}}</span>
-            <span class="profile-item">To: {{2/2/22}}</span>
-            </section> -->
-
-        <!-- </header> -->
 
         <section class="print-area">
 
           <div class="layoutHeader">
             <div class="profileHeader">
-              <button>Download Statement <i class="pi pi-download"></i></button>
+         
             </div>
             
               <!-- <div class="profileHeader">
@@ -38,7 +40,8 @@
             <table style=" border:0;">
                 <tbody>
                     <tr>
-                        <td style="width:16%; border:0;"><img src="images/logo2.png" alt="" class="logo">
+                        <td style="width:16%; border:0;">
+                          <img src="../../../../../../public/images/logo2.png" alt="" class="logo">
                         </td>
                         <td style="text-align:left; width:20%; border:0;">
 
@@ -56,10 +59,10 @@
                         </td>
                         <td style=" border:0;"></td>
                         <td style=" text-align:right; border:0;">
-                            <span class="profile-name">PERIOD</span><br />
-                            <span>From: {{1/2/21}}</span><br />
-                            <span>To: {{1/2/21}}</span><br />
-                            <span>Date Printed: {{2/2/15}}</span><br />
+                            <span class="profile-name">DATE</span><br />
+                            <!-- <span>From: {{1/2/21}}</span><br />
+                            <span>To: {{1/2/21}}</span><br /> -->
+                            <span>Date Printed: {{new Date().toLocaleDateString()}}</span><br />
                         </td>
                     </tr>
 
@@ -69,12 +72,12 @@
 
         <section style="text-align:left; padding-left:3em;">
 
-          <div> barcode </div>
+          <div> barcode</div>
        
         </section>
 
         <section>
-            <h4 class="statement-title">STATEMENT OF SAVINGS</h4>
+            <h4 class="statement-title">STATEMENT OF LOAN DEDUCTION</h4>
         </section>
 
         <section class="print-area">
@@ -86,11 +89,11 @@
 
                             <span>
                                 <br />
-                                Name: {{tyrt}} {{mnb}}
+                                Name: {{user_Detail.last_name}} {{user_Detail.first_name}}
                                 <br />
-                                Membership No: {{6}}<br />
-                                Membership Type: {{ordinary}}<br>
-                                Address: {{vbbccv}}<br>
+                                Membership No: {{user_Detail.id}}<br />
+                                Membership Type: {{user_Detail.membership_type}}<br>
+                                Address: {{user_Detail.address}}<br>
                             </span>
                         </td>
                         <td style=" border:0;">
@@ -102,62 +105,267 @@
                         </td>
                         <td style="text-align:right; border:0;">
                             <span><br />
-                                Total Debit: {{10000}}<br />
-                                Total Credit: {{24444}}<br />
-                                Net Saving:
-                                {{2000}}<br /></span>
+                                Total Debit: {{loan_Detail.totalDebit}}<br />
+                                Total Credit: {{loan_Detail.totalCredit}}<br />
+                                Balance:
+                                {{loan_Detail.total_balance}}<br /></span>
                         </td>
                     </tr>
 
                 </tbody>
             </table>
         </section>
+
+<!-- product heading -->
+        <section class="print-area">
+
+          <table>
+               <thead>
+                    <tr>
+                        <th style="text-align:left; margin-right:1em;">PRODUCT</th>
+                        <th style="text-align:right; margin-left:1em;">PRINCIPAL AMOUNT</th>
+                        <th style="text-align:right; margin-right:1em;">DEDUCTION</th>
+                        <th style="text-align:left; margin-right:1em;">START</th>
+                        <th style="text-align:left; margin-right:1em;">END</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                        <td style="text-align:left; margin-left:1em;">{{loan_Detail.product_name}}</td>
+                        <td style="text-align:right; margin-right:1em;">{{loan_Detail.approved_amount}}</td>
+                        <td style="text-align:right; margin-right:1em;">
+                          {{loan_Detail.monthly_deduction}}
+                        </td>
+                        <td style="text-align:left; margin-left:1em;">{{loan_Detail.start_date}}</td>
+                        <td style="text-align:left; margin-left:1em;">
+                            {{loan_Detail.end_date}}</td>
+                    </tr>
+                    </tbody>
+          </table>
+
+        </section>
+<!-- end product heading -->
+
+
         <section class="print-area">
             <table>
                 <thead>
                     <tr>
                         <th style="text-align:right; margin-right:1em;">DATE</th>
                         <th style="text-align:left; margin-left:1em;">DESCRIPTION</th>
-                        <th style="text-align:right; margin-right:1em;">DEBIT</th>
                         <th style="text-align:right; margin-right:1em;">CREDIT</th>
+                        <th style="text-align:right; margin-right:1em;">DEBIT</th>
                         <th style="text-align:right; margin-right:1em;">BAL</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="text-align:right; margin-right:1em;">{{2/2/25}}</td>
-                        <td style="text-align:left; margin-left:1em;">Openning Balance</td>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td style="text-align:right; margin-right:1em;">
-                            {{25452}}</td>
-                    </tr>
+                   
                 
-                    <tr>
+                    <tr v-for="deduction in loan_Detail.deductions" :key="deduction.id">
                         <td style="text-align:right; margin-right:1em;">
-                            {{1/2/25}}</td>
+                            {{deduction.transaction_date}}</td>
                         <td style="text-align:left; margin-right:1em;">
-                            {{accccab}}
+                            {{deduction.narration}}
                         </td>
                         <td style="text-align:right; margin-right:1em;">
                          
-                          {{47777}}
+                          {{deduction.credit}}
                     
                           </td>
                         <td style="text-align:right; margin-right:1em;">
                           
-                          {{254}}
+                          {{deduction.debit}}
                         
                         </td>
 
                         <td style="text-align:right; margin-right:1em;">
-                            {{24514}}
+                            {{deduction.loan_balance}}
                         </td>
 
-                         <td style="text-align:right; margin-right:1em;">
+                         <!-- <td style="text-align:right; margin-right:1em;">
                           
-                        </td> 
+                        </td>  -->
+
+                    </tr>
+              
+                </tbody>
+            </table>
+
+        </section>
+
+    </div>
+        </template>
+    </vue3-html2pdf>
+   </div>
+
+<!-- above for print -->
+    <div>
+        <div class="print-area">
+              <button @click="generateReport">Download Statement <i class="pi pi-download"></i></button>
+        </div>
+        
+    <div class="midas-container">
+
+        <section class="print-area">
+
+          <div class="layoutHeader">
+            <div class="profileHeader">
+         
+            </div>
+            
+              <!-- <div class="profileHeader">
+                <p>content c here</p>
+              </div> -->
+          </div>
+
+            <table style=" border:0;">
+                <tbody>
+                    <tr>
+                        <td style="width:16%; border:0;">
+                          <img src="../../../../../../public/images/logo2.png" alt="" class="logo">
+                        </td>
+                        <td style="text-align:left; width:20%; border:0;">
+
+                            <span>
+                                <br />
+                                1 Hospital Road, Mission Ward<br />
+                                Makurdi, Benue State<br />
+                                mindastouch@gmail.com<br>
+                                www.midastouchonline.co<br>
+                                +234 81-1890-1411<br>
+                            </span>
+                        </td>
+                        <td style=" border:0;">
+
+                        </td>
+                        <td style=" border:0;"></td>
+                        <td style=" text-align:right; border:0;">
+                            <span class="profile-name">DATE</span><br />
+                            <!-- <span>From: {{1/2/21}}</span><br />
+                            <span>To: {{1/2/21}}</span><br /> -->
+                            <span>Date Printed: {{new Date().toLocaleDateString()}}</span><br />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+        <section style="text-align:left; padding-left:3em;">
+
+          <div> barcode</div>
+       
+        </section>
+
+        <section>
+            <h4 class="statement-title">STATEMENT OF LOAN DEDUCTION</h4>
+        </section>
+
+        <section class="print-area">
+            <table style=" border:0;">
+                <tbody>
+                    <tr>
+
+                        <td style="text-align:left; width:30%; border:0;">
+
+                            <span>
+                                <br />
+                                Name: {{user_Detail.last_name}} {{user_Detail.first_name}}
+                                <br />
+                                Membership No: {{user_Detail.id}}<br />
+                                Membership Type: {{user_Detail.membership_type}}<br>
+                                Address: {{user_Detail.address}}<br>
+                            </span>
+                        </td>
+                        <td style=" border:0;">
+
+                        </td>
+                        <td style=" border:0;"></td>
+                        <td style="border:0;">
+
+                        </td>
+                        <td style="text-align:right; border:0;">
+                            <span><br />
+                                Total Debit: {{loan_Detail.totalDebit}}<br />
+                                Total Credit: {{loan_Detail.totalCredit}}<br />
+                                Balance:
+                                {{loan_Detail.total_balance}}<br /></span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+<!-- product heading -->
+        <section class="print-area">
+
+          <table>
+               <thead>
+                    <tr>
+                        <th style="text-align:left; margin-right:1em;">PRODUCT</th>
+                        <th style="text-align:right; margin-left:1em;">PRINCIPAL AMOUNT</th>
+                        <th style="text-align:right; margin-right:1em;">DEDUCTION</th>
+                        <th style="text-align:left; margin-right:1em;">START</th>
+                        <th style="text-align:left; margin-right:1em;">END</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                        <td style="text-align:left; margin-left:1em;">{{loan_Detail.product_name}}</td>
+                        <td style="text-align:right; margin-right:1em;">{{loan_Detail.approved_amount}}</td>
+                        <td style="text-align:right; margin-right:1em;">
+                          {{loan_Detail.monthly_deduction}}
+                        </td>
+                        <td style="text-align:left; margin-left:1em;">{{loan_Detail.start_date}}</td>
+                        <td style="text-align:left; margin-left:1em;">
+                            {{loan_Detail.end_date}}</td>
+                    </tr>
+                    </tbody>
+          </table>
+
+        </section>
+<!-- end product heading -->
+
+
+        <section class="print-area">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align:right; margin-right:1em;">DATE</th>
+                        <th style="text-align:left; margin-left:1em;">DESCRIPTION</th>
+                        <th style="text-align:right; margin-right:1em;">CREDIT</th>
+                        <th style="text-align:right; margin-right:1em;">DEBIT</th>
+                        <th style="text-align:right; margin-right:1em;">BAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                
+                    <tr v-for="deduction in loan_Detail.deductions" :key="deduction.id">
+                        <td style="text-align:right; margin-right:1em;">
+                            {{deduction.transaction_date}}</td>
+                        <td style="text-align:left; margin-right:1em;">
+                            {{deduction.narration}}
+                        </td>
+                        <td style="text-align:right; margin-right:1em;">
+                         
+                          {{deduction.credit}}
+                    
+                          </td>
+                        <td style="text-align:right; margin-right:1em;">
+                          
+                          {{deduction.debit}}
+                        
+                        </td>
+
+                        <td style="text-align:right; margin-right:1em;">
+                            {{deduction.loan_balance}}
+                        </td>
+
+                         <!-- <td style="text-align:right; margin-right:1em;">
+                          
+                        </td>  -->
 
                     </tr>
               
@@ -168,32 +376,48 @@
 
     </div>
 
+    </div> 
+
 </template>
 
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
 	
 	import {mapGetters,mapActions} from 'vuex'
+  import Vue3Html2pdf from 'vue3-html2pdf'
+
 	export default {
 		data() {
 			return {
 				
 			}
 		},
-	
+     components: {
+        Vue3Html2pdf
+    },
+  
 		created() {
-	
+      const id = this.$route.params.loan_Id
+      
+      this.getLoanDetail(id).then(()=>{
+        const userid =this.loan_Detail.loan_owner_id
+        this.getUserDetail(userid)
+      })
+      
+      
 		},
         computed:{
-			// ...mapGetters(['loan_loader',
-			// 'loan_balances'])
+			...mapGetters(['loan_loader',
+			'single_loan_balance','loan_Detail','profile_Detail','user_Detail'])
         },
 		mounted() {
-		
-        
+  
 		},
 		methods: {
-			// ...mapActions(['ListLoanBalances']),  
+    generateReport(){
+       this.$refs.html2Pdf.generatePdf()
+    },
+	  ...mapActions(['individualLoanBalanceDetail','getLoanDetail','getUserDetail']),  
 		}
 	}
 </script>

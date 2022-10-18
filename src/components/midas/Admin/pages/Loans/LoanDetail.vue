@@ -94,7 +94,7 @@
         <span class="text-green-500 mr-5"><i class="pi pi-wallet"></i></span>
         </router-link>
 
-          <router-link :to="{name:'loan-deduction-statement',params:{loanDeductionId:loan_Detail.id}}">
+          <router-link :to="{name:'loan-deduction-statement',params:{loan_Id:loan_Detail.id}}">
         <span class="text-cyan-500"><i class="pi pi-download"></i></span>
         </router-link>
                 
@@ -204,7 +204,6 @@ export default {
   data(){
     return {
      userProfile:{
-    
     }
     }
   },
@@ -214,9 +213,10 @@ export default {
     DeleteItem
 },
    methods:{
+    ...mapActions(['deleteDeduction','DeleteLoan','getLoanDetail']),
     delete_Deduction(id){
       if(confirm('This action is dangerous!, can not be undone')){
-          this.$store.dispatch('deleteDeduction',id).then((res =>{
+          this.deleteDeduction(id).then((res =>{
       
           this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
           this.$notify({
@@ -240,7 +240,7 @@ export default {
     },
     delete_Loan(id){
       if(confirm('Delete Loan?')){
-            this.$store.dispatch('DeleteLoan',id).then((res =>{
+            this.DeleteLoan(id).then((res =>{
              this.$router.push('/user-profile/'+ this.loan_Detail.loan_owner_id)
             this.$notify({
             text:'Deleted successfully',
@@ -267,7 +267,14 @@ export default {
     ...mapGetters(['user_loader','loan_loader','fullName','user_Detail','profile_Detail','loan_Detail',])
   },
    created(){
-    this.$store.dispatch('getLoanDetail', this.$route.params.id)
+    this.getLoanDetail(this.$route.params.id).catch((err)=>{
+      this.$router.push('/all-loans')
+         this.$notify({
+              text:'Not Found',
+              duration:5000,
+              type:'error',
+            })
+    })
     },
     
 }

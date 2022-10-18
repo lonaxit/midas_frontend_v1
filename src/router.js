@@ -107,7 +107,7 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Loans/DeductionEdit.vue')
             },
             {
-                path: '/loan-deduction/:loanDeductionId/statement',
+                path: '/loan/:loan_Id/deduction-statement',
                 name: 'loan-deduction-statement',
                 component: () => import('./components/midas/Admin/pages/Loans/LoanDeductionStatement.vue')
             },

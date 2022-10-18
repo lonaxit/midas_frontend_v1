@@ -8,7 +8,8 @@ const loan = {
     loading: false,
     userActiveLoans: [],
     userInActiveLoans: [],
-    loanBalances:[]
+    loanBalances: [],
+    loanBalanceDetail:[],
     
 },
 mutations: {
@@ -38,7 +39,11 @@ mutations: {
   LOAN_BALANCES(state,data) {
     state.loanBalances = data;
     state.loading = true;
-  }
+  },
+  LOAN_BALANCE_DETAIL(state, payload) {
+    state.loanBalanceDetail = payload;
+    state.loading = true
+  },
   
   },
 
@@ -46,6 +51,9 @@ mutations: {
   getters: {
     loan_balances(state) {
       return state.loanBalances;
+    },
+    single_loan_balance(state) {
+      return state.loanBalanceDetail;
     },
     loan_Detail(state) {
       return state.loanDetail;
@@ -120,10 +128,17 @@ async getLoans(context){
       const res = await axios.delete('api/v1/loan/' + loanid + '/')  
   },
 
+  
   async ListLoanBalances(context, payload) {
     const res = await axios.get('api/v1/balances/' + payload.start_date + '/' + payload.end_date + '/')
     context.commit('LOAN_BALANCES', res.data)
-   }
+  },
+  
+    // get individual loan balance detail
+    async individualLoanBalanceDetail(context,loanid) {
+      const res = await axios.get('api/v1/loan-balance/' + loanid + '/')  
+      context.commit('LOAN_BALANCE_DETAIL', res.data)
+},
 
 },
 

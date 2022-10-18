@@ -1,7 +1,8 @@
 <template>
 	<div class="layout-topbar">
 		<router-link to="/home" class="layout-topbar-logo">
-			<img alt="Logo" :src="topbarImage()" />
+			<!-- <img alt="Logo" :src="topbarImage()" />  -->
+			<img src="../public/images/logo.png" alt="" class="logo">
 			<span>MIDAS TOUCH</span>
 		</router-link>
 		<button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle">

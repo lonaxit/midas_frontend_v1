@@ -73,7 +73,7 @@
         <section style="text-align:left; padding-left:3em;">
 
           <div> 
-            <qrcode-vue :value='user_Detail.last_name' :size="100" level="H" />
+            <qrcode-vue v-if="name" :value='name' :size="100" level="H" />
           </div>
        
         </section>
@@ -256,9 +256,7 @@
         <section style="text-align:left; padding-left:3em;">
 
           <div>  
-             <qrcode-vue :value='user_Detail.last_name' :size="100" level="H" />
-            <!-- using data binding  -->
-            <!-- <qrcode-vue :value="name" :size="100" level="H" /> -->
+             <qrcode-vue v-if="name" :value='name' :size="100" level="H" />
           </div>
        
         </section>
@@ -398,7 +396,7 @@
 	export default {
 		data() {
 			return {
-       url: 'http://localhost:8080/loan/'
+       name:null
 			}
 		},
      components: {
@@ -411,7 +409,9 @@
       
       this.getLoanDetail(id).then(()=>{ 
           const userid =this.loan_Detail.loan_owner_id
-         this.getUserDetail(userid)
+         this.getUserDetail(userid).then(()=>{
+          this.name = `${this.user_Detail.last_name} ${this.user_Detail.first_name}/${this.user_Detail.id}`
+         })
       })
 
      

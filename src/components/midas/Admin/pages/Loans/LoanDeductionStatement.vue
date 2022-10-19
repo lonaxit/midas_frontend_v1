@@ -72,7 +72,9 @@
 
         <section style="text-align:left; padding-left:3em;">
 
-          <div> barcode</div>
+          <div> 
+            <qrcode-vue :value='user_Detail.last_name' :size="100" level="H" />
+          </div>
        
         </section>
 
@@ -253,7 +255,11 @@
 
         <section style="text-align:left; padding-left:3em;">
 
-          <div> barcode</div>
+          <div>  
+             <qrcode-vue :value='user_Detail.last_name' :size="100" level="H" />
+            <!-- using data binding  -->
+            <!-- <qrcode-vue :value="name" :size="100" level="H" /> -->
+          </div>
        
         </section>
 
@@ -377,7 +383,9 @@
     </div>
 
     </div> 
-
+<div>
+  
+</div>
 </template>
 
 <script>
@@ -385,25 +393,28 @@
 	
 	import {mapGetters,mapActions} from 'vuex'
   import Vue3Html2pdf from 'vue3-html2pdf'
+  import QrcodeVue from 'qrcode.vue'
 
 	export default {
 		data() {
 			return {
-				
+       url: 'http://localhost:8080/loan/'
 			}
 		},
      components: {
-        Vue3Html2pdf
+        Vue3Html2pdf,
+        QrcodeVue
     },
   
 		created() {
       const id = this.$route.params.loan_Id
       
-      this.getLoanDetail(id).then(()=>{
-        const userid =this.loan_Detail.loan_owner_id
-        this.getUserDetail(userid)
+      this.getLoanDetail(id).then(()=>{ 
+          const userid =this.loan_Detail.loan_owner_id
+         this.getUserDetail(userid)
       })
-      
+
+     
       
 		},
         computed:{
@@ -411,7 +422,7 @@
 			'single_loan_balance','loan_Detail','profile_Detail','user_Detail'])
         },
 		mounted() {
-  
+     this.name = `${this.user_Detail.last_name} ${this.user_Detail.first_name} ${this.user_Detail.id}`
 		},
 		methods: {
     generateReport(){

@@ -34,6 +34,7 @@
 		"primeicons": "^5.0.0",
 		"primevue": "^3.12.2",
 		"prismjs": "1.9.0",
+		"qrcode.vue": "^3.3.3",
 		"vue": "^3.2.13",
 		"vue-router": "^4.0.3",
 		"vue3-html2pdf": "^1.1.2",

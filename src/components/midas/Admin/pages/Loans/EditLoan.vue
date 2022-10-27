@@ -7,7 +7,7 @@
 				<div class="p-fluid formgrid grid">
                     <div class="field col-12 md:col-3">
 						<label for="userid">UserID</label>
-						<InputText id="userid" type="number" v-model="userid"/>
+						<InputText id="userid" type="number" v-model="userid" disabled/>
 					</div>
 
 					<div class="field col-12 md:col-3">

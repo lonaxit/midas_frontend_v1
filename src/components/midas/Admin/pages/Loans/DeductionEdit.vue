@@ -2,7 +2,7 @@
   <div class="grid">
 		<div class="col-12">
             <div class="card  p-fluid">
-            <h5>Loan Transaction</h5>
+            <h5>Update Loan Deduction</h5>
             <form @submit.prevent="updateDeduction">
 				<div class="p-fluid formgrid grid">
                   

@@ -120,7 +120,7 @@
 			postDeduction(){
 				this.$store.dispatch('postBulkDeduction').then(()=>{
 					// return to the master deduction page
-					this.$router.push('/ippis-deduction-list')
+					this.$router.go()
 					this.$notify({
 						text:'Deductions created successfully',
 						duration:5000,

@@ -35,25 +35,21 @@ const users = {
         },
         profile_Detail(state) {
             return state.profileDetail
-        }
-       
+        },
+
+        // userTotalSaving(state, getters) {
+      
+        //     var result = getters.user_Detail.savinguser.reduce(function (accumulator, obj) {
+        //         if(parseInt(obj.credit))
+        //         return accumulator + parseInt(obj.credit);
+        //     }, 0);
+        //     return result
+        // }
       
     },
     actions: {
         
-    // async searchUser(context,userid) {
-    
-    //     try {
-    //       const res = await axios.get('api/v1/' + userid +'/profile/')
-    //         context.commit('GET_USER', res.data)
-    //       }
-    //     catch(err) {
-        
-    //       alert(err)
-    //       console.log(err)
-              
-    //       }
-    //   },
+  
       async getUserDetail(context,userid) {
      
           const res = await axios.get('api/v1/'+ userid +'/profile/')

@@ -137,9 +137,63 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Loans/EditIPPISMasterDeduction.vue')
             },
 
+            // saving
+            {
+                path: '/upload_saving',
+                name: 'upload-saving',
+                component: () => import('./components/midas/Admin/pages/Savings/UploadSaving.vue')
+            },
+            {
+                path: '/saving-master-list',
+                name: 'saving-master-list',
+                component: () => import('./components/midas/Admin/pages/Savings/MasterSavingList.vue')
+            },
+            {
+                path: '/:mastersavingid/master-saving',
+                name: 'mastersaving-detail',
+                component: () => import('./components/midas/Admin/pages/Savings/MasterSavingDetail.vue')
+            },
+            {
+                path: '/mastersaving/:id/edit',
+                name: 'mastersaving-edit',
+                component: () => import('./components/midas/Admin/pages/Savings/EditMasterSavingDetail.vue')
+            },
+            {
+                path: '/saving/:userid/deposit',
+                name: 'saving-deposit',
+                component: () => import('./components/midas/Admin/pages/Savings/SavingTransaction.vue')
+            },
+            {
+                path: '/usersaving/:userid/list',
+                name: 'user-saving',
+                component: () => import('./components/midas/Admin/pages/Savings/UserSavingList.vue')
+            },
+            {
+                path: '/saving-deposit/:id/edit',
+                name: 'saving-deposit-edit',
+                component: () => import('./components/midas/Admin/pages/Savings/EditSavingRecord.vue')
+            },
+            // general statement
+            {
+                path: '/deposit/:userid/statement',
+                name: 'deposit-statement',
+                component: () => import('./components/midas/Admin/pages/Savings/SavingStatement.vue')
+            },
+            // statement by date
+            {
+                path: '/deposit/statement-bydate',
+                name: 'deposit-statement-bydate',
+                component: () => import('./components/midas/Admin/pages/Savings/FindDepositStatementByDate.vue')
+            },
+            {
+                path: '/:userid/:startdate/:enddate/deposit-statement',
+                name: 'statement-of-saving',
+                component: () => import('./components/midas/Admin/pages/Savings/DepositStatementByDateResult.vue')
+            },
+
             {
                 path: '/user-profile/:id',
-                name: 'user-prfile',
+                name: 'user-profile',
                 component: () => import('./components/midas/Admin/pages/Profile/UserPage.vue')
             },
             {

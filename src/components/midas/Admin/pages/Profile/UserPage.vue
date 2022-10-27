@@ -1,14 +1,17 @@
 <template>
-<div v-if="user_loader && loan_loader">
+<div v-if="loader">
 <div>
   <div class="mb-3 user-profile">
     <div class="user-panel">
     
-       <span class="mb-2 text-purple-500">Profile</span>
+       <span class="mb-2 text-purple-500"> <router-link :to="{name:'all-users'}">
+          <span class="text-purple font-medium mr-5"><i class="pi pi-arrow-left"></i> </span>
+        </router-link> Profile</span>
       <h1 class="username">{{fullName}}</h1>
       <span>Ordinary</span>
       <div class="follower_count">
-        <strong>315752 | 85</strong>
+        <strong>{{profile_Detail.ippis}} | {{profile_Detail.user.id}}</strong>
+        
       </div>
     </div>
   </div>
@@ -35,13 +38,25 @@
 				<div class="flex justify-content-between mb-3">
 					<div>
 						<span class="block text-500 font-medium mb-3">Savings</span>
-						<div class="text-900 font-medium text-xl">   {{formatCurrency(25894)}}</div>
+						<div class="text-900 font-medium text-xl">
+                
+              {{formatCurrency(user_Detail.totalSaving)}}
+              </div>
 					</div>
 					<div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
 						<i class="pi pi-map-marker text-orange-500 text-xl"></i>
 					</div>
 				</div>
-				<router-link :to="{name:'update-scheme',params:{id:1}}"><span class="text-green-500 font-medium">Transaction </span></router-link>
+				<router-link :to="{name:'saving-deposit',params:{userid:profile_Detail.user.id}}"><span class="text-green-500 font-medium mr-5"><i class="pi pi-wallet"></i></span></router-link>
+
+         <router-link :to="{name:'user-saving',params:{userid:profile_Detail.user.id}}">
+            <span class="text-blue-500 font-medium mr-5"><i class="pi pi-eye"></i></span>
+          </router-link>
+
+        <router-link :to="{name:'deposit-statement',params:{userid:profile_Detail.user.id}}">
+        <span class="text-cyan-500"><i class="pi pi-download"></i></span>
+        </router-link>
+
 			</div>
 		</div>
 		<div class="col-12 lg:col-6 xl:col-3">
@@ -86,7 +101,7 @@
 
 <!-- loan details -->
 
-<div v-if="user_loader && loan_loader">
+<div v-if="loader">
 
  <div v-if="activeUserLoans !=0">
     <div><h2>Active Loans</h2></div>
@@ -174,85 +189,37 @@
 <script>
 import axios from 'axios'
 import ListHeader from '@/components/midas/ReusableComponents/Listheading.vue'
-// import MyLoader from '@/components/midas/ReusableComponents/Loader.vue'
+import {mapGetters,mapActions} from 'vuex'
 export default {
 
   data(){
     return {
-    // userProfile:{
-    //   user_id:"",
-    //   username:"",
-    //   first_name:"",
-    //   last_name:"",
-    // },
-     userProfile:{
-    
-    }
+    loader: false,
     }
   },
   components:{
-    // MyLoader,
+ 
      ListHeader
 },
    methods:{
+    ...mapActions(['getUserDetail','userLoans','UserSavingsByUserId']),
 
     	formatCurrency(value) {
 				return value.toLocaleString('en-US', {style: 'currency', currency: 'NGN'});
 			},
    },
   computed: {
+    ...mapGetters(['fullName','user_Loans','userTotalLoans','activeUserLoans','inactiveUserLoans','totalBalance','riskExposure','user_Detail','profile_Detail']),
 
-    user_loader(){
-      return this.$store.getters.user_loader
-    },
-    loan_loader(){
-      return this.$store.getters.loan_loader
-    },
-
-    fullName(){
-      return this.$store.getters.fullName
-    },
-
-    user_Loans(){
-      return this.$store.getters.user_Loans
-    },
-
-    userTotalLoans(){
-      return this.$store.getters.userTotalLoans
-    },
-    activeUserLoans(){
-      return this.$store.getters.activeUserLoans
-    },
-    inactiveUserLoans(){
-      return this.$store.getters.inactiveUserLoans
-    },
-    totalBalance(){
-      return this.$store.getters.totalBalance
-    },
-    riskExposure(){
-      return this.$store.getters.riskExposure
-    }
   },
    created(){
-  
-      this.$store.dispatch('getUserDetail', this.$route.params.id)
-      this.$store.dispatch('userLoans', this.$route.params.id)
-
-
-// not used for now
-    //     const getUserDetail = async () =>{
-    //     try{
-    //       const res = await axios.get('api/v1/'+ this.$route.params.id +'/profile/')
-         
-    //         this.userProfile.first_name =res.data.user.first_name
-    //         this.userProfile.last_name =res.data.user.last_name
-    //         this.userProfile.username =res.data.user.username
-    //         this.userProfile.user_id =res.data.user.id
-    //     } catch(err){
-    //         this.$toast.add({severity: 'error', detail:'Unable to get item detail', life: 5000});
-    //     }
-    // }
-    // getUserDetail()
+      this.getUserDetail(this.$route.params.id).then(()=>{
+        this.userLoans(this.$route.params.id).then(()=>{
+        this.loader = true   
+        })
+        
+      })
+      
     },
 
 }

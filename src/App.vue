@@ -153,14 +153,14 @@ export default {
                                     items: [
                                         {label: 'Create', icon: 'pi pi-fw pi-plus', to:''},
 
-                                        {label: 'List', icon: 'pi pi-fw pi-list', to:''},
-                                        {label: 'Upload', icon: 'pi pi-fw pi-file-excel'},
+                                        // {label: 'List', icon: 'pi pi-fw pi-list', to:''},
+                                        // {label: 'Upload', icon: 'pi pi-fw pi-file-excel'},
 
                                         {
-                                        label:'IPPIS', 
+                                        label:'IPPIS', icon: 'pi pi-fw pi-briefcase',
                                         items:[
-                                        {label: 'Upload Master', icon: 'pi pi-fw pi-upload', to:''},
-                                        {label: 'Master List', icon: 'pi pi-fw pi-list', to:''},
+                                        {label: 'Upload Saving', icon: 'pi pi-fw pi-upload', to:'/upload_saving'},
+                                        {label: 'Master List', icon: 'pi pi-fw pi-list', to:'/saving-master-list'},
                                     ]
                                  },     
                                     ]
@@ -174,7 +174,7 @@ export default {
                     label: 'Reports',
                     items: [
                         {
-                        label: 'Saving', icon: 'pi pi-fw pi-database', to: ''
+                        label: 'Deposit Statement', icon: 'pi pi-fw pi-envelope', to: '/deposit/statement-bydate'
                         },  
                         {label: 'Loan Balances', icon: 'pi pi-fw pi-check-square', to:'/loan-balances/'},   
                     ]

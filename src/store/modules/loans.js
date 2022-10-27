@@ -100,7 +100,8 @@ mutations: {
     },
     all_Loans(state) {
       return state.loans
-    }
+    },
+    
 },
 actions: {
  

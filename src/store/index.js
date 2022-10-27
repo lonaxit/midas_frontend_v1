@@ -6,6 +6,7 @@ import SchemesProduct from './modules/schemes_product'
 import Loan from './modules/loans'
 import UserProfile from './modules/users'
 import Deduction from './modules/deductions'
+import Saving from './modules/savings'
 export default createStore({
 
   modules: {
@@ -13,7 +14,8 @@ export default createStore({
     SchemesProduct,
     Loan,
     UserProfile,
-    Deduction
+    Deduction,
+    Saving
   }
 
 })

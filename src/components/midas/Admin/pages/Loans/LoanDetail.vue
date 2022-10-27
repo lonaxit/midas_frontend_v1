@@ -1,11 +1,13 @@
 <template>
-<div v-if="loan_loader">
+<div v-if="loader">
 
 <div>
       <div class="mb-3 user-profile">
     <div class="user-panel">
     
-       <span class="mb-2 text-purple-500">Profile</span>
+       <span class="mb-2 text-purple-500"> <router-link :to="{name:'all-users'}">
+          <span class="text-purple font-medium mr-5"><i class="pi pi-arrow-left"></i> </span>
+        </router-link> Profile</span>
       <h1 class="username">{{loan_Detail.loan_owner}}</h1>
       <!-- <span>Ordinary</span>
       <div class="follower_count">
@@ -109,7 +111,7 @@
 
 
 
-    <div v-if="loan_loader && loan_Detail.deductions.length >=1">
+    <div v-if="loader">
      <ul class="list-none p-0 m-0">
        
         <ListHeader>
@@ -166,6 +168,7 @@
              <div class="w-6 md:w-2 flex justify-content-space-evenly">
                {{deduction.loan_balance}}
             </div>
+            
             <DeleteItem :item="deduction" @deleteRecord="delete_Deduction">
               <template v-slot:deleteText>
            
@@ -204,7 +207,8 @@ export default {
   data(){
     return {
      userProfile:{
-    }
+    },
+    loader:false
     }
   },
   components:{
@@ -214,6 +218,7 @@ export default {
 },
    methods:{
     ...mapActions(['deleteDeduction','DeleteLoan','getLoanDetail']),
+    
     delete_Deduction(id){
       if(confirm('This action is dangerous!, can not be undone')){
           this.deleteDeduction(id).then((res =>{
@@ -267,7 +272,10 @@ export default {
     ...mapGetters(['user_loader','loan_loader','fullName','user_Detail','profile_Detail','loan_Detail',])
   },
    created(){
-    this.getLoanDetail(this.$route.params.id).catch((err)=>{
+    this.getLoanDetail(this.$route.params.id).then(()=>{
+      this.loader = true
+    })
+    .catch((err)=>{
       this.$router.push('/all-loans')
          this.$notify({
               text:'Not Found',

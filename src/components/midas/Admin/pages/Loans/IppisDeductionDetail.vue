@@ -1,5 +1,5 @@
 <template>
-<div v-if="ippis_deduction_loader">
+<div v-if="loader">
 
 <div>
       <div class="mb-3 user-profile">
@@ -106,17 +106,19 @@ export default {
     return {
      userProfile:{
     
-    }
+    },
+    loader: false
     }
   },
   components:{
     DeleteItem
 },
    methods:{
+    ...mapActions(['ippisMasterDeductionDetail']),
    
     delete_IPPISDeduction(id){
       if(confirm('Delete Deduction?')){
-        console.log(id)
+     
             this.$store.dispatch('deleteIPPISDeduction',id).then((res =>{
 
             this.$router.push('/ippis-deduction-list')
@@ -145,7 +147,11 @@ export default {
     ...mapGetters(['ippis_deduction_loader','masterdeductionDetail'])
   },
    created(){
-    this.$store.dispatch('ippisMasterDeductionDetail', this.$route.params.masterdeductionid)
+    this.ippisMasterDeductionDetail(this.$route.params.masterdeductionid).then(()=>{
+
+      this.loader = true
+
+    })
     },
     
 }

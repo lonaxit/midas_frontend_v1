@@ -27,7 +27,7 @@
 
                     <Column field="user.last_name" header="NAME" style="min-width:12rem">
                         <template #body="{data}">
-                            <router-link  icon="pi pi-pencil" :to="{name:'user-prfile', params:{id:data.user.id}}">{{data.user.last_name}}   {{data.user.first_name}}</router-link>
+                            <router-link  icon="pi pi-pencil" :to="{name:'user-profile', params:{id:data.user.id}}">{{data.user.last_name}}   {{data.user.first_name}}</router-link>
                             
                         </template>
                      

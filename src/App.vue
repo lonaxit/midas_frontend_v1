@@ -71,23 +71,39 @@ export default {
                     label: 'Users',
                     items: [
                         {
-                            label: 'Profile', icon: 'pi pi-fw pi-info',
+                            label: 'Cooperators', icon: 'pi pi-fw pi-heart',
                             items:[
-                                {label: 'View', icon:'pi pi-fw pi-eye', to: ''},
+                                 {
+                                label: 'New', icon: 'pi pi-fw pi-user-plus', to: '/new-account'
+                                },
+                                 {
+                                label: 'List Users', icon: 'pi pi-fw pi-users', to: '/all-users'
+                                },
                                 {
                                 label: 'Change Paasword', icon: 'pi pi-fw pi-lock', to: ''
                                 }
+                                
                             ]
                         },
+
                         {
-                        label: 'New', icon: 'pi pi-fw pi-user-plus', to: ''
+                            label: 'Staff', icon: 'pi pi-fw pi-clone',
+                            items:[
+                                  {
+                                label: 'New Staff', icon: 'pi pi-fw pi-user-plus', to: ''
+                                },
+                                  {
+                                  label: 'List Staff', icon: 'pi pi-fw pi-users', to: ''
+                                },
+                               
+                                {
+                                label: 'Change Password', icon: 'pi pi-fw pi-lock', to: ''
+                                }
+                                
+                            ]
                         },
-                         {
-                        label: 'List', icon: 'pi pi-fw pi-users', to: '/all-users'
-                        },
-                         {
-                        label: 'Staff', icon: 'pi pi-fw pi-user', to: ''
-                        },
+                       
+                       
                           
                     ]
                 },

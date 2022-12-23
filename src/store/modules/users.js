@@ -10,7 +10,7 @@ const users = {
         loading:false
     },
     mutations: {
-        LIST_USERS(state, users) {
+    LIST_USERS(state, users) {
             state.usersList = users;
             state.loading = true
       },
@@ -22,7 +22,8 @@ const users = {
          state.profileDetail = profile;
          state.loading = true
         },
-      },
+    },
+    
     getters: {
         user_loader(state) {
             return state.loading
@@ -36,15 +37,6 @@ const users = {
         profile_Detail(state) {
             return state.profileDetail
         },
-
-        // userTotalSaving(state, getters) {
-      
-        //     var result = getters.user_Detail.savinguser.reduce(function (accumulator, obj) {
-        //         if(parseInt(obj.credit))
-        //         return accumulator + parseInt(obj.credit);
-        //     }, 0);
-        //     return result
-        // }
       
     },
     actions: {
@@ -62,10 +54,18 @@ const users = {
     
           const res = await axios.get('api/v1/list-profile/')
             context.commit('LIST_USERS', res.data)      
-      }
-    
-    
-    
+      },
+        async newAccount(context,payload) {
+            const res = await axios.post('auth/register/',payload)
+        },
+        async getUserByUsername(context,username) {
+            const res = await axios.get('auth/get-user/' + username + '/')
+            context.commit('SET_USER',res.data)
+        },
+        
+      async updateProfile(context,payload) {
+        const res = await axios.put('api/v1/' + payload.profileID +'/profile/',payload.data)
+  }
     },
 
 }

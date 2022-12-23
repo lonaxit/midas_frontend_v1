@@ -191,6 +191,17 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Savings/DepositStatementByDateResult.vue')
             },
 
+             {
+                path: '/new-account',
+                name: 'new-account',
+                component: () => import('./components/midas/Admin/pages/Profile/NewUser.vue')
+            },
+            {
+                path: '/:user_id/new-profile',
+                name: 'new-profile',
+                component: () => import('./components/midas/Admin/pages/Profile/NewProfile.vue')
+            },
+
             {
                 path: '/user-profile/:id',
                 name: 'user-profile',

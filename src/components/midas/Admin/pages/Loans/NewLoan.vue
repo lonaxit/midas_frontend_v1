@@ -74,8 +74,8 @@
 <script>
 import axios from 'axios'
 import SubmitButton from '@/components/midas/ReusableComponents/submitUpdateButton.vue'
-// import DatePicker from '@jobinsjp/vue3-datepicker';
-// import '@jobinsjp/vue3-datepicker/index.css';
+import {mapActions,mapGetters} from 'vuex'
+
  
 
 export default {
@@ -98,13 +98,11 @@ export default {
     },
     components:{
     SubmitButton,
-    // DatePicker
 },
     methods: {
+        ...mapActions(['getProducts']),
 
         createLoan(){
-            // Math.floor(1000000 + Math.random() * 9000000)
-            // console.log(Math.floor(Math.random() * 10000)) + 90000;
             
             // initialize the errors array  
             if(this.amount == null || this.amount==0 && this.approved == null || this.approved == 0 && this.deduction == null || this.deduction==0 && this.tenor == null || this.tenor==0 && this.netpay== null || this.netpay==0){
@@ -181,10 +179,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters(['allPrducts']),
 
-    allPrducts() {
-    return this.$store.getters.allPrducts;
-  },
+
   products_loader(){
     return this.$store.getters.products_loader
   }
@@ -192,7 +189,7 @@ export default {
   },
 
     created(){
-        this.$store.dispatch('getProducts')
+        this.getProducts()
     },
   
 

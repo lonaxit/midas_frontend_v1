@@ -7,7 +7,13 @@
        <span class="mb-2 text-purple-500"> <router-link :to="{name:'all-users'}">
           <span class="text-purple font-medium mr-5"><i class="pi pi-arrow-left"></i> </span>
         </router-link> Profile</span>
-      <h1 class="username">{{fullName}}</h1>
+      <h1 class="username">{{fullName}} </h1>
+      <span>
+        <router-link :to="{name:'new-profile',params:{user_id:profile_Detail.user.id}}">
+        <span class="text-cyan-500"><i class="pi pi-user-edit"></i></span>
+        </router-link>
+        </span>
+      
       <span>Ordinary</span>
       <div class="follower_count">
         <strong>{{profile_Detail.ippis}} | {{profile_Detail.user.id}}</strong>

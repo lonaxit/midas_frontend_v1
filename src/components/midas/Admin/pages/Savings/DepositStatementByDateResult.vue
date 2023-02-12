@@ -422,7 +422,7 @@
 		data() {
 			return {
        name:null,
-       loader:null,
+       loader:false,
 
        payload:{
         userid:null,
@@ -441,6 +441,7 @@
             this.payload.start_date = this.$route.params.startdate
             this.payload.end_date = this.$route.params.enddate
     
+        
         this.getUserDetail(this.$route.params.userid).then(()=>{
             this.OpeningBalance(this.payload).then(()=>{
                 this.userDepositByDate(this.payload).then(()=>{

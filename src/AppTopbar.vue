@@ -29,10 +29,10 @@
 			
 			<li v-if="isLoggedIn">
 				
-				<button class="p-link layout-topbar-button" @click="logout">
+				<span class="p-link layout-topbar-button" @click="logout">
 					<i class="pi pi-power-off" ></i>
 					<!-- <span>Events</span> -->
-				</button>
+				</span>
 			</li>
 			
 		

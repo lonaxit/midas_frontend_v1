@@ -1,117 +1,89 @@
 <template>
-  <div class="grid">
-		<div class="col-12">
-            <div class="card  p-fluid">
-            <h5>New Account</h5>
-            <form @submit.prevent="createAccount">
-				<div class="p-fluid formgrid grid mt-3">
-                     
-          
-			    <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="username" v-model="username" required/>
-					<label for="inputtext">Username *</label>
-				</span>
-			    </div>
-
-                <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="password" v-model="password" required />
-					<label for="inputtext">Password *</label>
-				</span>
-			    </div>
-
-                <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="password2" v-model="password2" required/>
-					<label for="inputtext">Confirm Password *</label>
-				</span>
-			    </div>  				
-		
-                <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="surname" v-model="surname" required/>
-					<label for="surname">Surname *</label>
-				</span>
-			    </div>
-
-                <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="firstname" v-model="firstname" required/>
-					<label for="firstname">Firstname *</label>
-				</span>
-			    </div>
-
-                <div class="field col-12 md:col-4">	
-				<span class="p-float-label">
-					<InputText type="text" id="othername" v-model="othername" />
-					<label for="othername">Othername</label>
-				</span>
-			    </div>   
-
-                <!-- <div class="field col-12 md:col-4">
-				<span class="p-float-label">
-              
-					<Dropdown id="dropdown" :options="cities" v-model="role" optionLabel="name"></Dropdown>
-					<label for="dropdown">Role *</label>
-				</span>
-			</div>				 -->
-	
-    <div class="col-12 md:col-12">
-		
-				<h5>Role</h5>
-				<div class="grid">
-                    <!-- <div class="col-12 md:col-3">
-						<div class="field-radiobutton mb-0">
-							<RadioButton id="option1" name="option" value="cooperator" v-model="role" />
-							<label for="option1">Cooperator</label>
-						</div>
-					</div> -->
-					<div class="col-12 md:col-3">
-						<div class="field-radiobutton mb-0">
-							<RadioButton id="staff"  value="employee" v-model="role" />
-							<label for="staff">Staff</label>
-						</div>
-					</div>
-					<div class="col-12 md:col-3">
-						<div class="field-radiobutton mb-0">
-							<RadioButton id="admin" value="admin" v-model="role" />
-							<label for="admin">Admin</label>
-						</div>
-					</div>
-					<div class="col-12 md:col-3">
-						<div class="field-radiobutton mb-0">
-							<RadioButton id="option3" value="" v-model="role" />
-							<label for="option3">No Role</label>
-						</div>
-					</div>
-				</div>
-
-				
-
-				
-		
-
-			
-
-			
-		</div>
-
-  
-		
-				</div>
-                  <SubmitButton>
-                    <template v-slot:action>
-                        <button>Create Account</button>
-                    </template>
-                </SubmitButton>
-                </form>
-        </div>
-		</div>
-	</div>
 
 
-  <div>{{role}}</div>
+
+    <div class="new-accout-container">
+  <h1>Create a new account</h1>
+  <form @submit.prevent="handleSubmit">
+
+  <label >Surname</label>
+  <input type="text"  v-model="formData.last_name" placeholder="Enter Surname"/>
+
+  <label >Firstname</label>
+  <input type="text"  v-model="formData.first_name"/>
+
+  <label >Othername</label>
+  <input type="text" v-model="formData.other_name"/>
+
+  <label >IPPIS Number</label>
+  <input type="number" min="1"  v-model="formData.ippis_number"/>
+
+  <label >Date of Birth</label>
+  <input type="date"  v-model="formData.dob"/>
+
+  <label >Date of First Appointment</label>
+  <input type="date"  v-model="formData.dofa"/>
+
+  <label >Username</label>
+  <input type="text"  v-model="formData.username"/>
+
+<label >Password</label>
+ <input type="password"  v-model="formData.password"/>
+ <!-- <div v-if="passwordError" class="error">{{passwordError}}</div> -->
+
+<label >Confirm Password</label>
+ <input type="password"  v-model="formData.re_password"/>
+ <!-- <div v-if="passwordError" class="error">{{passwordError}}</div> -->
+ 
+ 
+ <label>Roles:</label>
+ <select v-model="formData.role">
+     <option value="employee">Employee</option>
+     <option value="admin">Admin</option>
+ </select>
+
+ <!-- <label>Skills</label>
+ <input type="text" v-model="tempSkill" @keyup.alt="addSkill">
+
+ <div v-for="skill in skills" :key="skill" class="pill">
+
+<span @click="deleteSkill(skill)">{{ skill }}</span>
+     
+
+ </div> -->
+
+ <!-- <div class="terms">
+     <input type="checkbox" required v-model="terms">
+     <label>Accept Terms and Conditions </label>
+ </div> -->
+
+
+<div class="submit">
+    <button type="submit">Create an Account</button>
+</div>
+ <!-- <div>
+        <input type="checkbox" value="Shaun" v-model="names">
+     <label>Shaun</label>
+ </div>
+
+ <div>
+    <input type="checkbox" value="Yoshi" v-model="names">
+     <label>Yoshi</label>
+ </div>
+ <div>
+        <input type="checkbox" value="Mario" v-model="names">
+     <label>Mario</label>
+ </div> -->
+
+<!-- <div class="error" v-for="i in error" :key="i">
+  <p>{{i}}</p>
+  </div> -->
+</form>
+
+
+
+    </div>
+
 
 </template>
 
@@ -124,20 +96,29 @@ export default {
 
     data(){
         return{
+
+          formData:{
             username:'',
             password:'',
-            password2:'',
-            surname:'',
-            firstname:'',
-            othername:'',
-            employee:false,
-            staff:false,
-            role:''
+            re_password:'',
+            last_name:'',
+            firs_tname:'',
+            other_name:'',
+            is_employee:false,
+            is_staff:false,
+            role:'',
+            dob:'',
+            dofa:'',
+            ippis_number:''
+          },
+          error: []
+            
+   
        
         }
     },
     components:{
-    SubmitButton,
+    // SubmitButton,
   
 },
 computed: {
@@ -147,64 +128,98 @@ computed: {
 
         ...mapActions(['newAccount','getUserByUsername']),
 
-        createAccount(){
+        handleSubmit(){
             
-             
-            if(!this.username){
+              this.error=[]
+
+            if(!this.formData.username){
+              this.error.push('Please provide a username') 
             this.$notify({
               text:'Please provide a username',
               duration:5000,
               type:'error',
-            })
-               
-            }else if(!this.password && !this.password2){
-                  this.$notify({
-              text:'Missing password or confirm password value',
+            }) 
+            }
+
+            if(!this.formData.password && !this.formData.re_password){
+              this.error.push('Missing password value')
+              this.$notify({
+              text:'Missing password value',
               duration:5000,
               type:'error',
             })     
-            }else if(this.password != this.password2){
-                  this.$notify({
+            }
+
+            if(this.formData.password != this.formData.re_password){
+              this.error.push('Password do not matach') 
+              this.$notify({
               text:'Password do not match',
               duration:5000,
               type:'error',
             })
-            }else if(!this.surname){
-                  this.$notify({
+            }
+
+            if(!this.formData.last_name){
+              this.error.push('Provide a surname') 
+              this.$notify({
               text:'Provide a surname',
               duration:5000,
               type:'error',
             })
-              
-            }else if(!this.firstname){
-                  this.$notify({
+            }
+
+            if(!this.formData.first_name){
+              this.error.push("Provide a firstname")
+              this.$notify({
               text:'Provide a firstname',
               duration:5000,
               type:'error',
             })
-           
-            }else{
+            }
 
-                    if(this.role=='admin'){
-                        this.staff=true
-                    }
-                    if(this.role=='employee'){
-                        this.employee=true
-                    }
-                const formData = {
-                username:this.username,
-                last_name:this.surname,
-                first_name:this.firstname,
-                other_name:this.othername,
-                password:this.password,
-                re_password:this.password2,
-                is_employee:this.employee,
-                is_staff:this.staff
-                }
+            if(!this.formData.ippis_number){
+              this.error.push("Provide  ippis number") 
+              this.$notify({
+              text:'Provide ippis number',
+              duration:5000,
+              type:'error',
+            })
+            }
+
+            if(!this.formData.dob){
+              this.error.push("Provide  a date of birth")
+              this.$notify({
+              text:'Provide a date of birth',
+              duration:5000,
+              type:'error',
+            })
+            }
+
+            if(!this.formData.dofa){
+              this.error.push("Provide date of first appointment")
+              this.$notify({
+              text:'Provide date of first appointment',
+              duration:5000,
+              type:'error',
+            })
+            }
+
+             if(this.formData.role==='admin'){
+                this.is_staff=true
+              }
+              if(this.formData.role==='employee'){
+                this.is_employee=true
+              }
+
+            if(this.error.length ===0 ){
+
+                   
+              
 
 
-                this.newAccount(formData).then(()=>{
-                  this.getUserByUsername(this.username).then(()=>{
+                this.newAccount(this.formData).then((res)=>{
+                  console.log(res.data)
+                  this.getUserByUsername(this.formData.username).then(()=>{
                     // console.log(this.user_Detail.user.id)
                     this.$router.push({ name:'new-profile',params:{user_id:this.user_Detail.user.id}})
                    
@@ -220,7 +235,7 @@ computed: {
 
                 }).catch(err=>{
                     this.$notify({
-                        text:err.response.data.msg,
+                        text:err,
                         duration:5000,
                         type:'error'
                     })
@@ -236,5 +251,95 @@ computed: {
 </script>
 
 <style scoped>
+
+.new-accout-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+form{
+    width: 700px;
+    margin: 5px; 
+    background: white;
+    text-align: left;
+    padding: 40px;
+    border-radius: 10px;
+}
+label {
+    /* color: #aaa; */
+    display:inline-block;
+    margin: 25px 0 15px;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+input, select{
+    display: block;
+    padding: 10px 6px;
+    width: 100%;
+    box-sizing: border-box;
+    /* border: none; */
+    /* border-bottom: 1px solid #ddd; */
+
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  /* color:#555; */
+}
+input[type="checkbox"]{
+    display: inline-block;
+    width: 16px;
+    margin: 0 10px 0 0;
+    position: relative;
+    top: 2px;
+}
+/* .pill{
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius:20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight:bold;
+    color: #777;
+    cursor: pointer;
+} */
+/* button {
+    background: #0b6dff;
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+} */
+
+button[type="submit"],
+button[type="reset"] {
+  /* width: 100px; */
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+.submit{
+    text-align: center;
+}
+.error{
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+
 
 </style>

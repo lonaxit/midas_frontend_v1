@@ -48,16 +48,62 @@ export default {
                     label:'Home',
                     items:[
                         {
-                          label: 'Dashboard', icon: 'pi pi-fw pi-box', to: '/dashboard'
+                          label: 'Dashboard', icon: 'pi pi-fw pi-box', to: '/user-dashboard'
                             
                         },
-                         {
-                             label: 'Loans', icon: 'pi pi-fw pi-home', to: '/user'
-                            
-                        }
                     ]
-                }
+                },
+                   {
+                    label: 'Activity',
+                    items: [
+                        {
+                            label: 'Profile', icon: 'pi pi-fw pi-user',
+                            items:[
+                                 {
+                                label: 'View', icon: 'pi pi-fw pi-eye', to: '/my-profile'
+                                },
+                                //  {
+                                // label: 'Accounts', icon: 'pi pi-fw pi-lock', to: ''
+                                // },
+                              
+                                
+                            ]
+                        },
+                        {
+                            label: 'Loans', icon: 'pi pi-fw pi-wallet',
+                            items:[
+                                 {
+                                label: 'All', icon: 'pi pi-fw pi-align-justify', to: '/my-loans'
+                                },
+
+                                //  {
+                                // label: 'Apply', icon: 'pi pi-fw pi-pencil', to: ''
+                                // },
+                              
+                                
+                            ]
+                        },
+
+                        {
+                            label: 'Savings', icon: 'pi pi-fw pi-shopping-bag',
+                            items:[
+                                  {
+                                label: 'All', icon: 'pi pi-fw pi-align-justify', to: ''
+                                },
+                                  {
+                                  label: 'Statement By Date', icon: 'pi pi-fw pi-paperclip', to: '/user-deposit-form'
+                                },
+                            
+                                
+                            ]
+                        },
+                       
+                       
+                          
+                    ]
+                },
             ],
+
             menu : [
 
                 {
@@ -501,5 +547,24 @@ button {
   border: 1px solid #DFE3E8;
 
 }
+
+
+/* in use */
+
+.user-profile-item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+p {
+  font-weight: normal;
+}
+
+/* end in use */
 
 </style>

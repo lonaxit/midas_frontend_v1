@@ -1,11 +1,11 @@
 <template>
 
-<div v-if="$store.state.UserProfile.loading">
+<div v-if="loading">
 <div class="grid">
 		<div class="col-12">
             <div class="card">
 				<h5>All Users</h5>
-				<DataTable :value="users" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
+				<DataTable :value="user_List" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
 							v-model:filters="filters1" filterDisplay="menu" :loading="loading1" :filters="filters1" responsiveLayout="scroll"
 							:globalFilterFields="['user.last_name','ippis','approved_amount','totaldebt','active']" >
 					
@@ -35,7 +35,7 @@
 
                       <Column field="ippis" header="IPPIS" style="min-width:12rem">
                         <template #body="{data}">
-                            {{data.ippis}}
+                            {{data.user.ippis_number}}
                         </template>
                        
                     </Column>
@@ -88,11 +88,11 @@
 
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
-	// import CustomerService from "../service/CustomerService";
-	// import ProductService from '../service/ProductService';
+	import { mapActions, mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
+                loading:false,
 			
 				filters1: null,
 				filters2: {},
@@ -101,16 +101,19 @@
 		
 			}
 		},
-		customerService: null,
-		productService: null,
+		
 		created() {
-			this.$store.dispatch('getUsers')
+			this.getUsers().then(()=>{
+                this.loading = true
+            })
 			this.initFilters1();
 		},
         computed:{
-        users(){
-        return  this.$store.state.UserProfile.usersList;
-            }
+            ...mapGetters(['user_List']),
+
+        // users(){
+        // return  this.$store.state.UserProfile.usersList;
+        //     }
         },
 		mounted() {
 		
@@ -119,6 +122,7 @@
             // this.loading2 = false;
 		},
 		methods: {
+            ...mapActions(['getUsers']),
 			
 			initFilters1() {
 				this.filters1 = {

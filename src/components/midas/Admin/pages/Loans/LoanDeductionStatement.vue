@@ -59,7 +59,7 @@
                         </td>
                         <td style=" border:0;"></td>
                         <td style=" text-align:right; border:0;">
-                            <span class="profile-name">DATE</span><br />
+                            <span class="profile-name"></span><br />
                             <!-- <span>From: {{1/2/21}}</span><br />
                             <span>To: {{1/2/21}}</span><br /> -->
                             <span>Date Printed: {{new Date().toLocaleDateString()}}</span><br />
@@ -242,7 +242,7 @@
                         </td>
                         <td style=" border:0;"></td>
                         <td style=" text-align:right; border:0;">
-                            <span class="profile-name">DATE</span><br />
+                            <span class="profile-name"></span><br />
                             <!-- <span>From: {{1/2/21}}</span><br />
                             <span>To: {{1/2/21}}</span><br /> -->
                             <span>Date Printed: {{new Date().toLocaleDateString()}}</span><br />

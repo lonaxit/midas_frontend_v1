@@ -170,14 +170,17 @@
             </div>
             
             <DeleteItem :item="deduction" @deleteRecord="delete_Deduction">
+
               <template v-slot:deleteText>
            
               </template>
+              
             </DeleteItem>
 
           <router-link :to="{name:'deduction-edit',params:{deductionId:deduction.id}}">
           <span class="text-purple font-medium mr-5"><i class="pi pi-pencil"></i> </span>
-        </router-link>
+          </router-link>
+
         <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
                 	<span class="text-red-500 mr-5"><i class="pi pi-trash"></i></span>
         </div> -->

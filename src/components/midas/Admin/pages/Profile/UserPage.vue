@@ -10,7 +10,11 @@
       <h1 class="username">{{fullName}} </h1>
       <span>
         <router-link :to="{name:'new-profile',params:{user_id:profile_Detail.user.id}}">
-        <span class="text-cyan-500"><i class="pi pi-user-edit"></i></span>
+        <span class="text-cyan-500 mr-4"><i class="pi pi-user-edit"></i></span>
+        </router-link>
+
+         <router-link :to="{name:'profile-detail'}">
+        <span class="text-cyan-500"></span> View Detail <i class="pi pi-eye"></i>
         </router-link>
         </span>
       
@@ -46,7 +50,7 @@
 						<span class="block text-500 font-medium mb-3">Savings</span>
 						<div class="text-900 font-medium text-xl">
                 
-              {{formatCurrency(user_Detail.totalSaving)}}
+              {{formatMoney(user_Detail.totalSaving)}}
               </div>
 					</div>
 					<div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
@@ -70,7 +74,7 @@
 				<div class="flex justify-content-between mb-3">
 					<div>
 						<span class="block text-500 font-medium mb-3">Debtedness</span>
-						<div class="text-900 font-medium text-xl">{{formatCurrency(totalBalance)}}</div>
+						<div class="text-900 font-medium text-xl">{{formatMoney(totalBalance)}}</div>
 					</div>
 					<div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
 						<i class="pi pi-inbox text-cyan-500 text-xl"></i>
@@ -82,22 +86,7 @@
         'text-green-500 font-medium':riskExposure == 'Good'}">{{riskExposure}}</span>
 			</div>
 		</div>
-
-		<!-- <div class="col-12 lg:col-6 xl:col-3">
-			<div class="card mb-0">
-				<div class="flex justify-content-between mb-3">
-					<div>
-						<span class="block text-500 font-medium mb-3">Comments</span>
-						<div class="text-900 font-medium text-xl">152 Unread</div>
-					</div>
-					<div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
-						<i class="pi pi-comment text-purple-500 text-xl"></i>
-					</div>
-				</div>
-				<span class="text-green-500 font-medium">85 </span>
-				<span class="text-500">responded</span>
-			</div>
-		</div> -->
+    
 </div>
 </div>
 </div>
@@ -109,7 +98,7 @@
 
 <div v-if="loader">
 
- <div v-if="activeUserLoans !=0">
+ <div v-if="activeUserLoans.length !=0">
     <div><h2>Active Loans</h2></div>
      <ul class="list-none p-0 m-0">
        
@@ -155,7 +144,7 @@
             </div>
 
              <div class="w-6 md:w-2 flex justify-content-space-evenly">
-              {{formatCurrency(loan.approved_amount)}}
+              {{formatMoney(loan.approved_amount)}}
             </div>
 
                <div class="w-6 md:w-2 flex justify-content-space-evenly">
@@ -163,7 +152,7 @@
             </div>
 
              <div class="w-6 md:w-2 flex justify-content-space-evenly">
-               {{formatCurrency(loan.total_balance)}}
+               {{formatMoney(loan.total_balance)}}
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
@@ -196,6 +185,7 @@
 import axios from 'axios'
 import ListHeader from '@/components/midas/ReusableComponents/Listheading.vue'
 import {mapGetters,mapActions} from 'vuex'
+import { currencyFormatter} from '../../../../../../utils/currencyFormat'
 export default {
 
   data(){
@@ -210,9 +200,9 @@ export default {
    methods:{
     ...mapActions(['getUserDetail','userLoans','UserSavingsByUserId']),
 
-    	formatCurrency(value) {
-				return value.toLocaleString('en-US', {style: 'currency', currency: 'NGN'});
-			},
+   formatMoney(value){
+			return currencyFormatter(value)
+		}
    },
   computed: {
     ...mapGetters(['fullName','user_Loans','userTotalLoans','activeUserLoans','inactiveUserLoans','totalBalance','riskExposure','user_Detail','profile_Detail']),

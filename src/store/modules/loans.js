@@ -112,7 +112,7 @@ async getLoans(context){
       context.commit('LIST_LOANS', res.data)
       },
 
-  // get loans by a user
+  // get loans by a user for ADMIN
   async userLoans(context,userid) {
       const res = await axios.get('api/v1/' + userid + '/loans/')
       context.commit('USER_LOANS', res.data)     

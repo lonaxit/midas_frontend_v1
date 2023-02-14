@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 import Home from './components/midas/Admin/Home.vue'
+import publicFace from './components/midas/Admin/pages/PublicFace/public.vue'
 
 
 
@@ -13,6 +14,12 @@ const routes = [
         name: 'app',
         component: App,
         children: [
+
+            {
+                path: '/',
+                name: 'root',
+                component:publicFace
+            },
 
             {
                 path: '/home',

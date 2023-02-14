@@ -88,7 +88,7 @@ export default {
                             label: 'Savings', icon: 'pi pi-fw pi-shopping-bag',
                             items:[
                                   {
-                                label: 'All', icon: 'pi pi-fw pi-align-justify', to: ''
+                                label: 'All', icon: 'pi pi-fw pi-align-justify', to: '/my-deposits'
                                 },
                                   {
                                   label: 'Statement By Date', icon: 'pi pi-fw pi-paperclip', to: '/user-deposit-form'

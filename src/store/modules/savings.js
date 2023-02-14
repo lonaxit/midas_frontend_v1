@@ -91,14 +91,19 @@ const saving = {
             const res = await axios.post('api/v1/saving-create/'+payload.userid +'/', payload.data)
         },
 
-        async UserSavingsByUserId(context, userid) {
+        async UserSavingsByUserId({commit}, userid) {
             const res = await axios.get('api/v1/' + userid + '/user-saving/')
-            context.commit('USER_SAVINGS',res.data)
+            commit('USER_SAVINGS',res.data)
         },
 
-        async DetailSaving(context, id) {
+        async userDepsoit({commit}, userid) {
+            const res = await axios.get('api/v1/user-deposit/')
+            commit('USER_SAVINGS',res.data)
+        },
+
+        async DetailSaving({commit}, id) {
             const res = await axios.get('api/v1/' + id + '/saving/')
-            context.commit('USER_SAVING_DETAIL',res.data)
+            commit('USER_SAVING_DETAIL',res.data)
         },
         async EditSavingDeposit(context, payload) {
             const res = await axios.put('api/v1/' + payload.id + '/saving/',payload.data)
@@ -112,6 +117,11 @@ const saving = {
         },
         async userDepositByDate(context, payload) {
             const res = await axios.get('api/v1/' + payload.userid + '/' + payload.start_date + '/' + payload.end_date + '/mystatement/')
+            context.commit('USER_SAVINGS',res.data)
+        },
+
+         async myDepositStatement(context, payload) {
+            const res = await axios.get('api/v1/'  + payload.start_date + '/' + payload.end_date + '/Depositstatement/')
             context.commit('USER_SAVINGS',res.data)
         }
         

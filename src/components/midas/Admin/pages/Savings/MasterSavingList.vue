@@ -5,8 +5,12 @@
 		<div class="grid">
 		<div class="col-12">
             <div class="card">
-				<h5>Master Savings
-                    <Badge :value="active_MasterSaving.length" severity="info" @click=postSavingDeductions()></Badge>
+			
+				<h5>
+					Master Savings
+					
+					<button :disabled="isDisabled" class="post-btn" @click=postSavingDeductions()>POST {{active_MasterSaving.length}} DEPOSITS  </button>
+                    <!-- <Badge :value="active_MasterSaving.length" severity="info" ></Badge> -->
                   </h5>
 				<DataTable :value="active_MasterSaving" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
 							v-model:filters="filters1" filterDisplay="menu"  :filters="filters1" responsiveLayout="scroll"
@@ -51,7 +55,7 @@
                 
                     <Column header="Amount" filterField="amount" dataType="numeric" style="min-width:10rem">
                         <template #body="{data}">
-                            {{formatCurrency(data.amount)}}
+                            {{formatMoney(data.amount)}}
                         </template>
                       
                     </Column>
@@ -87,20 +91,22 @@
 </div>
 </div>
 <div v-else>
-    <p> No Record(s) Yet! </p>
+    <p> No Record(s) Yet! Or All Savings Have Been Deposited </p>
 </div>
 
 </template>
 
 <script>
 	import {FilterMatchMode,FilterOperator} from 'primevue/api';
-	// import CustomerService from "../service/CustomerService";
-	// import ProductService from '../service/ProductService';
+	import { currencyFormatter} from '../../../../../../utils/currencyFormat'
 	import {mapGetters,mapActions} from 'vuex'
+	
 	export default {
 		data() {
 			return {
                 loader: false,
+				isDisabled:false,
+		
 		
 				filters1: null,
 				filters2: {},
@@ -130,6 +136,7 @@
             ...mapActions(['listActiveMasterSaving','createSavingDeduction']),
             
 			postSavingDeductions(){
+				this.isDisabled=true
 				this.createSavingDeduction().then(()=>{
 					// to refresh the same page
 					this.$router.go()
@@ -145,9 +152,16 @@
 						duration:5000,
 						type:'error',
 					})
-					
+						
+				}).finally(()=>{
+					this.isDisabled = false
 				})
 			},
+
+			formatMoney(value){
+			return currencyFormatter(value)
+		},
+      
 			
 			initFilters1() {
 				this.filters1 = {
@@ -187,5 +201,12 @@
     padding-right:10px;
     border-radius: 4px;
     
+}
+.post-btn{
+	border: 2px solid color blue;
+	color: white;
+	font-size: 12px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 </style>

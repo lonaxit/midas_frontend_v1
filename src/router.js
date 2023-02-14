@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 import Home from './components/midas/Admin/Home.vue'
-import UserDashboard from './components/midas/Admin/UserDashboard.vue'
+
 
 
 
@@ -20,9 +20,9 @@ const routes = [
                 component: Home
             },
             {
-                path: '/user',
+                path: '/user-dashboard',
                 name: 'userdashboard',
-                component: UserDashboard
+                component: () => import('./components/midas/cooperator/UserDashboard.vue')
             },
             {
                 path: '/dashboard',
@@ -81,6 +81,7 @@ const routes = [
                 name: 'loan-detail',
                 component: () => import('./components/midas/Admin/pages/Loans/LoanDetail.vue')
             },
+
             {
                 path: '/loan/:loanId/edit',
                 name: 'loan-edit',
@@ -207,6 +208,65 @@ const routes = [
                 name: 'user-profile',
                 component: () => import('./components/midas/Admin/pages/Profile/UserPage.vue')
             },
+
+            {
+                path: '/user-profile-detail/',
+                name: 'profile-detail',
+                component: () => import('./components/midas/Admin/pages/Profile/ProfileDetail.vue')
+            },
+
+            {
+                path: '/my-profile',
+                name: 'my-profile',
+                component: () => import('./components/midas/cooperator/ProfileInfo.vue')
+            },
+            {
+                path: '/change-pass',
+                name: 'change-pass',
+                component: () => import('./components/midas/cooperator/ChangeLogin.vue')
+            },
+
+            {
+                path: '/change-password',
+                name: 'change-settings',
+                component: () => import('./components/midas/Admin/pages/Profile/ChangePassword.vue')
+            },
+
+            {
+                path: '/my-loans',
+                name: 'my-loans',
+                component: () => import('./components/midas/cooperator/MyLoans.vue')
+            },
+
+            {
+                path: '/my-deposits',
+                name: 'my-deposits',
+                component: () => import('./components/midas/cooperator/MyDepositList.vue')
+            },
+
+            {
+                path: '/user-active-loans/:userid',
+                name: 'user-active-loans',
+                component: () => import('./components/midas/cooperator/userActiveLoans.vue')
+            },
+            {
+                path: '/:startdate/:enddate/deposit-statement',
+                name: 'user-deposit-statement',
+                component: () => import('./components/midas/cooperator/DepositStatementSheet.vue')
+            },
+
+            {
+                path: '/user-deposit-form',
+                name: 'user-deposit-form',
+                component: () => import('./components/midas/cooperator/MyDepositStatementForm.vue')
+            },
+
+            {
+                path: '/user-loan-detail/:loanid',
+                name: 'user-loan-detail',
+                component: () => import('./components/midas/cooperator/userLoanDetail.vue')
+            },
+
             {
                 path: '/all-users',
                 name: 'all-users',

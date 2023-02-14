@@ -12,15 +12,12 @@ const users = {
     mutations: {
     LIST_USERS(state, users) {
             state.usersList = users;
-            state.loading = true
       },
      SET_USER(state, user) {
          state.userDetail = user;
-         state.loading = true
         },
      SET_PROFILE(state, profile) {
          state.profileDetail = profile;
-         state.loading = true
         },
     },
     
@@ -37,35 +34,51 @@ const users = {
         profile_Detail(state) {
             return state.profileDetail
         },
+        user_List(state) {
+            return state.usersList
+        }
       
     },
     actions: {
         
   
-      async getUserDetail(context,userid) {
+      async getUserDetail({commit},userid) {
      
           const res = await axios.get('api/v1/'+ userid +'/profile/')
-            context.commit('SET_USER', res.data.user)
-            context.commit('SET_PROFILE', res.data)
+            commit('SET_USER', res.data.user)
+            commit('SET_PROFILE', res.data)
       },
     
       // get list of products
-      async getUsers(context) {
+      async getUsers({commit}) {
     
           const res = await axios.get('api/v1/list-profile/')
-            context.commit('LIST_USERS', res.data)      
+            commit('LIST_USERS', res.data)      
       },
         async newAccount(context,payload) {
-            const res = await axios.post('auth/register/',payload)
+            const res = await axios.post('auth/register/', payload)
         },
         async getUserByUsername(context,username) {
             const res = await axios.get('auth/get-user/' + username + '/')
             context.commit('SET_USER',res.data)
         },
         
-      async updateProfile(context,payload) {
+      async updateProfile({commit},payload) {
         const res = await axios.put('api/v1/' + payload.profileID +'/profile/',payload.data)
-  }
+        },
+      
+    //   fetch logged in user
+        async Me({commit}) {
+            const res = await axios.get('auth/me/')
+            commit('SET_USER', res.data.user)
+            commit('SET_PROFILE', res.data)
+        },
+        
+        //Change user login details
+
+        async changeLoginDetails({ commit },payload) {
+            const res = await axios.put('auth/' +payload.userid+'/update-password/',payload)
+        }
     },
 
 }

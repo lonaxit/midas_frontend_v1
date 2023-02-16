@@ -75,7 +75,6 @@ const users = {
         },
         
         //Change user login details
-
         async changeLoginDetails({ commit },payload) {
             const res = await axios.put('auth/' +payload.userid+'/update-password/',payload)
         }

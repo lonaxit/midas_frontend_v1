@@ -105,19 +105,39 @@ import Notifications from '@kyvg/vue3-notification'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
-router.beforeEach(
-  async (to, from) => {
-    const isLoggedin = localStorage.getItem('token')
-      if (isLoggedin) {
-      store.commit('initializeStore')
-      }
-        if(!store.state.auth.user.isAuthenticated && to.name !== 'login') {
-          // redirect the user to the login page
-          return { name: 'login' }
-        }
-      }
 
-);
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = localStorage.getItem('token')
+  if (to.matched.some(record => record.meta.requiresAuth)) { // check if the route requires authentication
+    if (isLoggedIn) { // check if the user is logged in
+      store.commit('initializeStore')
+      next() // allow access to the route
+    } else {
+      next('/') // redirect to the public page if the user is not logged in
+    }
+  } else {
+    next() // allow access to the route if authentication is not required
+  }
+})
+
+
+// ************
+
+// router.beforeEach(
+//   async (to, from) => {
+//     const isLoggedin = localStorage.getItem('token')
+//       if (isLoggedin) {
+//       store.commit('initializeStore')
+//       }
+//         if(!store.state.auth.user.isAuthenticated && to.name !== 'login') {
+//           // redirect the user to the login page
+//           return { name: 'login' }
+         
+//         }
+//       }
+
+// );
 
 const app = createApp(AppWrapper);
 

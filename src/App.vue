@@ -2,10 +2,14 @@
 	<div :class="containerClass" @click="onWrapperClick">
         <AppTopBar @menu-toggle="onMenuToggle" />
         <div class="layout-sidebar" @click="onSidebarClick">
-            <div v-if="$store.state.auth.role">
+            <div v-if="$store.state.auth.user.isAuthenticated && $store.state.auth.staff">
             <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
             </div>
-            <div v-else>
+             <div v-else-if="$store.state.auth.user.isAuthenticated && $store.state.auth.employee">
+            <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
+            </div>
+
+            <div v-else-if="$store.state.auth.user.isAuthenticated && !$store.state.auth.normal">
             <AppMenu :model="usermenu" @menuitem-click="onMenuItemClick" />  
             </div>
             
@@ -33,6 +37,7 @@ import AppMenu from './AppMenu.vue';
 // import AppConfig from './AppConfig.vue';
 import AppFooter from './AppFooter.vue';
 import axios from 'axios'
+import {mapState,mapMutations,mapGetters,mapActions} from 'vuex'
 
 export default {
     emits: ['change-theme'],
@@ -366,6 +371,9 @@ export default {
     // },
 
     methods: {
+        ...mapMutations(['initializeUsername','setStaff','setNormal','setEmployee','setUsername']),
+        ...mapActions(['Me']),
+
         onWrapperClick() {
             if (!this.menuClick) {
                 this.overlayMenuActive = false;
@@ -435,6 +443,8 @@ export default {
         }
     },
     computed: {
+        ...mapState(['user','normal','staff','employee']),
+        ...mapGetters(['user_Detail','getStaff','getNormal','getEmployee','getUsername','getAuthentication']),
         containerClass() {
             return ['layout-wrapper', {
                 'layout-overlay': this.layoutMode === 'overlay',
@@ -463,6 +473,7 @@ export default {
     beforeCreate(){
     
     this.$store.commit('initializeStore')
+    
 
    
 
@@ -477,13 +488,20 @@ export default {
   
 },
 mounted() {
-    this.$store.commit('initializeStatus')
-    this.$store.commit('initializeUsername')
+    // this.$store.commit('initializeStatus')
+    // this.$store.commit('initializeUsername')
 
 
 },
 created() {
-    
+this.initializeUsername()
+this.Me().then(()=>{
+				this.setStaff(this.user_Detail.is_staff )
+				this.setEmployee(this.user_Detail.is_employee)
+				this.setNormal(this.user_Detail.is_normal)
+				this.setUsername(this.user_Detail.username)
+				
+			}) 
 
 },
 

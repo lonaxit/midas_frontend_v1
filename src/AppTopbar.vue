@@ -55,6 +55,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState} from 'vuex'
 export default {
 	data(){
 		return{
@@ -73,26 +74,22 @@ export default {
 			return this.$appState.darkTheme ? 'images/logo2.png' : 'images/logo.png';
 		},
 		logout(){
+			
 			axios.defaults.headers.common['Authorization']=""
 
 			localStorage.removeItem('token')
-			localStorage.removeItem('myStatus')
+			
 			localStorage.removeItem('username')
 			this.$store.commit('removeToken')
-			this.$store.commit('removeStatus')
 			this.$store.commit('removeUsername')
-			this.$router.push('/login')
+			this.$router.push({name:'homepage'})
 		},
 
-		getUserDetail(){
-			console.log(this.searchid)
-			this.$store.dispatch('getUserDetail',this.searchid)
-
-			// this.$router.push('/user-profile')
-		}
+		
 	
     },
 	computed: {
+		...mapState(['user', 'username']),
 		darkTheme() {
 			return this.$appState.darkTheme;
 		},

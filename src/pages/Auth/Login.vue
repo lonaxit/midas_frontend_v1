@@ -29,7 +29,8 @@
             <router-link to="" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</router-link>
         </div>
 
-        <Button @click="submitLogin" label="Sign In" icon="pi pi-user" class="w-full"></Button>
+        <Button @click="submitLogin" label="Sign In" icon="pi pi-user" class="w-full">
+        </Button>
     </div>
     <div class="error" v-if="errors.length">
                         <p v-for="error  in errors" :key="error">
@@ -45,6 +46,8 @@
 
 import axios from 'axios'
 
+import { mapGetters,mapMutations,mapActions} from 'vuex'
+
 export default {
     data() {
         return {
@@ -54,8 +57,14 @@ export default {
             
         }
     },
+  
+    computed: {
+        ...mapGetters(['user_Detail','getUsername'])
+    },
     
     methods: {
+        ...mapMutations(['setUsername','setToken']),
+  
           submitLogin(){
           
         //   reset token
@@ -68,10 +77,13 @@ export default {
             this.errors=[]
             
             if(this.username === ''){
+               
                 this.errors.push('The username field is empty')
+        
             }
             if(this.password === ''){
                 this.errors.push('The password field is empty')
+      
             }
             
 
@@ -88,19 +100,20 @@ export default {
                 .post('/api/v1/token/login/',FormData)
                 .then(response => {
 
-                    
-                    const token = response.data.auth_token
-                    this.$store.commit('setToken',token)
-                    
+               
 
+                    const token = response.data.auth_token
+                    // call setToken mutation
+                    this.setToken(token)
+                    //call setUsername mutation
+                    this.setUsername(this.username)
+                    
                     axios.defaults.headers.common['Authorization'] = "Token " + token
 
                     // store in the local storage 
                     localStorage.setItem('token',token)
-
-                    // set username for user
                     localStorage.setItem('username',this.username)
-                    this.$store.commit('setUsername',this.username)
+                  
 
                    
                     this.$router.push('/home')
@@ -108,7 +121,7 @@ export default {
                     
                 })
                 .catch(error =>{
-                    console.log(error) 
+                     this.errors.push(error)
                     })
 
                 // post data with axios using asycn/wait
@@ -123,17 +136,12 @@ export default {
                 // };
                 // sendPostRequest();
 
-            }
+         } 
         }
     },
+   
 
-    computed: {
-        logoColor() {
-            if (this.$appState.darkTheme) return 'white';
-            return 'dark';
-        },
-       
-    },
+ 
   
 }
 </script>

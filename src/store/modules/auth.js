@@ -6,12 +6,31 @@ const auth = {
           token: '',
           isAuthenticated: false,
         },
-        role: false,
-        username: "",
+    normal: false,
+    staff: false,
+    employee:false,
+    username: '',
        
     },
-    getters: {
+  getters: {
+    getNormal(state) {
+      return state.normal
     },
+    getStaff(state) {
+      return state.staff
+    },
+    getEmployee(state) {
+      return state.employee
+    },
+  
+    getUsername(state) {
+      return state.username
+    },
+    getAuthentication(state) {
+      return state.user.isAuthenticated
+    }
+  },
+  
     mutations: {
          //initialize store 
     initializeStore(state) {
@@ -23,18 +42,22 @@ const auth = {
           state.user.token = ''
           state.user.isAuthenticated = false
         }
-        },
-
-        initializeStatus(state) {
-            if (localStorage.getItem('myStatus')) {
-              const myStatus = localStorage.getItem('myStatus')
-              if (myStatus == 'true') {
-                 state.role = true
-              } else {
-                state.role =false
-               }
-            }
       },
+      
+      setNormal(state, payload) {
+        state.normal = payload
+      },
+      setStaff(state, payload) {
+        state.staff = payload
+      },
+      setEmployee(state, payload) {
+        state.employee = payload
+      },
+   
+      setUsername(state, payload) {
+        state.username = payload
+      },
+
       initializeUsername(state) {
         if (localStorage.getItem('username'))
         {
@@ -58,12 +81,10 @@ const auth = {
         state.user.token = ''
         state.user.isAuthenticated = false
       },
-      setStatus(state,role) {
-        state.role = role
-      },
-      setUsername(state, username) {
-        state.username = username
+      setAuth(state) {
+        state.user.isAuthenticated = true
       }
+     
   },
   actions: {
       

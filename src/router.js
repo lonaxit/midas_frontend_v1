@@ -15,11 +15,11 @@ const routes = [
         component: App,
         children: [
 
-            {
-                path: '',
-                name: 'homepage',
-                component:publicFace
-            },
+            // {
+            //     path: '',
+            //     name: 'homepage',
+            //     component:publicFace
+            // },
 
             {
                 path: '/home',
@@ -460,6 +460,12 @@ const routes = [
         path: '/login',
         name: 'login',
         component: () => import('./pages/Auth/Login.vue')
+    },
+
+    {
+        path: '',
+        name: 'landing',
+        component: () => import('./pages/web/public.vue')
     },
     {
         path: '/landing',

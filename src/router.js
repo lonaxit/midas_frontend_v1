@@ -322,23 +322,7 @@ const routes = [
                 name: 'all-users',
                 component: () => import('./components/midas/Admin/pages/Profile/ListUsers.vue'),
                 meta: { requiresAuth: true }
-            },
-          
-       
-           
-         
-         
-          
-            
-         
-        
-         
-         
-         
-        
-         
-         
-           
+            },    
           
         ]
     },
@@ -352,6 +336,16 @@ const routes = [
         path: '',
         name: 'landing',
         component: () => import('./pages/web/public.vue')
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: () => import('./pages/web/About.vue')
+    },
+    {
+        path: '/services',
+        name: 'services',
+        component: () => import('./pages/web/Services.vue')
     },
    
    

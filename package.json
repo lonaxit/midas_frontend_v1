@@ -3,15 +3,17 @@
 	"version": "1.1.0-midas",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/primefaces/sakai-vue.git"
+		"url": ""
 	},
 	"license": "MIT",
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
+		"deploy":"gh-pages -d dist",
 		"test:unit": "vue-cli-service test:unit"
 	},
+	"homepage":"https://lonaxit.github.io/midas_frontend_v1",
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.5.0",
 		"@vue/cli-plugin-eslint": "~4.5.0",
@@ -31,6 +33,7 @@
 		"chart.js": "3.3.2",
 		"core-js": "^3.6.5",
 		"date-fns": "^2.29.3",
+		"gh-pages": "^5.0.0",
 		"primeflex": "^3.1.2",
 		"primeicons": "^5.0.0",
 		"primevue": "^3.12.2",

@@ -179,7 +179,6 @@ computed: {
                         type: 'success'
                     })
                   }).catch((err)=>{
-                    console.log(err)
                      this.$router.push({ name:'all-users'})
                   })
 

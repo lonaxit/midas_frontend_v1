@@ -125,7 +125,7 @@ export default {
                     type:'success',
                         });
             7            } catch(err){
-                console.log(err)
+            
                     this.$notify({
                     text: "oops! Something Bad Has Happened!",
                     duration:5000,

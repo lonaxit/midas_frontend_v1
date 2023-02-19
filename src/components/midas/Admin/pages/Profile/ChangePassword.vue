@@ -168,7 +168,7 @@ computed: {
             if(this.error.length ===0 ){
 
                 this.newAccount(this.formData).then((res)=>{
-                  console.log(res.data)
+                  
                   this.getUserByUsername(this.formData.username).then(()=>{
                     // console.log(this.user_Detail.user.id)
                     this.$router.push({ name:'new-profile',params:{user_id:this.user_Detail.user.id}})

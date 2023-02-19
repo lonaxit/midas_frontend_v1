@@ -3,17 +3,6 @@
 		<div class="col-12">
 			<div class="card">
 				<h5>Welcome to MIDAS TOUCH</h5>
-				<div>{{user_Detail}}</div>
-
-				<div> staff : {{getStaff}}</div>
-				<div> Employee : {{getEmployee}}</div>
-				<div> Normal : {{getNormal}}</div>
-				<div>Auth :  {{getAuthentication}}</div>
-				<div>username :  {{getUsername}}</div>
-				<hr>
-				<p>Map state</p>
-				<div>  {{$store.state.auth.staff}}</div>
-				<div>  {{$store.state.auth.user.isAuthenticated}}</div>
 				<!-- <p>Use this page to start from scratch and place your custom content.</p> -->
 			</div>
 		</div>

@@ -12,11 +12,6 @@ const routes = [
         component: App,
         children: [
 
-            // {
-            //     path: '',
-            //     name: 'homepage',
-            //     component:publicFace
-            // },
 
             {
                 path: '/home',

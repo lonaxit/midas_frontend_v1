@@ -122,7 +122,7 @@ export default {
                     type: 'success'
                 })
                 }).catch(err=>{
-                    console.log(err)
+                 
                     this.$notify({
                         text:'An error occured',
                         duration:5000,

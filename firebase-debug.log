@@ -1,0 +1,37 @@
+[debug] [2023-02-19T18:08:05.491Z] ----------------------------------------------------------------------
+[debug] [2023-02-19T18:08:05.532Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Tivkaa Amo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2023-02-19T18:08:05.535Z] CLI Version:   11.23.1
+[debug] [2023-02-19T18:08:05.535Z] Platform:      win32
+[debug] [2023-02-19T18:08:05.536Z] Node Version:  v16.15.1
+[debug] [2023-02-19T18:08:05.626Z] Time:          Sun Feb 19 2023 19:08:05 GMT+0100 (West Africa Standard Time)
+[debug] [2023-02-19T18:08:05.627Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-19T18:08:06.225Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-19T18:08:06.227Z] > authorizing via signed-in user (lupertivkaa@gmail.com)
+[debug] [2023-02-19T18:08:06.227Z] [iam] checking project midas-frontend for permissions ["firebase.projects.get"]
+[debug] [2023-02-19T18:08:06.229Z] > refreshing access token with scopes: []
+[debug] [2023-02-19T18:08:06.233Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-02-19T18:08:06.234Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-02-19T18:08:07.482Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-02-19T18:08:07.483Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-02-19T18:08:07.557Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/midas-frontend:testIamPermissions [none]
+[debug] [2023-02-19T18:08:07.557Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/midas-frontend:testIamPermissions x-goog-quota-user=projects/midas-frontend
+[debug] [2023-02-19T18:08:07.558Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/midas-frontend:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-02-19T18:08:07.686Z] [iam] error while checking permissions, command may fail: FirebaseError: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/midas-frontend:testIamPermissions
+[debug] [2023-02-19T18:08:07.690Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend [none]
+[debug] [2023-02-19T18:08:08.457Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend 200
+[debug] [2023-02-19T18:08:08.457Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend {"projectId":"midas-frontend","projectNumber":"285407146575","displayName":"midas-frontend","name":"projects/midas-frontend","resources":{"hostingSite":"midas-frontend"},"state":"ACTIVE","etag":"1_f314235f-e15b-4a6c-aeff-4d7ecb9a87f9"}
+[info] 
+[info] === Serving from 'C:\ProductionApps\midas_frontend_v1'...
+[info] 
+[debug] [2023-02-19T18:08:08.471Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/midas-frontend/sites 
+[debug] [2023-02-19T18:08:08.586Z] Failed to list hosting sites
+[debug] Failed to make request to https://firebasehosting.googleapis.com/v1beta1/projects/midas-frontend/sites
+[debug] [2023-02-19T18:08:08.587Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend/webApps/-/config [none]
+[debug] [2023-02-19T18:08:09.576Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend/webApps/-/config 200
+[debug] [2023-02-19T18:08:09.576Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend/webApps/-/config {"projectId":"midas-frontend","storageBucket":"midas-frontend.appspot.com","apiKey":"AIzaSyBmkF1dpte5PQj0SHGE64xcNat9I6pU3-w","authDomain":"midas-frontend.firebaseapp.com","messagingSenderId":"285407146575"}
+[debug] [2023-02-19T18:08:09.626Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend [none]
+[debug] [2023-02-19T18:08:10.220Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend 200
+[debug] [2023-02-19T18:08:10.221Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/midas-frontend {"projectId":"midas-frontend","projectNumber":"285407146575","displayName":"midas-frontend","name":"projects/midas-frontend","resources":{"hostingSite":"midas-frontend"},"state":"ACTIVE","etag":"1_f314235f-e15b-4a6c-aeff-4d7ecb9a87f9"}
+[info] i  hosting[midas-frontend]: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] +  hosting[midas-frontend]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}

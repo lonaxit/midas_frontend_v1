@@ -103,7 +103,7 @@ import Notifications from '@kyvg/vue3-notification'
 // 
 
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = 'https://midasapiv1-production.up.railway.app'
 
 
 

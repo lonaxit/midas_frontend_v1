@@ -103,7 +103,7 @@ import Notifications from '@kyvg/vue3-notification'
 // 
 
 
-axios.defaults.baseURL = 'http://midastouchonline.co'
+axios.defaults.baseURL = 'https://midastouchonline.co'
 
 
 

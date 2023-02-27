@@ -5,7 +5,7 @@
     <div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
         <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
     <div class="text-center mb-5">
-         <router-link to="/landing" class="nav-button">
+         <router-link to="/">
           <img src="/images/logo.png" alt="MIDAS Logo" height="60" class="mb-3" style="width:60px; height:60px;">
          </router-link>
        

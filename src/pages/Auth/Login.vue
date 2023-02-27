@@ -5,11 +5,13 @@
     <div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
         <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
     <div class="text-center mb-5">
-        <img src="/images/logo.png" alt="MIDAS Logo" height="60" class="mb-3" style="width:60px; height:60px;">
+         <router-link to="/landing" class="nav-button">
+          <img src="/images/logo.png" alt="MIDAS Logo" height="60" class="mb-3" style="width:60px; height:60px;">
+         </router-link>
+       
 
         <div class="text-900 text-3xl font-medium mb-3">Sign In</div>
-        <!-- <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a> -->
+  
     </div>
 
     <div>
@@ -20,12 +22,7 @@
         <InputText id="password" v-model="password" type="password" class="w-full mb-3" />
 
         <div class="flex align-items-center justify-content-between mb-6">
-            <!-- <div class="flex align-items-center">
-                <Checkbox id="rememberme1" :binary="true" v-model="checked" class="mr-2"></Checkbox>
-                <label for="rememberme1">Remember me</label>
-            </div> -->
-        
-
+       
             <router-link to="" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</router-link>
         </div>
 

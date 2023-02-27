@@ -8,7 +8,6 @@
     <router-link to="/" class="link-item">Home</router-link>
     <router-link to="/about" class="link-item">About</router-link>
     <router-link to="/services" class="link-item">Services</router-link>
-    <!-- <router-link to="/" class="link-item">Contact</router-link> -->
     <router-link to="/login" class="nav-button">Login</router-link>
     
   </div>

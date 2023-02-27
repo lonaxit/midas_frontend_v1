@@ -102,10 +102,7 @@ import axios from 'axios';
 import Notifications from '@kyvg/vue3-notification'
 // 
 
-
 axios.defaults.baseURL = 'https://midasapiv1-production.up.railway.app/'
-
-
 
 router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('token')

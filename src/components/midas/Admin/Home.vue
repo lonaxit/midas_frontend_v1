@@ -4,7 +4,6 @@
 			<div class="card">
 				<h5>Welcome to MIDAS TOUCH</h5>
 				<!-- <p>Use this page to start from scratch and place your custom content.</p> -->
-				<div>{{user_Detail}}</div>
 			</div>
 		</div>
 	</div>

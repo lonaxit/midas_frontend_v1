@@ -111,12 +111,12 @@ export default {
 
             menu : [
 
-                {
-                    label: 'Home',
-                    items: [{
-                        label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard'
-                    }]
-                },
+                // {
+                //     label: 'Home',
+                //     items: [{
+                //         label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard'
+                //     }]
+                // },
 
                 {
                     label: 'Users',

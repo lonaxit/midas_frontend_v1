@@ -21,47 +21,44 @@
 
 
          <!-- llll -->
-             <div class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8">
-               
-                <div class="col-12 text-center mt-8 mb-4">
-                    <h2 class="text-900 font-normal mb-2">Our Core Servicess</h2>
-                    <span class="text-600 text-2xl">Unmatched Financial Expertise and Personalized Solutions</span>
-                </div>
-            <div class="grid justify-content-center">
-                <div class="col-12 md:col-12 lg:col-4 p-0 lg-4 mt-4 lg:mt-0">
-                     <div class="flex align-items-center justify-content-center  mb-3" style="width:3.5rem;height:3.5rem; border-radius:10px;">
-                                <!-- <i class="pi pi-fw pi-eye text-2xl text-purple-700"></i> -->
-                                <img src="layout/images/pay.png" alt="" style="width:3.5rem;height:3.5rem">
-                            </div>
-                     <h5 class="mb-2 text-900">Loans</h5>
-                            <!-- <span class="text-600">Someone peeping? No worries you are safe</span> -->
-                </div>
-                 <div class="col-12 md:col-12 lg:col-4 p-0 lg-4 mt-4 lg:mt-0">
-                     <div class="flex align-items-center justify-content-center  mb-3" style="width:3.5rem;height:3.5rem; border-radius:10px;">
-                                <!-- <i class="pi pi-fw pi-eye text-2xl text-purple-700"></i> -->
-                                <img src="layout/images/wallet.png" alt="" style="width:3.5rem;height:3.5rem" >
-                            </div>
-                       <h5 class="mb-2 text-900">Savings</h5>
-                            <!-- <span class="text-600">Someone peeping? No worries you are safe</span> -->
-                </div>
-                 <div class="col-12 md:col-12 lg:col-4 p-0 lg-4 mt-4 lg:mt-0">
-                     <div class="flex align-items-center justify-content-center  mb-3" style="width:3.5rem;height:3.5rem; border-radius:10px;">
-                           
-                                <img src="layout/images/basket.png" alt="" style="width:3.5rem;height:3.5rem">
-                            </div>
-                      <h5 class="mb-2 text-900">Welfare Schemes</h5>
-                            <!-- <span class="text-600">Someone peeping? No worries you are safe</span> -->
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <router-link to="/" class="call-button">View More</router-link>
-                </div>
-            </div>
+    <div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+    <div class="mb-3 font-bold text-2xl">
+        <span class="text-900">One Institution, </span>
+        <span class="text-blue-600">Many Solutions</span>
+    </div>
+    <div class="text-700 text-sm mb-6">Explore our world that is created for you</div>
+    <div class="grid">
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <i class="pi pi-shopping-bag text-4xl text-blue-500"></i>
+            </span>
+            <div class="text-900 mb-3 font-medium">Loans</div>
+            <span class="text-700 text-md line-height-3 custom-span">Loans are financial products offered by banks and other financial institutions to provide individuals and businesses with funds that they can use for various purposes. Loans can be categorized into different types based on their repayment periods and the purpose of borrowing.</span>
+            <!-- <p> <a href="" class="text-blue">Read More</a></p> -->
+        </div>
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <i class="pi pi-lock text-4xl text-blue-500"></i>
+            </span>
+            <div class="text-900 mb-3 font-medium">Savings</div>
+            <span class="text-700 text-md line-height-3 custom-span">Saving product is a financial service offered by a financial institution to help individuals save money. Saving products can be in the form of savings accounts, fixed deposit accounts, or recurring deposit accounts. These products provide a safe and secure way to save money and earn interest on it</span>
+            <!-- <p> <a href="" class="text-blue">Read More</a></p> -->
+        </div>
+        <div class="col-12 md:col-4 mb-4 px-5">
+            <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px">
+                <i class="pi pi-check-circle text-4xl text-blue-500"></i>
+            </span>
+            <div class="text-900 mb-3 font-medium">Welfare Schemes</div>
+            <span class="text-700 text-md line-height-3 custom-span">In addition to providing a way to save money, we offer  products such as welfare scheme to encourage people to benefit from acquistion of their basic needs and utilities</span>
+            <!-- <p> <a href="" class="text-blue">Read More</a></p> -->
+        </div>
+    </div>
+</div>
         <!-- ooooo -->
         
-        <div class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8" id="features">
+        <div class="py-4 px-4 lg:px-8 mt-1 mx-0 lg:mx-8" id="features">
             <div class="grid justify-content-center">
-                <div class="col-12 text-center mt-8 mb-4">
+                <div class="col-12 text-center mt-1 mb-4">
                     <h2 class="text-900 font-normal mb-2">Key Features</h2>
                     <!-- <span class="text-600 text-2xl">Unmatched Financial Expertise and Personalized Solutions</span> -->
                 </div>
@@ -167,7 +164,7 @@
         
                 <div class="col-12 md:col-12 lg:col-4 p-0 lg-4 mt-4 lg:mt-0">
                     <div style="height:160px; padding:2px; border-radius:10px; background: linear-gradient(90deg, rgba(160, 210, 250, 0.2), rgba(212, 162, 221, 0.2)), linear-gradient(180deg, rgba(246, 158, 188, 0.2), rgba(212, 162, 221, 0.2));">
-                        <div class="p-3 surface-card h-full" style="border-radius:8px;">
+                        <div class="p-3  surface-card h-full" style="border-radius:8px;">
                             <div class="flex align-items-center justify-content-center bg-purple-200 mb-3" style="width:3.5rem;height:3.5rem; border-radius:10px;">
                                 <i class="pi pi-fw pi-eye text-2xl text-purple-700"></i>
                             </div>
@@ -193,7 +190,7 @@
 
             <div class="grid mt-8 pb-2 md:pb-8">
                 <div class="flex justify-content-center col-12 lg:col-6  p-0 flex-order-1 lg:flex-order-0" style="border-radius:8px;">
-                    <img src="layout/images/smartphone1.png" class="w-11" alt="mockup mobile">
+                    <img src="layout/images/group.jpg" class="w-11" alt="mockup mobile">
                 </div>
 
                 <div class="col-12 lg:col-6 my-auto flex flex-column lg:align-items-end lg:text-right align-items-center text-center ">
@@ -201,9 +198,9 @@
                         <i class="pi pi-fw pi-mobile text-5xl text-purple-700"></i>
                     </div> -->
                     <h2 class="line-height-1 text-900 text-4xl font-normal">Crafted For Productivity</h2>
-                    <span class="text-700 text-2xl line-height-3 ml-0 md:ml-2" style="max-width:650px;">Productivity is a key factor in achieving financial success. At MIDAS, we understand that managing your finances can be time-consuming and stressful. That's why we've designed a range of features and services to help you increase your productivity and simplify your financial management.</span>
+                    <span class="text-700 text-md line-height-3 ml-0 md:ml-2" style="max-width:650px;">Productivity is a key factor in achieving financial success. At MIDAS, we understand that managing your finances can be time-consuming and stressful. That's why we've designed a range of features and services to help you increase your productivity and simplify your financial management.</span>
                     <p>
-                        <span class="text-700 text-2xl line-height-3 ml-0 md:ml-2" style="max-width:650px;">
+                        <span class="text-700 text-md line-height-3 ml-0 md:ml-2" style="max-width:650px;">
                             Our online platform provides you with easy access to your account information, empowering you to manage your finances from anywhere, at any time. You can view your account balances, apply for loans and download your statements with just a few clicks, giving you the power to take control of your financial situation.
                         </span>
                     </p>
@@ -216,11 +213,11 @@
                         <i class="pi pi-fw pi-desktop text-5xl text-yellow-700"></i>
                     </div> -->
                     <h2 class="line-height-1 text-900 text-4xl font-normal">Enhanced Collaboration</h2>
-                    <span class="text-700 text-2xl line-height-3 mr-0 md:mr-2" style="max-width:650px;">We also offer personalized financial solutions that can help you achieve your unique financial goals. Our team of financial advisors works with you to develop a customized plan that takes into account your individual needs and preferences, so you can feel confident in your financial decisions.</span>
+                    <span class="text-700 text-md line-height-3 mr-0 md:mr-2" style="max-width:650px;">We also offer personalized financial solutions that can help you achieve your unique financial goals. Our team of financial advisors works with you to develop a customized plan that takes into account your individual needs and preferences, so you can feel confident in your financial decisions.</span>
                 </div>
 
                 <div class="flex justify-content-end flex-order-1 sm:flex-order-2 col-12 lg:col-6  p-0" style="border-radius:8px;">
-                    <img src="layout/images/computer1.png" class="w-11 pt-4" alt="mockup">
+                    <img src="layout/images/collaboration.jpg" class="w-11 pt-4" alt="mockup">
                 </div>
             </div>
         </div>
@@ -345,7 +342,7 @@ margin: 0 auto;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  */
   padding: 15px;
 }
 .logo {
@@ -394,6 +391,14 @@ a {
   font-size: 15;
 
   max-width: 90px
+}
+.me{
+    background: url(/layout/images/wave.png) no-repeat;
+    background-size: 100% 40%;
+} 
+.custom-span{
+    display: inline-block;
+    margin-top:10px;
 }
 
 </style>

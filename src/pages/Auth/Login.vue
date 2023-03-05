@@ -40,7 +40,10 @@
 
 <div class="logo-wrapper">
   <div class="nameplate-wrapper">
-    <div class="logo-midas"><img src="/images/logo.png" alt="MIDAS Logo"></div>
+     <router-link to="/">
+       <div class="logo-midas"><img src="/images/logo.png" alt="MIDAS Logo"></div>
+    </router-link>
+    
     <div class="signature">MIDAS TOUCH</div>
   </div>
   <div class="name-title">Multipurpose cooperative Society </div>
@@ -59,7 +62,10 @@
 
     <div class="login-container">
         <div class="alternate-logo-container">
-            <img src="/images/logo.png" alt="MIDAS Logo" class="logo">
+    <router-link to="/">
+       <img src="/images/logo.png" alt="MIDAS Logo" class="logo">
+    </router-link>
+            
         </div>
         <p class="title">
             Welcome Back

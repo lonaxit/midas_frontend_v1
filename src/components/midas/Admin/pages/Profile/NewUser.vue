@@ -102,7 +102,7 @@ export default {
             password:'',
             re_password:'',
             last_name:'',
-            firs_tname:'',
+            first_name:'',
             other_name:'',
             is_employee:false,
             is_staff:false,

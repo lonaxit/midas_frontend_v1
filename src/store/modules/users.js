@@ -1,4 +1,5 @@
 import axios from 'axios'
+const baseUrl ='https://midasapiv1-production.up.railway.app/'
 
 const users = {
 
@@ -47,11 +48,20 @@ const users = {
           const res = await axios.get('api/v1/'+ userid +'/profile/')
             commit('SET_USER', res.data.user)
             commit('SET_PROFILE', res.data)
-      },
+        },
+        
+        async fetchUsers({ commit }) {
+            try {
+              const response = await fetch('https://midasapiv1-production.up.railway.app/api/v1/list-profile/')
+              const users = await response.json()
+              commit('LIST_USERS', users)
+            } catch (error) {
+              console.error(error)
+            }
+          },
     
-      // get list of products
+      // get list of users
       async getUsers({commit}) {
-    
           const res = await axios.get('api/v1/list-profile/')
             commit('LIST_USERS', res.data)      
       },

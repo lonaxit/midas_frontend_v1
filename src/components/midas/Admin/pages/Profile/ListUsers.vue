@@ -122,7 +122,7 @@
             // this.loading2 = false;
 		},
 		methods: {
-            ...mapActions(['getUsers']),
+            ...mapActions(['getUsers','fetchUsers']),
 			
 			initFilters1() {
 				this.filters1 = {

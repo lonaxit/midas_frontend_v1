@@ -103,9 +103,13 @@
 		},
 		
 		created() {
-			this.getUsers().then(()=>{
+
+            this.fetchUsers().then(()=>{
                 this.loading = true
             })
+			// this.getUsers().then(()=>{
+            //     this.loading = true
+            // })
 			this.initFilters1();
 		},
         computed:{

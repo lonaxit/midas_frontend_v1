@@ -37,7 +37,7 @@
  
  
  <label>Roles:</label>
- <select v-model="formData.role">
+ <select v-model="role">
      <option value="employee">Employee</option>
      <option value="admin">Admin</option>
  </select>
@@ -106,12 +106,12 @@ export default {
             other_name:'',
             is_employee:false,
             is_staff:false,
-            role:'',
             dob:'',
             dofa:'',
             ippis_number:''
           },
-          error: []
+          error: [],
+          role:''
             
    
        
@@ -204,11 +204,11 @@ computed: {
             })
             }
 
-             if(this.formData.role==='admin'){
-                this.is_staff=true
+             if(this.role==='admin'){
+                this.formData.is_staff=true
               }
-              if(this.formData.role==='employee'){
-                this.is_employee=true
+              if(this.role==='employee'){
+                this.formData.is_employee=true
               }
 
             if(this.error.length ===0 ){

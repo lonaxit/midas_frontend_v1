@@ -104,6 +104,7 @@ import Notifications from '@kyvg/vue3-notification'
 
 axios.defaults.baseURL = 'https://midasapiv1-production.up.railway.app/'
 // axios.defaults.baseURL = 'http://localhost:8000/'
+ 
 router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('token')
   if (to.matched.some(record => record.meta.requiresAuth)) { // check if the route requires authentication

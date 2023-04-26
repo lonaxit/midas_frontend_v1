@@ -52,7 +52,7 @@ const users = {
         
         async fetchUsers({ commit }) {
             try {
-              const response = await fetch('https://midasapiv1-production.up.railway.app/api/v1/list-profile/')
+                const response = await fetch('https://midasapiv1-production.up.railway.app/api/v1/list-profile/')
               const users = await response.json()
               commit('LIST_USERS', users)
             } catch (error) {

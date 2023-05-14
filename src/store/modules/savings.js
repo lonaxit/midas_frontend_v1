@@ -69,8 +69,8 @@ const saving = {
 
         const res = await axios.get('api/v1/mastersaving/list/')
       
-        let activeMaster = res.data.filter(masterDeduction =>masterDeduction.active ==true)
-        context.commit('ACTIVE_MASTER_SAVING', activeMaster)
+        // let activeMaster = res.data.filter(masterDeduction =>masterDeduction.active ==true)
+        context.commit('ACTIVE_MASTER_SAVING', res.data)
         },
 
         async createSavingDeduction(context) {

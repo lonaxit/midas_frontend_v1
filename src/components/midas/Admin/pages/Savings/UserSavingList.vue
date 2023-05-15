@@ -91,7 +91,7 @@
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
-               {{22258}}
+               {{saving.balance}}
             </div>
             <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
               <i class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}"></i>

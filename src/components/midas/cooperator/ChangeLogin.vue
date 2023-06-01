@@ -30,8 +30,6 @@
 
 </form>
 
-<div>{{user_Detail}}</div>
-
     </div>
 
 

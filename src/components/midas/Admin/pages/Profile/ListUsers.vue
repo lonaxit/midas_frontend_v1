@@ -25,6 +25,14 @@
                         Loading data. Please wait.
                     </template>
 
+                      <Column field="user.last_name" header="MIDAS ID" style="min-width:12rem">
+                        <template #body="{data}">
+                            <!-- <router-link  icon="pi pi-pencil" :to="{name:'user-profile', params:{id:data.user.id}}">{{data.user.last_name}}   {{data.user.first_name}}</router-link> -->
+                            {{data.user.id}}
+                        </template>
+                     
+                    </Column>
+
                     <Column field="user.last_name" header="NAME" style="min-width:12rem">
                         <template #body="{data}">
                             <router-link  icon="pi pi-pencil" :to="{name:'user-profile', params:{id:data.user.id}}">{{data.user.last_name}}   {{data.user.first_name}}</router-link>

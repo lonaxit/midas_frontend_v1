@@ -8,22 +8,22 @@
 				<div class="p-fluid formgrid grid">
                     <div class="field col-12 md:col-3">
 						<label for="username">Username</label>
-						<InputText id="username" type="text" v-model="username" disabled/>
+						<InputText id="username" type="text" v-model="username"/>
 					</div>
 
 					<div class="field col-12 md:col-3">
 						<label for="surname">Surname</label>
-						<InputText id="surname" type="text" v-model="surname" disabled/>
+						<InputText id="surname" type="text" v-model="surname"/>
 					</div>
 
 					<div class="field col-12 md:col-3">
 						<label for="firstname">Firstname</label>
-						<InputText id="firstname" type="text" v-model="firstname" disabled />
+						<InputText id="firstname" type="text" v-model="firstname"/>
 					</div>
 
                     	<div class="field col-12 md:col-3">
 						<label for="othername">Othername</label>
-						<InputText id="othername" type="text" v-model="othername" disabled/>
+						<InputText id="othername" type="text" v-model="othername"/>
 					</div>
 
                              <div class="field col-12 md:col-2">

@@ -74,8 +74,12 @@ const users = {
         },
         
       async updateProfile({commit},payload) {
-        const res = await axios.put('api/v1/' + payload.profileID +'/profile/',payload.data)
+        const res = await axios.put('api/v1/' + payload.profileID +'/profileupdate/',payload.data)
         },
+
+    async updateAccount({commit},payload) {
+            const res = await axios.put('api/v1/' + payload.profileID +'/user-update/',payload.data)
+            },
       
     //   fetch logged in user
         async Me({commit}) {

@@ -1,5 +1,79 @@
 <template>
 <div v-if="loader">
+ <div class="grid">
+		<div class="col-12">
+            <div class="card  p-fluid">
+            <h5>Update Account</h5>
+            <form @submit.prevent="updateAccountDetail">
+				<div class="p-fluid formgrid grid">
+                    <div class="field col-12 md:col-4">
+						<label for="username">Username</label>
+						<InputText id="username" type="text" v-model="username"/>
+					</div>
+
+					<div class="field col-12 md:col-4">
+						<label for="surname">Surname</label>
+						<InputText id="surname" type="text" v-model="surname"/>
+					</div>
+
+					<div class="field col-12 md:col-4">
+						<label for="firstname">Firstname</label>
+						<InputText id="firstname" type="text" v-model="firstname"/>
+					</div>
+
+                    	<div class="field col-12 md:col-4">
+						<label for="othername">Othername</label>
+						<InputText id="othername" type="text" v-model="othername"/>
+					</div>
+
+                             <div class="field col-12 md:col-4">
+						<label for="ippis">IPPIS</label>
+						<InputText id="ippis" type="number" v-model="ippis"/>
+					</div>
+              
+                    <div class="field col-12 md:col-4">
+						<label for="employ_type">Status</label>
+						<Dropdown id="employ_type" v-model="employmenttype" :options="employ_type" optionLabel="name" placeholder="Select One"></Dropdown>
+					</div>
+                
+					<div class="field col-12 md:col-6">
+						<label for="dob">Date of Birth</label>
+						<InputText id="dob" type="date" v-model="dob"/>
+					</div>
+
+                    <div class="field col-12 md:col-6">
+						<label for="dob">Date of First Appointment</label>
+						<InputText id="dob" type="date" v-model="dob"/>
+					</div>
+
+                    	
+
+                 
+
+
+                  
+
+                   
+
+
+                 
+
+					
+				
+					
+				</div>
+                  <SubmitButton>
+                    <template v-slot:action>
+                        <button id='profile'>Update Account</button>
+                    </template>
+                </SubmitButton>
+                </form>
+
+		
+        </div>
+		</div>
+	</div>
+    <hr>
   <div class="grid">
 		<div class="col-12">
             <div class="card  p-fluid">
@@ -198,7 +272,7 @@ export default {
     SubmitButton,
 },
     methods: {
-        ...mapActions(['getUserDetail','updateProfile']),
+        ...mapActions(['getUserDetail','updateProfile','updateAccount']),
 
         createProfile(){
          

@@ -157,7 +157,7 @@ export default {
     data(){
         return{
               userPayload:{
-                userID:null,
+                myID:null,
                 data:null
             },
             payload:{
@@ -240,55 +240,57 @@ export default {
         ...mapActions(['getUserDetail','updateProfile','updateAccount']),
 
         updateAccountDetail(){
+            alert(`${this.user_Detail.id}`)
+            console.log(`${this.user_Detail.id}`)
 
-                  if(!this.ippis){
-              this.$notify({
-              text:'Please provide an IPPIS number',
-              duration:5000,
-              type:'error',
-            })
-            }else if(!this.dob){
-                  this.$notify({
-              text:'Provide select a Date of Birth',
-              duration:5000,
-              type:'error',
-            })
-            }else if(!this.dofa){
-                  this.$notify({
-              text:'Provide select a Date of First Appointment',
-              duration:5000,
-              type:'error',
-            })
-            }
+            //       if(!this.ippis){
+            //   this.$notify({
+            //   text:'Please provide an IPPIS number',
+            //   duration:5000,
+            //   type:'error',
+            // })
+            // }else if(!this.dob){
+            //       this.$notify({
+            //   text:'Provide select a Date of Birth',
+            //   duration:5000,
+            //   type:'error',
+            // })
+            // }else if(!this.dofa){
+            //       this.$notify({
+            //   text:'Provide select a Date of First Appointment',
+            //   duration:5000,
+            //   type:'error',
+            // })
+            // }
 
 
-            const userAccountFormData ={
-            dob:this.dob,
-            dofa:this.dofa,
-            ippis_number:this.ippis,
-            username:this.username,
-            first_name:this.firstname,
-            last_name:this.surname,
-            other_name:this.othername
-            }
-            this.userPayload.userID = this.user_Detail.id
-            this.userPayload.data = userAccountFormData
+            // const userAccountFormData ={
+            // dob:this.dob,
+            // dofa:this.dofa,
+            // ippis_number:this.ippis,
+            // username:this.username,
+            // first_name:this.firstname,
+            // last_name:this.surname,
+            // other_name:this.othername
+            // }
+            // this.userPayload.myID = this.$route.params.user_id
+            // this.userPayload.data = userAccountFormData
 
-            this.updateAccount(this.userPayload).then(()=>{
-              this.$router.push({name:'user-profile',params:{id:this.user_Detail.id}})
-              this.$notify({
-              text:'Account Updated Successfully',
-              duration:5000,
-              type:'success',
-            })
+            // this.updateAccount(this.userPayload).then(()=>{
+            //   this.$router.push({name:'user-profile',params:{id:this.user_Detail.id}})
+            //   this.$notify({
+            //   text:'Account Updated Successfully',
+            //   duration:5000,
+            //   type:'success',
+            // })
 
-            }).catch((err)=>{
-              this.$notify({
-              text:'Something went wrong!',
-              duration:5000,
-              type:'error',
-            })
-            })
+            // }).catch((err)=>{
+            //   this.$notify({
+            //   text:'Something went wrong!',
+            //   duration:5000,
+            //   type:'error',
+            // })
+            // })
         },
 
 

@@ -273,7 +273,7 @@ export default {
             last_name:this.surname,
             other_name:this.othername
             }
-            this.userPayload.myID = this.this.user_Detail.id
+            this.userPayload.myID = this.user_Detail.id
             this.userPayload.data = userAccountFormData
 
             this.updateAccount(this.userPayload).then(()=>{

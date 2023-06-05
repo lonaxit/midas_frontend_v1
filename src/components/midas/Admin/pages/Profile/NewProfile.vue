@@ -6,80 +6,6 @@
             <h5>Update Account</h5>
             <form @submit.prevent="updateAccountDetail">
 				<div class="p-fluid formgrid grid">
-                    <div class="field col-12 md:col-4">
-						<label for="username">Username</label>
-						<InputText id="username" type="text" v-model="username"/>
-					</div>
-
-					<div class="field col-12 md:col-4">
-						<label for="surname">Surname</label>
-						<InputText id="surname" type="text" v-model="surname"/>
-					</div>
-
-					<div class="field col-12 md:col-4">
-						<label for="firstname">Firstname</label>
-						<InputText id="firstname" type="text" v-model="firstname"/>
-					</div>
-
-                    	<div class="field col-12 md:col-4">
-						<label for="othername">Othername</label>
-						<InputText id="othername" type="text" v-model="othername"/>
-					</div>
-
-                             <div class="field col-12 md:col-4">
-						<label for="ippis">IPPIS</label>
-						<InputText id="ippis" type="number" v-model="ippis"/>
-					</div>
-              
-                    <div class="field col-12 md:col-4">
-						<label for="employ_type">Status</label>
-						<Dropdown id="employ_type" v-model="employmenttype" :options="employ_type" optionLabel="name" placeholder="Select One"></Dropdown>
-					</div>
-                
-					<div class="field col-12 md:col-6">
-						<label for="dob">Date of Birth</label>
-						<InputText id="dob" type="date" v-model="dob"/>
-					</div>
-
-                    <div class="field col-12 md:col-6">
-						<label for="dob">Date of First Appointment</label>
-						<InputText id="dob" type="date" v-model="dob"/>
-					</div>
-
-                    	
-
-                 
-
-
-                  
-
-                   
-
-
-                 
-
-					
-				
-					
-				</div>
-                  <SubmitButton>
-                    <template v-slot:action>
-                        <button id='profile'>Update Account</button>
-                    </template>
-                </SubmitButton>
-                </form>
-
-		
-        </div>
-		</div>
-	</div>
-    <hr>
-  <div class="grid">
-		<div class="col-12">
-            <div class="card  p-fluid">
-            <h5>Update Profile</h5>
-            <form @submit.prevent="createProfile">
-				<div class="p-fluid formgrid grid">
                     <div class="field col-12 md:col-3">
 						<label for="username">Username</label>
 						<InputText id="username" type="text" v-model="username"/>
@@ -100,10 +26,45 @@
 						<InputText id="othername" type="text" v-model="othername"/>
 					</div>
 
-                             <div class="field col-12 md:col-2">
+                             <div class="field col-12 md:col-4">
 						<label for="ippis">IPPIS</label>
 						<InputText id="ippis" type="number" v-model="ippis"/>
 					</div>
+              
+                    <!-- <div class="field col-12 md:col-4">
+						<label for="employ_type">Status</label>
+						<Dropdown id="employ_type" v-model="employmenttype" :options="employ_type" optionLabel="name" placeholder="Select One"></Dropdown>
+					</div> -->
+                
+					<div class="field col-12 md:col-4">
+						<label for="dob">Date of Birth</label>
+						<InputText id="dob" type="date" v-model="dob"/>
+					</div>
+
+                    <div class="field col-12 md:col-4">
+						<label for="dofa">Date of First Appointment</label>
+						<InputText id="dofa" type="date" v-model="dofa"/>
+					</div>
+				</div>
+                  <SubmitButton>
+                    <template v-slot:action>
+                        <button id='profile'>Update Account</button>
+                    </template>
+                </SubmitButton>
+                </form>
+
+		
+        </div>
+		</div>
+	</div>
+    <hr>
+  <div class="grid">
+		<div class="col-12">
+            <div class="card  p-fluid">
+            <h5>Update Profile</h5>
+            <form @submit.prevent="createProfile">
+				<div class="p-fluid formgrid grid">
+                   
                     <div class="field col-12 md:col-2">
 						<label for="gender">Gender</label>
 						<Dropdown id="gender" v-model="gender" :options="sex" optionLabel="name" placeholder="Select One"></Dropdown>
@@ -127,10 +88,7 @@
 						<InputText id="address" type="text" v-model="address"/>
 					</div>
 
-					<div class="field col-12 md:col-3">
-						<label for="dob">Date of Birth</label>
-						<InputText id="dob" type="date" v-model="dob"/>
-					</div>
+			
 
                     	<div class="field col-12 md:col-3">
 						<label for="phone">phone</label>
@@ -153,8 +111,6 @@
                         <InputText id="nok_phone" type="text" v-model="nok_phone"/>
                        
 					</div>
-
-                   
 
 					<div class="field col-12 md:col-4">
 						<label for="nok_relationship">NOK Relationship</label>
@@ -200,6 +156,10 @@ export default {
 
     data(){
         return{
+              userPayload:{
+                userID:null,
+                data:null
+            },
             payload:{
                 profileID:null,
                 data:null
@@ -210,6 +170,7 @@ export default {
             nok_phone:"",
             nok_fullname:"",
             dob:null,
+            dofa:null,
             ippis:"",
             username:"",
             surname:"",
@@ -244,6 +205,10 @@ export default {
                 {name:'Pensionable'},
                 {name:'Contract'}
             ],
+             status:[
+                {name:'True'},
+                {name:'False'}
+            ],
             marital_status:[
                 {name:'Married'},
                 {name:'Single'},
@@ -274,21 +239,63 @@ export default {
     methods: {
         ...mapActions(['getUserDetail','updateProfile','updateAccount']),
 
-        createProfile(){
-         
-       
-        
-            
-            // initialize the errors array 
-             
-            if(!this.ippis){
+        updateAccountDetail(){
+
+                  if(!this.ippis){
               this.$notify({
               text:'Please provide an IPPIS number',
               duration:5000,
               type:'error',
             })
-              
-            }else if(this.account_number.length < 10){
+            }else if(!this.dob){
+                  this.$notify({
+              text:'Provide select a Date of Birth',
+              duration:5000,
+              type:'error',
+            })
+            }else if(!this.dofa){
+                  this.$notify({
+              text:'Provide select a Date of First Appointment',
+              duration:5000,
+              type:'error',
+            })
+            }
+
+
+            const userAccountFormData ={
+            dob:this.dob,
+            dofa:this.dofa,
+            ippis_number:this.ippis,
+            username:this.username,
+            first_name:this.firstname,
+            last_name:this.surname,
+            other_name:this.othername
+            }
+            this.userPayload.userID = this.user_Detail.id
+            this.userPayload.data = userAccountFormData
+
+            this.updateAccount(this.userPayload).then(()=>{
+              this.$router.push({name:'user-profile',params:{id:this.user_Detail.id}})
+              this.$notify({
+              text:'Account Updated Successfully',
+              duration:5000,
+              type:'success',
+            })
+
+            }).catch((err)=>{
+              this.$notify({
+              text:'Something went wrong!',
+              duration:5000,
+              type:'error',
+            })
+            })
+        },
+
+
+        createProfile(){
+
+            // initialize the errors array 
+            if(this.account_number.length < 10){
                   this.$notify({
               text:'Account number should not be less than 10 digits',
               duration:5000,
@@ -311,12 +318,6 @@ export default {
             }else if(!this.bank){
                   this.$notify({
               text:'Provide select a bank',
-              duration:5000,
-              type:'error',
-            })
-            }else if(!this.dob){
-                  this.$notify({
-              text:'Provide select a Date of Birth',
               duration:5000,
               type:'error',
             })
@@ -361,8 +362,6 @@ export default {
             nok_phone:this.nok_phone,
             nok_fullName:this.nok_fullname,
             nok_relationship:this.relationship.name,
-            dob:this.dob,
-            ippis:this.ippis,
             bank_account:this.account_number,
             gender:this.gender.name,
             employment_type:this.employmenttype.name,
@@ -407,6 +406,9 @@ export default {
             this.surname = this.user_Detail.last_name
             this.firstname = this.user_Detail.first_name
             this.othername = this.user_Detail.other_name
+            this.ippis=this.user_Detail.ippis_number,
+            this.dob=this.user_Detail.dob,
+            this.dofa=this.user_Detail.dofa
 
             this.email=this.profile_Detail.email
             this.phone=this.profile_Detail.phone
@@ -414,10 +416,8 @@ export default {
             this.nok_phone=this.profile_Detail.nok_phone
             this.nok_fullname=this.profile_Detail.nok_fullName
             this.relationship=this.profile_Detail.nok_relationship
-            this.dob=this.profile_Detail.dob
-            this.ippis=this.profile_Detail.ippis,
             this.account_number=this.profile_Detail.bank_account,
-            this.gender=this.profile_Detail.other_name,
+            this.gender=this.profile_Detail.gender,
             this.employmenttype=this.profile_Detail.employment_type,
             this.employment_date=this.profile_Detail.employment_date,
             this.marriage_status=this.profile_Detail.marital_status,

@@ -78,7 +78,7 @@ const users = {
         },
 
     async updateAccount({commit},payload) {
-            const res = await axios.put('api/v1/' + payload.userID +'/user-update/',payload.data)
+            const res = await axios.put('api/v1/' + payload.myID +'/user-update/',payload.data)
             },
       
     //   fetch logged in user

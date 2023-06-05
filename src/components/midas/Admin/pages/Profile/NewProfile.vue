@@ -284,7 +284,7 @@ export default {
 
             }).catch((err)=>{
               this.$notify({
-              text:`Something went wrong! ${err}`,
+              text:'Something went wrong!',
               duration:5000,
               type:'error',
             })

@@ -1,6 +1,6 @@
 <template>
 
-<div v-if="loading">
+<div v-if="user_List">
 <div class="grid">
 		<div class="col-12">
             <div class="card">

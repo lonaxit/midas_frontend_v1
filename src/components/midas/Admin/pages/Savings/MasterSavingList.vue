@@ -147,6 +147,7 @@
 					})
 				
 				}).catch(err=>{
+					console.log(err)
 					this.$notify({
 						text:'Something went wrong',
 						duration:5000,

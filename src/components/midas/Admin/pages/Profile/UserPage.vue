@@ -220,7 +220,7 @@
         </template>
         </ListHeader>
 
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap" v-for="loan in activeUserLoans" :key="loan.id" >
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap" v-for="loan in inactiveUserLoans" :key="loan.id" >
             <!-- <div class="text-500 w-6 md:w-2 font-medium">Title</div> -->
              <div class="w-6 md:w-2 flex justify-content-space-evenly">
                <router-link  icon="pi pi-pencil" :to="{name:'loan-detail',params:{id:loan.id}}">{{loan.product_name}}</router-link>

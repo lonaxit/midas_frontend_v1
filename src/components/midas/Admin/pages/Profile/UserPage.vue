@@ -179,6 +179,90 @@
   <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
 </div>
 
+<hr>
+<div v-if="loader">
+
+ <div v-if="inactiveUserLoans.length !=0">
+    <div><h2>InActive Loans</h2></div>
+     <ul class="list-none p-0 m-0">
+       
+        <ListHeader>
+        <template v-slot:useInsideUl>
+             
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+            <!-- <div class="text-500 w-6 md:w-2 font-medium">Title</div> -->
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+               Product
+            </div>
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+               Amount
+            </div>
+
+             <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+               Tenor
+            </div>
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+               Balance
+            </div>
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+               Status
+            </div>
+
+           
+            <div class="w-6 md:w-2 flex justify-content-space-evenly list-heading">
+              Action
+            </div>
+        </li>
+        </template>
+        </ListHeader>
+
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap" v-for="loan in activeUserLoans" :key="loan.id" >
+            <!-- <div class="text-500 w-6 md:w-2 font-medium">Title</div> -->
+             <div class="w-6 md:w-2 flex justify-content-space-evenly">
+               <router-link  icon="pi pi-pencil" :to="{name:'loan-detail',params:{id:loan.id}}">{{loan.product_name}}</router-link>
+               
+            </div>
+
+             <div class="w-6 md:w-2 flex justify-content-space-evenly">
+              {{formatMoney(loan.approved_amount)}}
+            </div>
+
+               <div class="w-6 md:w-2 flex justify-content-space-evenly">
+               {{loan.tenor}}
+            </div>
+
+             <div class="w-6 md:w-2 flex justify-content-space-evenly">
+               {{formatMoney(loan.total_balance)}}
+            </div>
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly">
+              <i class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}"></i>
+            </div>
+
+            <div class="w-6 md:w-2 flex justify-content-space-evenly">
+
+
+               <router-link  icon="pi pi-pencil" :to="{name:'loan-detail',params:{id:loan.id}}">Transaction</router-link>
+            <!-- <span class="text-green-500 font-medium">Credit </span>
+				    <span class="text-red-500 font-medium ml-3">Debit</span> -->
+
+            </div>
+
+             <!-- <div class="w-6 md:w-2 flex justify-content-space-evenly">
+                <router-link  icon="pi pi-pencil" :to="{name:'create-product',params:{id:loan.id}}">Add Product</router-link>
+            </div> -->
+        </li>
+    </ul>
+  </div>
+</div>
+<div v-else>  
+  <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
+</div>
+
 </template>
 
 <script>
@@ -206,6 +290,10 @@ export default {
    },
   computed: {
     ...mapGetters(['fullName','user_Loans','userTotalLoans','activeUserLoans','inactiveUserLoans','totalBalance','riskExposure','user_Detail','profile_Detail']),
+
+    activeLoans() {
+      return this.userLoans.filter(loan => loan.active==false);
+    }
 
   },
    created(){

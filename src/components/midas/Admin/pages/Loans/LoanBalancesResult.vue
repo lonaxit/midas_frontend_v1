@@ -27,8 +27,8 @@
 
                     <Column field="loan_owner" header="Name" style="min-width:12rem">
                         <template #body="{data}">
-                            
-							<router-link  icon="pi pi-pencil" :to="{name:'user-prfile',params:{id:data.owner}}">{{data.loan_owner}}</router-link> 
+                            {{data.loan_owner}}
+							<!-- <router-link  icon="pi pi-pencil" :to="{name:'user-prfile',params:{id:data.owner}}">{{data.loan_owner}}</router-link>  -->
                         </template>
                      
                     </Column>
@@ -64,7 +64,7 @@
 <div v-else>
 <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
 </div>
-<div>{{loan_balances}}</div>
+
 
 </template>
 

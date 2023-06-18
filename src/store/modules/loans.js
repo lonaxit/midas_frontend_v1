@@ -129,6 +129,12 @@ async getLoans(context){
       const res = await axios.delete('api/v1/loan/' + loanid + '/')  
   },
 
+
+  // toggle loan id
+  async toggleLoan(context,loanid) {
+    const res = await axios.put('api/v1/'+loanid+'/toggle/loan/')  
+},
+
   
   async ListLoanBalances(context, payload) {
     const res = await axios.get('api/v1/balances/' + payload.start_date + '/' + payload.end_date + '/')

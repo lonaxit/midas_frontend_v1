@@ -64,6 +64,7 @@
 <div v-else>
 <span><i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i></span>
 </div>
+<div>{{loan_balances}}</div>
 
 </template>
 

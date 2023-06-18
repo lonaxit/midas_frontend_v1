@@ -156,7 +156,7 @@
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
-              <i class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}"></i>
+              <i @click="changeStatus(loan.id)" class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}"></i>
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
@@ -240,7 +240,9 @@
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
-              <i class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}"></i>
+              <i @click="changeStatus(loan.id)" class="pi" :class="{'text-green-500 pi-check-circle': loan.active, 'text-pink-500 pi-times-circle': !loan.active}">
+
+              </i>
             </div>
 
             <div class="w-6 md:w-2 flex justify-content-space-evenly">
@@ -282,6 +284,9 @@ export default {
      ListHeader
 },
    methods:{
+     changeStatus(id) {
+      alert(`hi ${id}`)
+     },
     ...mapActions(['getUserDetail','userLoans','UserSavingsByUserId']),
 
    formatMoney(value){

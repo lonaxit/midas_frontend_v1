@@ -5,7 +5,7 @@
 		<div class="col-12">
             <div class="card">
 				<h5>Loan Balances</h5>
-				<DataTable :value="loan_balances" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true" 
+				<DataTable :value="loan_balances" :paginator="true" class="p-datatable-gridlines" :rows="2000" dataKey="id" :rowHover="true" 
 							v-model:filters="filters1" filterDisplay="menu"  :filters="filters1" responsiveLayout="scroll"
 							:globalFilterFields="['loan_owner','balance']" >
 					

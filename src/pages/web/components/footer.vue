@@ -41,7 +41,7 @@
         <div class="col">
             <img src="../../../../public/images/logo.png" alt="Logo" class="logo">
             <p>
-                MIDAS Touch is a staff cooperative society in Federal Medical Center Makurdi that is committed not only to the welfare of he members but also to promote excellence in corporate financial management
+                MIDAS Touch is a staff cooperative society in Federal Medical Center Makurdi that is committed not only to the welfare of her members but also to promote excellence in corporate financial management
             </p>
         </div>
 

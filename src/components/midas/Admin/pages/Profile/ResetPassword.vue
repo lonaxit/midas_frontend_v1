@@ -3,8 +3,8 @@
   <h1>Change Password</h1>
   <form @submit.prevent="handleSubmit">
 
-<!-- <label >Username</label>
-<input type="text"  v-model="formData.username"/> -->
+<label >Username</label>
+<input type="text"  v-model="id"/>
 
 <label >Password</label>
  <input type="password"  v-model="password"/>
@@ -43,7 +43,7 @@ export default {
     data(){
         return{
 
-        
+            id:'',
             password:'',
             re_password:'',
           
@@ -67,6 +67,14 @@ computed: {
          handleSubmit(){
             
             this.error=[]
+             if(!this.id && !this.id){
+              this.error.push('Enter username')
+              this.$notify({
+              text:'Missing password value',
+              duration:5000,
+              type:'error',
+            })     
+            }
 
             if(!this.password && !this.re_password){
               this.error.push('Missing password value')
@@ -87,13 +95,13 @@ computed: {
             }
             const payload={
                 password:this.password,
-                userid:this.$route.params.userid
+                userid:this.id
             }
 
                 this.changeLoginDetails(payload).then((res)=>{
                   
                     // console.log(this.user_Detail.user.id)
-                    this.$router.push({ name:'change-settings'})
+                    this.$router.push({ name:'reset-password'})
                    
                     this.$notify({
                         text:'Account update successfully!',
@@ -108,7 +116,7 @@ computed: {
                         duration:5000,
                         type:'error'
                     })
-                    this.$router.push({ name:'change-settings'})
+                    this.$router.push({ name:'reset-password'})
                 })
                 
         }

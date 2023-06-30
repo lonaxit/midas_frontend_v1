@@ -270,6 +270,12 @@ const routes = [
                 component: () => import('./components/midas/Admin/pages/Profile/ChangePassword.vue'),
                 meta: { requiresAuth: true }
             },
+            {
+                path: '/reset-password',
+                name: 'reset-password',
+                component: () => import('./components/midas/Admin/pages/Profile/ResetPassword.vue'),
+                meta: { requiresAuth: true }
+            },
 
             {
                 path: '/my-loans',

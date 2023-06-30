@@ -131,7 +131,7 @@ export default {
                                 label: 'List Users', icon: 'pi pi-fw pi-users', to: '/all-users'
                                 },
                                 {
-                                label: 'Change Paasword', icon: 'pi pi-fw pi-lock', to: ''
+                                label: 'Change Password', icon: 'pi pi-fw pi-lock', to: '/reset-password'
                                 }
                                 
                             ]

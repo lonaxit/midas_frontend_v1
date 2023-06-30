@@ -1,32 +1,25 @@
 <template>
-
-
-
     <div class="new-accout-container">
-  <h1>Change Account Setting</h1>
+  <h1>Change Password</h1>
   <form @submit.prevent="handleSubmit">
 
-    
-
-  
-
-<label >Username</label>
-<input type="text"  v-model="formData.username"/>
+<!-- <label >Username</label>
+<input type="text"  v-model="formData.username"/> -->
 
 <label >Password</label>
- <input type="password"  v-model="formData.password"/>
+ <input type="password"  v-model="password"/>
  <!-- <div v-if="passwordError" class="error">{{passwordError}}</div> -->
 
 <label >Confirm Password</label>
- <input type="password"  v-model="formData.re_password"/>
+ <input type="password"  v-model="re_password"/>
  <!-- <div v-if="passwordError" class="error">{{passwordError}}</div> -->
  
  
- <label>Roles:</label>
+ <!-- <label>Roles:</label>
  <select v-model="formData.role">
      <option value="employee">Employee</option>
      <option value="admin">Admin</option>
- </select> 
+ </select>  -->
 
 <div class="submit">
     <button type="submit">Update Account</button>
@@ -34,12 +27,11 @@
 
 </form>
 
-<div>{{user_Detail}}</div>
-
     </div>
 
 
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -51,20 +43,10 @@ export default {
     data(){
         return{
 
-          formData:{
-            username:'',
+        
             password:'',
             re_password:'',
-            last_name:'',
-            firs_tname:'',
-            other_name:'',
-            is_employee:false,
-            is_staff:false,
-            role:'',
-            dob:'',
-            dofa:'',
-            ippis_number:''
-          },
+          
           error: []
             
    
@@ -80,22 +62,15 @@ computed: {
 },
     methods: {
 
-        ...mapActions(['newAccount','Me','getUserByUsername']),
+        ...mapActions(['getUserDetail','changeLoginDetails','newAccount','Me','getUserByUsername']),
 
-        handleSubmit(){
+         handleSubmit(){
             
               this.error=[]
 
-            if(!this.formData.username){
-              this.error.push('Please provide a username') 
-            this.$notify({
-              text:'Please provide a username',
-              duration:5000,
-              type:'error',
-            }) 
-            }
+          
 
-            if(!this.formData.password && !this.formData.re_password){
+            if(!this.password && !this.re_password){
               this.error.push('Missing password value')
               this.$notify({
               text:'Missing password value',
@@ -104,7 +79,7 @@ computed: {
             })     
             }
 
-            if(this.formData.password != this.formData.re_password){
+            if(this.password != this.re_password){
               this.error.push('Password do not matach') 
               this.$notify({
               text:'Password do not match',
@@ -112,87 +87,31 @@ computed: {
               type:'error',
             })
             }
-
-            if(!this.formData.last_name){
-              this.error.push('Provide a surname') 
-              this.$notify({
-              text:'Provide a surname',
-              duration:5000,
-              type:'error',
-            })
+            const payload={
+                password:this.password,
+                userid:this.$route.params.userid
             }
 
-            if(!this.formData.first_name){
-              this.error.push("Provide a firstname")
-              this.$notify({
-              text:'Provide a firstname',
-              duration:5000,
-              type:'error',
-            })
-            }
-
-            if(!this.formData.ippis_number){
-              this.error.push("Provide  ippis number") 
-              this.$notify({
-              text:'Provide ippis number',
-              duration:5000,
-              type:'error',
-            })
-            }
-
-            if(!this.formData.dob){
-              this.error.push("Provide  a date of birth")
-              this.$notify({
-              text:'Provide a date of birth',
-              duration:5000,
-              type:'error',
-            })
-            }
-
-            if(!this.formData.dofa){
-              this.error.push("Provide date of first appointment")
-              this.$notify({
-              text:'Provide date of first appointment',
-              duration:5000,
-              type:'error',
-            })
-            }
-
-             if(this.formData.role==='admin'){
-                this.is_staff=true
-              }
-              if(this.formData.role==='employee'){
-                this.is_employee=true
-              }
-
-            if(this.error.length ===0 ){
-
-                this.newAccount(this.formData).then((res)=>{
+                this.changeLoginDetails(payload).then((res)=>{
                   
-                  this.getUserByUsername(this.formData.username).then(()=>{
                     // console.log(this.user_Detail.user.id)
-                    this.$router.push({ name:'new-profile',params:{user_id:this.user_Detail.user.id}})
+                    this.$router.push({ name:'change-settings'})
                    
                     this.$notify({
-                        text:'Account Created Successfully, Please Fill The User Profile',
+                        text:'Account update successfully!',
                         duration:5000,
                         type: 'success'
                     })
-                  }).catch((err)=>{
-                     this.$router.push({ name:'all-users'})
-                  })
 
                 }).catch(err=>{
+               
                     this.$notify({
                         text:err,
                         duration:5000,
                         type:'error'
                     })
+                    this.$router.push({ name:'change-settings'})
                 })
-
-                
-                
-            }
                 
         }
     },

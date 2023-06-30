@@ -265,7 +265,7 @@ const routes = [
             },
 
             {
-                path: '/change-password',
+                path: '/change-password/:userid',
                 name: 'change-settings',
                 component: () => import('./components/midas/Admin/pages/Profile/ChangePassword.vue'),
                 meta: { requiresAuth: true }

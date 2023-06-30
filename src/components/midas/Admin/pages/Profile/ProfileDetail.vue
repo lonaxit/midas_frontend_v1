@@ -9,7 +9,7 @@
       <h1 class="username">{{fullName}} </h1>
       <span>
       
-         <router-link :to="{name:'change-settings'}">
+         <router-link :to="{name:'change-settings',params:{userid:profile_Detail.user.id}}">
         <span class="text-cyan-500"></span> Change Password <i class="pi pi-key"></i>
         </router-link>
         </span>

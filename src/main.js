@@ -122,20 +122,7 @@ router.beforeEach((to, from, next) => {
 
 // ************
 
-// router.beforeEach(
-//   async (to, from) => {
-//     const isLoggedin = localStorage.getItem('token')
-//       if (isLoggedin) {
-//       store.commit('initializeStore')
-//       }
-//         if(!store.state.auth.user.isAuthenticated && to.name !== 'login') {
-//           // redirect the user to the login page
-//           return { name: 'login' }
-         
-//         }
-//       }
 
-// );
 
 const app = createApp(AppWrapper);
 

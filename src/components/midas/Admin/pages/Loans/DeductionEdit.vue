@@ -130,9 +130,9 @@ export default {
                         });
               
                 } catch(err){
-                //    console.log(err)
+                console.log(err)
                     this.$notify({
-                    text: "Unable To Delete Item",
+                    text: "Unable to update",
                     duration:5000,
                         type:'error',
                         });

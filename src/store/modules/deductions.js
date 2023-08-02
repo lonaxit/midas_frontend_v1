@@ -28,7 +28,10 @@ mutations: {
 
     state.ippisDeductionDetail = data;
     state.loading = true;
-    }
+  },
+   DELETE_DEDUCTION(state, id) {
+            state.allEnrollment = state.allEnrollment.filter(record => record.id !==id)
+        },
 
   
     },
@@ -55,8 +58,10 @@ mutations: {
 actions: {
 
       // Delete a loan  
-  async deleteDeduction(context,deductionid) {
-      const res = await axios.delete('api/v1/deduction/' + deductionid + '/')        
+  async deleteDeduction({commit},deductionid) {
+    const res = await axios.delete('api/v1/deduction/' + deductionid + '/')
+    commit('DELETE_DEDUCTION',deductionid)
+    
 
   },
     // Delete ippis master deduction

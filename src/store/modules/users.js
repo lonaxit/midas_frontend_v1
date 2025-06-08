@@ -87,8 +87,8 @@ const users = {
     //   fetch logged in user
     async Me({ commit }) {
       const res = await axios.get("auth/me/");
-      commit("SET_USER", res.data.data);
-      //   commit("SET_USER", res.data.user);
+      // commit("SET_USER", res.data.data);
+      commit("SET_USER", res.data.user);
       commit("SET_PROFILE", res.data);
     },
 

@@ -43,6 +43,7 @@ const users = {
       commit("SET_USER", res.data.user);
       commit("SET_PROFILE", res.data);
     },
+    //comment
 
     async fetchUsers({ commit }) {
       try {
@@ -86,11 +87,12 @@ const users = {
     //   fetch logged in user
     async Me({ commit }) {
       const res = await axios.get("auth/me/");
+      // commit("SET_USER", res.data.data);
       commit("SET_USER", res.data.user);
       commit("SET_PROFILE", res.data);
     },
 
-    //Change user login details trying to revert
+    //Change user login details
     async changeLoginDetails({ commit }, payload) {
       const res = await axios.put(
         "auth/" + payload.userid + "/update-password/",

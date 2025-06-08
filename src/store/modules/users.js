@@ -43,6 +43,7 @@ const users = {
       commit("SET_USER", res.data.user);
       commit("SET_PROFILE", res.data);
     },
+    //comment
 
     async fetchUsers({ commit }) {
       try {
